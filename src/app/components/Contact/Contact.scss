@@ -1,0 +1,50 @@
+.form-container {
+    p {
+        color: white;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        label {
+            color: white;
+        }
+
+
+        .ng-valid[required],
+        .ng-valid.required {
+            border: 2px solid var(--color-success);
+            /* green */
+        }
+
+        .ng-invalid:not(form) {
+            border: 2px solid var(--color-error);
+            /* red */
+        }
+
+        .alert div {
+            background-color: #fed3d3;
+            color: #820000;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ng-untouched,
+        .ng-pristine {
+
+            &.ng-valid[required],
+            &.ng-valid.required {
+                border: 0px solid var(--color-success);
+                /* green */
+            }
+
+            &.ng-invalid:not(form) {
+                border: 0px solid var(--color-error);
+                /* red */
+            }
+        }
+
+    }
+}

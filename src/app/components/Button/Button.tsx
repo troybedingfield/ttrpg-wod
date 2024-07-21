@@ -1,0 +1,25 @@
+'use client';
+
+import './Button.scss'
+
+export default function Button({ ...props }) {
+    const {
+        children,
+        color = 'default',
+        disabled,
+        fill = 'solid',
+        size = 'medium',
+        uppercase,
+        maxWidth,
+        minWidth,
+        customBGColor,
+        buttonClick,
+        formAction,
+        classNames
+    } = props
+
+    return (
+        <button style={{ minWidth: minWidth + 'px', maxWidth: maxWidth + 'px' }} className={[classNames, color, fill, size, uppercase ? 'text-uppercase' : ''].join(' ')} onClick={buttonClick}
+            formAction={formAction} disabled={disabled ? disabled : null}>{children}</button>
+    )
+}

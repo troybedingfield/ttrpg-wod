@@ -1,0 +1,280 @@
+.split-container {
+    display: inline-flex;
+
+
+
+    /* Dropdown Button */
+    button {
+        padding: 4px 8px;
+        border-radius: 8px 0 0 8px;
+        color: white;
+        background-color: var(--color-button-default);
+        border: none;
+        box-shadow: none;
+        min-height: 36px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        // width: 100%;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 2;
+
+        &.secondary {
+            background-color: var(--color-button-secondary);
+        }
+
+        &.outline {
+            background-color: var(--color-button-outline);
+            border: 1px solid var(--color-button-default);
+            color: var(--color-button-default);
+
+            &:hover {
+                background-color: var(--color-clear-button-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-button);
+                border: 1px solid var(--color-background-disabled);
+                color: var(--color-background-disabled);
+            }
+        }
+
+        &.clear {
+            background-color: var(--color-transparent);
+            color: var(--color-button-default);
+
+            &:hover {
+                background-color: var(--color-clear-button-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-transparent);
+                color: var(--color-background-disabled);
+            }
+        }
+
+        &.small {
+            min-height: 30px;
+            min-width: 30px;
+        }
+
+        &.medium {
+            min-height: 36px;
+            min-width: 36px;
+        }
+
+        &.large {
+            min-height: 42px;
+            min-width: 42px;
+        }
+    }
+
+    .success {
+        color: var(--color, var(--color-text-button));
+        background-color: var(--color, var(--color-success));
+
+        &.outline {
+            background-color: var(--color-button-outline);
+            border: 1px solid var(--color-success);
+            color: var(--color-success);
+
+            &:hover {
+                background-color: var(--color-clear-button-success-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-button);
+                border: 1px solid var(--color-background-disabled);
+                color: var(--color-background-disabled);
+            }
+        }
+
+        &.clear {
+            background-color: var(--color-transparent);
+            color: var(--color-success);
+
+            &:hover {
+                background-color: var(--color-clear-button-success-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-transparent);
+                color: var(--color-background-disabled);
+            }
+        }
+    }
+
+    .warning {
+        color: var(--color, var(--color-text-button));
+        background-color: var(--color, var(--color-warning));
+
+        &.outline {
+            background-color: var(--color-button-outline);
+            border: 1px solid var(--color-warning);
+            color: var(--color-warning);
+
+            &:hover {
+                background-color: var(--color-clear-button-warning-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-button);
+                border: 1px solid var(--color-background-disabled);
+                color: var(--color-background-disabled);
+            }
+        }
+
+        &.clear {
+            background-color: var(--color-transparent);
+            color: var(--color-warning);
+
+            &:hover {
+                background-color: var(--color-clear-button-warning-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-transparent);
+                color: var(--color-background-disabled);
+            }
+        }
+    }
+
+    .error {
+        color: var(--color, var(--color-text-button));
+        background-color: var(--color, var(--color-error));
+
+        &.outline {
+            background-color: var(--color-button-outline);
+            border: 1px solid var(--color-error);
+            color: var(--color-error);
+
+            &:hover {
+                background-color: var(--color-clear-button-error-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-button);
+                border: 1px solid var(--color-background-disabled);
+                color: var(--color-background-disabled);
+            }
+        }
+
+
+        &.clear {
+            background-color: var(--color-transparent);
+            color: var(--color-error);
+
+            &:hover {
+                background-color: var(--color-clear-button-error-hover);
+            }
+
+            &:disabled {
+                background-color: var(--color-transparent);
+                color: var(--color-background-disabled);
+            }
+        }
+    }
+
+    .default {
+        color: var(--color, var(--color-text-button));
+        background-color: var(--color, var(--color-button-default));
+    }
+
+    .disabled {
+        background-color: var(--color, var(--color-background-disabled));
+        color: var(--color, var(--color-text-disabled));
+        cursor: not-allowed;
+    }
+
+    :disabled {
+        background-color: var(--color, var(--color-background-disabled));
+        color: var(--color, var(--color-text-disabled));
+        cursor: not-allowed;
+    }
+
+    .standard {
+        color: var(--color, var(--color-text-button));
+        background-color: var(--color, var(--color-button-default));
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown button {
+        position: relative;
+        display: inline-flex;
+        border-radius: 0 8px 8px 0;
+        border-left: 1px solid white;
+        z-index: 2;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        // display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        z-index: 1;
+        right: 12px;
+
+        &.close {
+            display: none;
+        }
+
+        &.open {
+            display: block;
+        }
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .down-arrow {
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+        margin: 0 4px;
+        // height: 0;
+        // margin-right: 8px;
+        position: relative;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        top: -2px;
+        z-index: 1;
+        pointer-events: none;
+
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown.open .dropdown-content {
+        display: block;
+    }
+
+    // .dropdown.open .dropdown-content {
+    //     display: block;
+    // }
+
+    // .dropdown.close .dropdown-content {
+    //     display: none;
+    // }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .btn:hover,
+    .dropdown:hover .btn {
+        background-color: #0b7dda;
+    }
+}

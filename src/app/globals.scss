@@ -1,0 +1,100 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import "@/fonts/icon-font/icons.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+
+:root {
+  --color-success: green;
+  --color-warning: rgb(255, 196, 0);
+  --color-error: rgb(255, 0, 0);
+  --color-text-disabled: lightgray;
+  --color-background-disabled: rgba(128, 128, 128, 0.2);
+  --color-button-default: rgba(0, 0, 0, 0.95);
+  --color-text-button: white;
+  --color-button-outline: white;
+  --color-transparent: transparent;
+  --color-clear-button-hover: rgba(211, 211, 211, 0.2);
+  --color-clear-button-success-hover: rgba(144, 238, 144, 0.2);
+  --color-clear-button-warning-hover: rgba(255, 196, 0, 0.2);
+  --color-clear-button-error-hover: rgb(255, 71, 71, 0.2);
+  --roboto: "Roboto", sans-serif;
+  --roboto-thin: 100;
+  --roboto-light: 300;
+  --roboto-regular: 400;
+  --roboto-medium: 500;
+  --roboto-bold: 700;
+  --roboto-black: 900;
+  --roboto-italic: italic;
+  --roboto-normal: normal;
+}
+
+html * {
+  box-sizing: border-box;
+}
+
+body * {
+  font-family: var(--roboto);
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+
+.checkbox-round {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid black;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: black;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+.circle {
+  height: 16px;
+  width: 16px;
+  display: flex;
+  border-radius: 50px;
+  border: 1px solid black;
+
+  &.filled {
+    background-color: black;
+  }
+}
+
+
+input:not([type=checkbox]) {
+  display: flex;
+  min-height: 36px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 0 12px;
+}
+
+a>i.icon {
+  cursor: pointer;
+}

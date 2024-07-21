@@ -1,0 +1,217 @@
+'use client'
+import { useRef, useState } from "react";
+import './CharBloodPotency.scss'
+import Button from "@/app/components/Button/Button";
+import { createClient } from "@/utils/supabase/client";
+
+export default function CharBloodPotency({ ...props }) {
+    const { id, params, data } = props;
+
+    const [isEditingBP, setIsEditingBP] = useState(false);
+    const [isEditingBloodForm, setIsEditingBloodForm] = useState(false);
+
+    const [bloodPotency, setBloodPotency] = useState(data.bloodPotency)
+    const [bloodSurge, setBloodSurge] = useState(data.bloodSurge)
+    const [powerBonus, setPowerBonus] = useState(data.powerBonus)
+    const [feedingPenalty, setFeedingPenalty] = useState(data.feedingPenalty)
+    const [mendAmount, setMendAmount] = useState(data.mendAmount)
+    const [rouseReroll, setRouseReroll] = useState(data.rouseReroll)
+    const [baneSeverity, setBaneSeverity] = useState(data.baneSeverity)
+
+    const bloodPotencyForm = useRef<any | undefined>();
+    const bloodForm = useRef<any | undefined>();
+
+    const supabase = createClient();
+
+    function editBloodPotency() {
+        setIsEditingBP(isEditingBP => !isEditingBP)
+    }
+    function editBloodForm() {
+        setIsEditingBloodForm(isEditingBloodForm => !isEditingBloodForm)
+    }
+
+    async function handleBPFormSbumit(event: any, form: any) {
+        event.preventDefault()
+        let bloodPotency = [
+            form.current[0].checked,
+            form.current[1].checked,
+            form.current[2].checked,
+            form.current[3].checked,
+            form.current[4].checked,
+            form.current[5].checked,
+            form.current[6].checked,
+            form.current[7].checked,
+            form.current[8].checked,
+            form.current[9].checked,
+        ]
+
+
+
+        const { data, error } = await supabase
+            .from('charBloodPotency')
+            .update({
+                bloodPotency: bloodPotency,
+
+            })
+            .eq('id', params.characterID)
+            .select()
+
+        if (error) {
+            console.log(error);
+        }
+
+        if (!error) {
+
+            setBloodPotency(bloodPotency);
+
+            setIsEditingBP(isEditingBP => !isEditingBP)
+        }
+    }
+
+    async function handleBloodFormSbumit(event: any, form: any) {
+        event.preventDefault()
+        let bloodSurge = form.current[0].value;
+        let powerBonus = form.current[1].value;
+        let feedingPenalty = form.current[2].value;
+        let mendAmount = form.current[3].value;
+        let rouseReroll = form.current[4].value;
+        let baneSeverity = form.current[5].value;
+
+
+
+        const { data, error } = await supabase
+            .from('charBloodPotency')
+            .update({
+                bloodSurge: bloodSurge,
+                powerBonus: powerBonus,
+                feedingPenalty: feedingPenalty,
+                mendAmount: mendAmount,
+                rouseReroll: rouseReroll,
+                baneSeverity: baneSeverity,
+
+            })
+            .eq('id', params.characterID)
+            .select()
+
+        if (error) {
+            console.log(error);
+        }
+
+        if (!error) {
+
+            setBloodSurge(bloodSurge);
+            setPowerBonus(powerBonus);
+            setFeedingPenalty(feedingPenalty);
+            setMendAmount(mendAmount);
+            setRouseReroll(rouseReroll);
+            setBaneSeverity(baneSeverity);
+
+            setIsEditingBloodForm(isEditingBloodForm => !isEditingBloodForm)
+        }
+    }
+
+
+    return (
+        <>
+
+            <div className="container flex flex-col">
+                <div className="sectionTitle flex gap-2 justify-center">Blood Potency <a onClick={() => editBloodPotency()}><i
+                    className="icon icon-edit-b"></i></a>
+
+                </div>
+                <div className="flex justify-center gap-1">
+                    {!isEditingBP && bloodPotency.map((health: any, index: any) => {
+                        return (
+                            <div key={index} className={['circle', health ? 'filled' : ''].join(' ')} ></div>
+                        )
+                    })}
+                    {isEditingBP &&
+                        <form ref={bloodPotencyForm} className="flex flex-col gap-1" action="" onSubmit={(e) => handleBPFormSbumit(e, bloodPotencyForm)}>
+                            <div className="flex gap-1">
+                                {bloodPotency.map((health: any, index: any) => {
+                                    return (
+                                        <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={health} defaultChecked={health} />
+                                    )
+                                })}
+                            </div>
+                            <Button type="submit">Save</Button>
+                        </form>}
+                </div>
+            </div>
+            {!isEditingBloodForm &&
+                <div className="container flex flex-col">
+                    <div className="container flex">
+                        <a onClick={() => editBloodForm()}><i
+                            className="icon icon-edit-b"></i></a>
+                    </div>
+                    <div className="container flex border border-slate-500 rounded-lg p-4">
+                        <div className="container flex flex-col w-full gap-4">
+                            <div className="container flex w-full">
+                                Blood Surge: {bloodSurge}
+                            </div>
+                            <div className="container flex w-full">
+                                Power Bonus: {powerBonus}
+                            </div>
+                            <div className="container flex w-full">
+                                Feeding Penalty: {feedingPenalty}
+                            </div>
+                        </div>
+                        <div className="container flex flex-col w-full gap-4">
+                            <div className="container flex w-full">
+                                Mend Amount: {mendAmount}
+                            </div>
+                            <div className="container flex w-full">
+                                Rouse Re-Roll: {rouseReroll}
+                            </div>
+                            <div className="container flex w-full">
+                                Bane Severity: {baneSeverity}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            {isEditingBloodForm &&
+                <div className="container flex flex-col">
+                    <div className="container flex">
+                        <a onClick={() => editBloodForm()}><i
+                            className="icon icon-edit-b"></i></a>
+                    </div>
+                    <form ref={bloodForm} className="flex flex-col gap-4" onSubmit={(e) => handleBloodFormSbumit(e, bloodForm)}>
+                        <div className="flex flex-colcontainer border border-slate-500 rounded-lg p-4 gap-2">
+                            <div className="container flex flex-col w-full gap-4">
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Blood Surge: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={bloodSurge} />
+                                </div>
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Power Bonus: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={powerBonus} />
+                                </div>
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Feeding Penalty: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={feedingPenalty} />
+                                </div>
+                            </div>
+                            <div className="container flex flex-col w-full gap-4">
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Mend Amount: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={mendAmount} />
+                                </div>
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Rouse Re-roll: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={rouseReroll} />
+                                </div>
+                                <div className="container flex w-full items-center gap-2">
+                                    <div className="text-nowrap w-auto">Bane Severity: </div>
+                                    <input className="flex w-auto" type="text" defaultValue={baneSeverity} />
+                                </div>
+                            </div>
+
+                        </div>
+                        <Button type="submit">Save</Button>
+                    </form>
+                </div>
+            }
+        </>
+    )
+}

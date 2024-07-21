@@ -1,0 +1,114 @@
+#sectionTitle {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 1px solid gray;
+
+    .sectionTitle {
+        display: flex;
+
+    }
+}
+
+#characterSheetSkillsContainer {
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    .levels {
+        display: flex;
+        gap: 4px;
+    }
+
+    .levelContainer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+    }
+
+}
+
+.characterSkillsColumn {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.skillItem {
+    display: flex;
+    padding: 8px;
+    position: relative;
+    justify-content: space-between;
+    text-transform: capitalize;
+    flex-direction: column;
+    // max-width: 228px;
+    // min-width: 228px;
+    // gap: 12px;
+}
+
+label {
+    text-transform: capitalize;
+}
+
+
+#characterSheetSkillsFormContainer {
+    display: flex;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    gap: 12px;
+
+    // input {
+    //   width: 100%;
+    // }
+    .buttonContainer {
+        justify-content: center;
+    }
+
+    .levelsContainer {
+        display: flex;
+        gap: 4px;
+    }
+
+}
+
+.levels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#skillSpecialty {
+    width: 100%;
+    display: flex;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.specialtyWrapper {
+    display: flex;
+    width: 100%;
+}
+
+// .form-group {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.specialty {
+    display: flex;
+    width: 100%;
+    min-height: 30px;
+}
+
+.formFields {
+    display: flex;
+}
