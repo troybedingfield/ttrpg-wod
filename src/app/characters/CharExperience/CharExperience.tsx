@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
+import './CharExperience.scss'
 
 export default function CharExperience({ ...props }) {
     const { id, data, params } = props;
@@ -88,7 +89,7 @@ export default function CharExperience({ ...props }) {
                 {!isEditingTotal &&
                     <div className="totalExp flex items-center sm:justify-end w-full gap-2">
                         <a onClick={() => editTotal()}><i
-                            className="icon icon-edit-b"></i></a> <div className="border border-slate-500 rounded-lg gap-2 p-2">Total Experience: {charTotalExp}</div>
+                            className="icon icon-edit-b"></i></a> <div className="flex border border-slate-500 rounded-lg gap-2 p-2">Total Experience: <span className="expNumber">{charTotalExp}</span></div>
                     </div>
                 }
                 {isEditingTotal &&
@@ -104,7 +105,7 @@ export default function CharExperience({ ...props }) {
                 }
                 {!isEditingSpent && <div className="spentExp flex items-center sm:justify-start w-full gap-2">
                     <a onClick={() => editSpent()}><i
-                        className="icon icon-edit-b"></i></a><div className="border border-slate-500 gap-2 rounded-lg p-2">Spent Experience:{charSpentExp}</div>
+                        className="icon icon-edit-b"></i></a><div className="flex border border-slate-500 gap-2 rounded-lg p-2">Spent Experience:<span className="expNumber">{charSpentExp}</span></div>
                 </div>}
                 {isEditingSpent && <div className="spentExp flex items-center sm:justify-start w-full gap-2">
                     <a onClick={() => editSpent()}><i

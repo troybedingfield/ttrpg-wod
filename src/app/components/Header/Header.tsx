@@ -15,14 +15,26 @@ export default async function Header({ ...props }) {
 
     }
 
+    const { data: settings, error: settingError } = await supabase
+        .from("usersettings")
+        .select()
+        .eq('id', data?.user?.id)
+
+    const { data: userProfile, error: userProfileError } = await supabase
+        .from("userprofiles")
+        .select()
+        .eq('id', data?.user?.id)
+
+
     return (
-        <header className='min-h-16 flex w-full relative px-4 border border-b-slate-950 gap-2'>
+        <header className='min-h-16 flex w-full relative px-4 border-b border-b-slate-950 dark:border-b-slate-500 gap-2'>
 
             <a href="/" className="header-name text-center">WOD</a>
             <div className="flex w-auto items-center">
                 {/* <a href="/characters">Characters</a> */}
             </div>
-            <RightHeaderMenu data={data} />
+            <RightHeaderMenu data={data} settings={settings}
+                profile={userProfile} />
 
         </header>
     )

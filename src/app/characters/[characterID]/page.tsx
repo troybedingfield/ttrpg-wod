@@ -7,7 +7,7 @@ import CharSkills from '../CharSkills/CharSkills';
 import CharDisciplines from '../CharDisciplines/CharDisciplines';
 import AddDiscipline from '../AddDiscipline/AddDiscipline';
 import CharTTCB from '../CharTTCB/CharTTCB';
-import CharAdvantages from '../CharAdvantages.tsx/CharAdvantages';
+import CharAdvantages from '../CharAdvantages/CharAdvantages';
 import CharFlaws from '../CharFlaws/CharFlaws';
 import CharBloodPotency from '../CharBloodPotency/CharBloodPotency';
 import CharExperience from '../CharExperience/CharExperience';

@@ -36,6 +36,8 @@ html * {
   box-sizing: border-box;
 }
 
+
+
 body * {
   font-family: var(--roboto);
   font-size: 16px;
@@ -97,4 +99,111 @@ input:not([type=checkbox]) {
 
 a>i.icon {
   cursor: pointer;
+}
+
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+  .grid {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .vercelLogo {
+    filter: invert(1);
+  }
+
+  .logo {
+    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+#sectionTitle {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+
+  .sectionTitle {
+    display: flex;
+
+  }
+}
+
+
+/************************************************************
+************************************************************
+Dark Mode Theme
+************************************************************
+************************************************************/
+@media (prefers-color-scheme: dark) {
+
+  body * {
+    color: white;
+  }
+
+  body {
+    background-color: rgb(23 23 23);
+  }
+
+  input[type=text] {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgb(185 28 28);
+    border-color: rgb(100 116 139);
+  }
+
+
+
+  input[type=number] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-color: rgb(100 116 139);
+    color: rgb(185 28 28)
+  }
+
+  .checkbox-round {
+    width: 16px;
+    height: 16px;
+    background-color: rgb(23, 23, 23);
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid red;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .checkbox-round:checked {
+    background-color: rgb(185 28 28);
+  }
+
+
+  input:not([type=checkbox]) {
+    display: flex;
+    min-height: 36px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgb(185 28 28);
+    border-color: rgb(100 116 139);
+    padding: 0 12px;
+  }
+
+  textarea {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgb(185 28 28);
+    border-color: rgb(100 116 139);
+  }
+
 }

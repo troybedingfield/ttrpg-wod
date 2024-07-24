@@ -119,7 +119,7 @@ export default function CharDisciplines({ ...props }) {
                     <form ref={form} className='flex flex-col gap-2' onSubmit={(e) => handleFormSubmit(e, form)}>
                         <div className='flex gap-2'>
                             <div className="disciplineName disciplineItem container flex flex-col ">
-                                <input className="border border-slate-200" defaultValue={disName} id="disName" />
+                                <input className="border " defaultValue={disName} id="disName" />
                             </div>
                             <div className="levels flex items-center">
                                 {disLevel.map((dis: any, index: any) => {
@@ -130,7 +130,7 @@ export default function CharDisciplines({ ...props }) {
                             </div>
                         </div>
                         <div className="flex">
-                            <textarea className="border border-slate-200 w-full" defaultValue={disNotes} id="disNotes"  ></textarea>
+                            <textarea className="border w-full" defaultValue={disNotes} id="disNotes"  ></textarea>
 
                         </div>
                         <Button type="submit">Update</Button>

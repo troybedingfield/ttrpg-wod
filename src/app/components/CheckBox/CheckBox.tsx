@@ -19,7 +19,7 @@ export default function CheckBox({ ...props }) {
     const [checkChecked, setCheckChecked] = useState(checked)
     const [checkInd, setCheckInd] = useState(indeterminate)
 
-    console.log(checkChecked, checkInd);
+    // console.log(checkChecked, checkInd);
 
     // checkboxRef.current.checked = checkChecked;
     // checkboxRef.current.indeterminate = checkInd;

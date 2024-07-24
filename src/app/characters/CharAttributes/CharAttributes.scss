@@ -107,3 +107,56 @@
     display: flex;
     gap: 12px;
 }
+
+
+
+@media (prefers-color-scheme: dark) {
+
+    .levels .circle {
+        height: 16px;
+        width: 16px;
+        display: flex;
+        border-radius: 50px;
+        border: 1px solid red;
+
+        &.filled {
+            background-color: rgb(185 28 28);
+            border: 1px solid rgb(185 28 28);
+        }
+    }
+
+
+    #characterSheetAttributesFormContainer {
+
+        input {
+            display: flex;
+            min-height: auto;
+            width: 100%;
+            border: 1px solid red;
+            padding: 0;
+            height: 16px;
+            width: 16px;
+            margin: 0 0 0 4px;
+            background-color: transparent
+        }
+
+        input:checked {
+            background-color: darkred;
+        }
+
+        .form-group {
+            &.levels {
+                gap: 0;
+            }
+        }
+
+        .buttonContainer {
+            justify-content: center;
+        }
+    }
+
+
+    .atrrCount {
+        color: red;
+    }
+}

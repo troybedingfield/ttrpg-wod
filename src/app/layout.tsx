@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/Header/Header";
 
+
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
   style: ['normal', 'italic'],
@@ -15,14 +16,16 @@ export const metadata: Metadata = {
   description: "Hub for your WOD Character Sheets",
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
+    <html lang="en" data-mode="dark">
+      <body className={[roboto.className].join(' ')}>
         <Header />
         <div className="container mx-auto pt-4">
           {children}

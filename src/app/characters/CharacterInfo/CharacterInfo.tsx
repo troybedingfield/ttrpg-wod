@@ -91,7 +91,7 @@ export default function CharacterInfo({ ...props }) {
         let clan = form.current[7].value;
         let generation = form.current[8].value;
 
-        console.log(name, chronicle, sire, concept, ambition, desire, predator, clan, generation)
+        // console.log(name, chronicle, sire, concept, ambition, desire, predator, clan, generation)
 
         const { data, error } = await supabase
             .from('character')
@@ -171,35 +171,35 @@ export default function CharacterInfo({ ...props }) {
                 <div className='container sm:columns-3'>
                     <div className="w-full sm:max-w-60 sm:mx-auto">
                         <div className="characterName infoItem">
-                            Name: {charName}
+                            Name: <span className='infoLabel'>{charName}</span>
                         </div>
                         <div className="characterChronicle infoItem">
-                            Chronicle: {charChron}
+                            Chronicle: <span className='infoLabel'>{charChron}</span>
                         </div>
                         <div className="characterSire infoItem">
-                            Sire: {charSire}
+                            Sire: <span className='infoLabel'>{charSire}</span>
                         </div>
                     </div>
                     <div className="w-full sm:max-w-60 sm:mx-auto">
                         <div className="characterConcept infoItem">
-                            Concept: {charConcept}
+                            Concept: <span className='infoLabel'>{charConcept}</span>
                         </div>
                         <div className="characterAmbition infoItem">
-                            Ambition: {charAmbition}
+                            Ambition: <span className='infoLabel'>{charAmbition}</span>
                         </div>
                         <div className="characterDesire infoItem">
-                            Desire: {charDesire}
+                            Desire: <span className='infoLabel'>{charDesire}</span>
                         </div>
                     </div>
                     <div className="w-full sm:max-w-60 sm:mx-auto">
                         <div className="characterPredator infoItem">
-                            Predator: {charPredator}
+                            Predator: <span className='infoLabel'>{charPredator}</span>
                         </div>
                         <div className="characterClan infoItem">
-                            Clan: {charClan}
+                            Clan: <span className='infoLabel'>{charClan}</span>
                         </div>
                         <div className="characterGeneration infoItem">
-                            Generation: {charGeneration}
+                            Generation: <span className='infoLabel'>{charGeneration}</span>
                         </div>
                     </div>
                 </div>

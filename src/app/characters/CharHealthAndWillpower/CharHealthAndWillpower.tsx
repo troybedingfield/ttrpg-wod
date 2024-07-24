@@ -5,7 +5,7 @@ import CheckBox from "@/app/components/CheckBox/CheckBox";
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 
-export default function charHealthAndWillpower({ ...props }) {
+export default function CharHealthAndWillpower({ ...props }) {
     const { id, data, params } = props;
 
     const [isEditingHealth, setIsEditingHealth] = useState(false);
@@ -99,59 +99,59 @@ export default function charHealthAndWillpower({ ...props }) {
 
 
             <div className="container flex sm:flex-row flex-col gap-8">
-                <div className="totalExp flex items-center sm:justify-end w-full flex-col">
-                    <div className="sectionTitle flex gap-2 justify-center">Health <a onClick={() => editHealth()}><i
-                        className="icon icon-edit-b"></i></a>
-
-                    </div>
-                    {!isEditingHealth && <div className="flex border border-slate-500 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
-                        {charHealth.map((health: any, index: any) => {
-                            return (
-                                <div key={index} className={['rounded border border-slate-800 w-4 h-4', health[0] ? 'cross' : '', health[1] ? 'slash' : ''].join(' ')} ></div>
-
-
-                            )
-                        })}
-                    </div>}
-
-                    {isEditingHealth && <form ref={healthForm} action="" onSubmit={(e) => handleHealthFormSbumit(e, healthForm)}>
-                        <div className="relative flex border border-slate-500 rounded-lg p-2 [&_div:nth-child(5)]:pr-2">
+                <div className="totalExp flex items-center sm:justify-end w-full ">
+                    <div className="flex flex-col">
+                        <div className="sectionTitle flex gap-2 justify-center">Health <a onClick={() => editHealth()}><i
+                            className="icon icon-edit-b"></i></a>
+                        </div>
+                        {!isEditingHealth && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charHealth.map((health: any, index: any) => {
                                 return (
-                                    // <div key={index} className={['circle', health[0] ? 'filled' : ''].join(' ')} ></div>
-                                    <CheckBox key={index} id={"customHealthCheckbox" + index} checked={health[0]}
-                                        indeterminate={health[1]} data={health} />
+                                    <div key={index} className={['rounded border border-slate-900 w-4 h-4', health[0] ? 'cross' : '', health[1] ? 'slash' : ''].join(' ')} ></div>
                                 )
                             })}
-                        </div>
-                        <Button size="small">Save</Button>
-                    </form>}
+                        </div>}
+
+
+                        {isEditingHealth && <form ref={healthForm} action="" onSubmit={(e) => handleHealthFormSbumit(e, healthForm)}>
+                            <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 [&_div:nth-child(5)]:pr-2">
+                                {charHealth.map((health: any, index: any) => {
+                                    return (
+                                        <CheckBox key={index} id={"customHealthCheckbox" + index} checked={health[0]}
+                                            indeterminate={health[1]} data={health} />
+                                    )
+                                })}
+                            </div>
+                            <Button size="small">Save</Button>
+                        </form>}
+                    </div>
 
                 </div>
-                <div className="spentExp flex items-center sm:justify-start w-full flex-col">
-                    <div className="sectionTitle flex gap-2 justify-center">Willpower <a onClick={() => editWillpower()}><i
-                        className="icon icon-edit-b"></i></a>
-
-                    </div>
-                    {!isEditingWill && <div className="flex border border-slate-500 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
-                        {charWillpower.map((willpower: any, index: any) => {
-                            return (
-                                <div key={index} className={['rounded border border-slate-800 w-4 h-4', willpower[0] ? 'cross' : '', willpower[1] ? 'slash' : ''].join(' ')} ></div>
-                            )
-                        })}
-                    </div>}
-                    {isEditingWill && <form ref={willPowerform} action="" onSubmit={(e) => handleWillpowerFormSbumit(e, willPowerform)}>
-                        <div className="relative flex border border-slate-500 rounded-lg p-2  [&_div:nth-child(5)]:pr-2">
+                <div className="spentExp flex items-center sm:justify-start w-full ">
+                    <div className="flex flex-col">
+                        <div className="sectionTitle flex gap-2 justify-center">Willpower <a onClick={() => editWillpower()}><i
+                            className="icon icon-edit-b"></i></a>
+                        </div>
+                        {!isEditingWill && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charWillpower.map((willpower: any, index: any) => {
                                 return (
-                                    // <div key={index} className={['circle', health[0] ? 'filled' : ''].join(' ')} ></div>
-                                    <CheckBox key={index} id={"customHealthCheckbox" + index} checked={willpower[0]}
-                                        indeterminate={willpower[1]} data={willpower} />
+                                    <div key={index} className={['rounded border border-slate-800 w-4 h-4', willpower[0] ? 'cross' : '', willpower[1] ? 'slash' : ''].join(' ')} ></div>
                                 )
                             })}
-                        </div>
-                        <Button size="small">Save</Button>
-                    </form>}
+                        </div>}
+                        {isEditingWill && <form ref={willPowerform} action="" onSubmit={(e) => handleWillpowerFormSbumit(e, willPowerform)}>
+                            <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2  [&_div:nth-child(5)]:pr-2">
+                                {charWillpower.map((willpower: any, index: any) => {
+                                    return (
+                                        // <div key={index} className={['circle', health[0] ? 'filled' : ''].join(' ')} ></div>
+                                        <CheckBox key={index} id={"customHealthCheckbox" + index} checked={willpower[0]}
+                                            indeterminate={willpower[1]} data={willpower} />
+                                    )
+                                })}
+                            </div>
+                            <Button size="small">Save</Button>
+                        </form>}
+                    </div>
                 </div>
 
 

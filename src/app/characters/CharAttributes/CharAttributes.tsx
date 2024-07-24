@@ -7,6 +7,7 @@ import { createClient } from '@/utils/supabase/client';
 export default function CharAttributes({ ...props }) {
     const { params, str, dex, stam, char, man, comp, int, wits, res } = props
 
+    // Attribute arrays
     const [isEditing, setIsEditing] = useState(false);
     const [charStr, setCharStr] = useState(str);
     const [charDex, setCharDex] = useState(dex);
@@ -17,6 +18,21 @@ export default function CharAttributes({ ...props }) {
     const [charInt, setCharInt] = useState(int);
     const [charWits, setCharWits] = useState(wits);
     const [charRes, setCharRes] = useState(res);
+
+    // boolean true count values for attribute arrays
+    const [charStrCount, setStrCharCount] = useState(charStr.filter(Boolean).length)
+    const [charDexCount, setDexCharCount] = useState(charDex.filter(Boolean).length)
+    const [charStamCount, setStamCharCount] = useState(charStam.filter(Boolean).length)
+    const [charCharCount, setCharCharCount] = useState(charChar.filter(Boolean).length)
+    const [charManCount, setManCharCount] = useState(charMan.filter(Boolean).length)
+    const [charCompCount, setCompCharCount] = useState(charComp.filter(Boolean).length)
+    const [charIntCount, setIntCharCount] = useState(charInt.filter(Boolean).length)
+    const [charWitsCount, setWitsCharCount] = useState(charWits.filter(Boolean).length)
+    const [charResCount, setResCharCount] = useState(charRes.filter(Boolean).length)
+
+
+
+
 
     const supabase = createClient()
 
@@ -131,6 +147,16 @@ export default function CharAttributes({ ...props }) {
             setCharWits(wits);
             setCharRes(res);
 
+            setStrCharCount(str.filter(Boolean).length);
+            setDexCharCount(dex.filter(Boolean).length);
+            setStamCharCount(stam.filter(Boolean).length);
+            setCharCharCount(char.filter(Boolean).length);
+            setManCharCount(man.filter(Boolean).length);
+            setCompCharCount(comp.filter(Boolean).length);
+            setIntCharCount(int.filter(Boolean).length);
+            setWitsCharCount(wits.filter(Boolean).length);
+            setResCharCount(res.filter(Boolean).length);
+
 
             setIsEditing(isEditing => !isEditing);
         }
@@ -147,8 +173,9 @@ export default function CharAttributes({ ...props }) {
             {!isEditing && <div id="characterSheetAttributesContainer">
                 <div className='container sm:columns-3'>
                     <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterName attributeItem">
-                            Strength
+                        <div className="characterName attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Strength</div>
+                            <div>{charStrCount > 0 && <div className='atrrCount'>{charStrCount}</div>}</div>
                             <div className="levels">
                                 {charStr.map((str: any, index: any) => {
                                     return (
@@ -162,8 +189,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterChronicle attributeItem">
-                            Dexterity
+                        <div className="characterChronicle attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Dexterity</div>
+                            <div>{charDexCount > 0 && <div className='atrrCount'>{charDexCount}</div>}</div>
                             <div className="levels">
                                 {charDex.map((dex: any, index: any) => {
                                     return (
@@ -177,8 +205,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterSire attributeItem">
-                            Stamina
+                        <div className="characterSire attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Stamina</div>
+                            <div>{charStamCount > 0 && <div className='atrrCount'>{charStamCount}</div>}</div>
                             <div className="levels">
                                 {charStam.map((stam: any, index: any) => {
                                     return (
@@ -194,8 +223,9 @@ export default function CharAttributes({ ...props }) {
                         </div>
                     </div>
                     <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterConcept attributeItem">
-                            Charisma
+                        <div className="characterConcept attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Charisma</div>
+                            <div>{charCharCount > 0 && <div className='atrrCount'>{charCharCount}</div>}</div>
                             <div className="levels">
                                 {charChar.map((char: any, index: any) => {
                                     return (
@@ -209,8 +239,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterAmbition attributeItem">
-                            Manipulation
+                        <div className="characterAmbition attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Manipulation</div>
+                            <div>{charManCount > 0 && <div className='atrrCount'>{charManCount}</div>}</div>
                             <div className="levels">
                                 {charMan.map((man: any, index: any) => {
                                     return (
@@ -224,8 +255,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterDesire attributeItem">
-                            Composure
+                        <div className="characterDesire attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Composure</div>
+                            <div>{charCompCount > 0 && <div className='atrrCount'>{charCompCount}</div>}</div>
                             <div className="levels">
                                 {charComp.map((comp: any, index: any) => {
                                     return (
@@ -241,8 +273,9 @@ export default function CharAttributes({ ...props }) {
                         </div>
                     </div>
                     <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterPredator attributeItem">
-                            Intelligence
+                        <div className="characterPredator attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Intelligence</div>
+                            <div>{charIntCount > 0 && <div className='atrrCount'>{charIntCount}</div>}</div>
                             <div className="levels">
                                 {charInt.map((int: any, index: any) => {
                                     return (
@@ -256,8 +289,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterClan attributeItem">
-                            Wits
+                        <div className="characterClan attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Wits</div>
+                            <div>{charWitsCount > 0 && <div className='atrrCount'>{charWitsCount}</div>}</div>
                             <div className="levels">
                                 {charWits.map((wits: any, index: any) => {
                                     return (
@@ -271,8 +305,9 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterGeneration attributeItem">
-                            Resolve
+                        <div className="characterGeneration attributeItem sm:columns-3">
+                            <div className='flex min-w-24'>Resolve</div>
+                            <div>{charResCount > 0 && <div className='atrrCount'>{charResCount}</div>}</div>
                             <div className="levels">
                                 {charRes.map((res: any, index: any) => {
                                     return (
@@ -297,7 +332,8 @@ export default function CharAttributes({ ...props }) {
                         <div className="container sm:columns-3">
                             <div className="w-full max-w-60 sm:mx-auto">
                                 <div className="strengthAttribute attributeItem">
-                                    <label htmlFor="strength">Strength </label>
+                                    <div className='flex min-w-24'><label htmlFor="strength">Strength</label></div>
+                                    <div>{charStrCount > 0 && <div className='atrrCount'>{charStrCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charStr.map((str: any, index: any) => {
                                             return (
@@ -306,16 +342,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="dexterityAttribute attributeItem">
-                                    <label htmlFor="dexterity">Dexterity </label>
+                                    <div className='flex min-w-24'><label htmlFor="dexterity">Dexterity </label></div>
+                                    <div>{charDexCount > 0 && <div className='atrrCount'>{charDexCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charDex.map((dex: any, index: any) => {
                                             return (
@@ -324,15 +355,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="staminaAttribute attributeItem">
-                                    <label htmlFor="stamina">Stamina </label>
+                                    <div className='flex min-w-24'><label htmlFor="stamina">Stamina </label></div>
+                                    <div>{charStamCount > 0 && <div className='atrrCount'>{charStamCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charStam.map((stam: any, index: any) => {
                                             return (
@@ -341,18 +368,14 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                             </div>
 
                             <div className="w-full max-w-60 sm:mx-auto">
                                 <div className="characterConcept attributeItem">
-                                    <label htmlFor="charisma">Charisma </label>
+                                    <div className='flex min-w-24'><label htmlFor="charisma">Charisma </label></div>
+                                    <div>{charCharCount > 0 && <div className='atrrCount'>{charCharCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charChar.map((char: any, index: any) => {
                                             return (
@@ -361,15 +384,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="characterAmbition attributeItem">
-                                    <label htmlFor="manipulation">Manipulation </label>
+                                    <div className='flex min-w-24'><label htmlFor="manipulation">Manipulation </label></div>
+                                    <div>{charManCount > 0 && <div className='atrrCount'>{charManCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charMan.map((man: any, index: any) => {
                                             return (
@@ -378,15 +397,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="characterDesire attributeItem">
-                                    <label htmlFor="composure">Composure </label>
+                                    <div className='flex min-w-24'><label htmlFor="composure">Composure </label></div>
+                                    <div>{charCompCount > 0 && <div className='atrrCount'>{charCompCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charComp.map((comp: any, index: any) => {
                                             return (
@@ -395,18 +410,14 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                             </div>
 
                             <div className="w-full max-w-60 sm:mx-auto">
                                 <div className="characterPredator attributeItem">
-                                    <label htmlFor="intelligense">Intelligence </label>
+                                    <div className='flex min-w-24'><label htmlFor="intelligense">Intelligence </label></div>
+                                    <div>{charIntCount > 0 && <div className='atrrCount'>{charIntCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charInt.map((int: any, index: any) => {
                                             return (
@@ -415,15 +426,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="characterClan attributeItem">
-                                    <label htmlFor="wits">Wits </label>
+                                    <div className='flex min-w-24'><label htmlFor="wits">Wits </label></div>
+                                    <div>{charWitsCount > 0 && <div className='atrrCount'>{charWitsCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charWits.map((wits: any, index: any) => {
                                             return (
@@ -432,15 +439,11 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                                 <div className="characterGeneration attributeItem">
-                                    <label htmlFor="resolve">Resolve </label>
+                                    <div className='flex min-w-24'><label htmlFor="resolve">Resolve </label></div>
+                                    <div>{charResCount > 0 && <div className='atrrCount'>{charResCount}</div>}</div>
                                     <div className="form-group levels" >
                                         {charRes.map((res: any, index: any) => {
                                             return (
@@ -449,11 +452,6 @@ export default function CharAttributes({ ...props }) {
 
                                             )
                                         })}
-                                        {/* <input id="level1" className="checkbox-round" type="checkbox" />
-                                        <input id="level2" className="checkbox-round" type="checkbox" />
-                                        <input id="level3" className="checkbox-round" type="checkbox" />
-                                        <input id="level4" className="checkbox-round" type="checkbox" />
-                                        <input id="level5" className="checkbox-round" type="checkbox" /> */}
                                     </div>
                                 </div>
                             </div>
