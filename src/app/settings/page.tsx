@@ -20,9 +20,9 @@ export default async function Settings() {
         .select()
         .eq('id', data?.user.id)
 
-    const { data: settings, error: settingsError } = await supabase.from("usersettings")
-        .select()
-        .eq('id', data?.user.id)
+    // const { data: settings, error: settingsError } = await supabase.from("usersettings")
+    //     .select()
+    //     .eq('id', data?.user.id)
 
 
     return (
