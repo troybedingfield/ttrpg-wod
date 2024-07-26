@@ -2,15 +2,15 @@
 import { logout } from "@/app/logout/actions";
 import Button from "../../Button/Button";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import DropDownMenu from "../../DropDownMenu/DropDownMenu";
+import { UsernameContext } from "@/app/context/username";
 
 export default function RightHeaderMenu({ ...props }) {
     const { data, profile, settings, error } = props;
     const router = useRouter()
 
     const [avatarImage, setAvatarImage] = useState('/placeholder-character.png')
-
 
     function handleDropMenuclick(data: any) {
 
@@ -25,6 +25,20 @@ export default function RightHeaderMenu({ ...props }) {
             logout();
         }
     }
+
+    // const usernameCtx = useContext(UsernameContext)
+
+    // const profileData = usernameCtx
+
+    const { profileData, setProfileData } = useContext<any>(UsernameContext)
+
+
+
+    useEffect(() => {
+        return setProfileData(profile)
+    }, []);
+
+
 
 
 
@@ -88,7 +102,13 @@ export default function RightHeaderMenu({ ...props }) {
                                 src={avatarImage}
                                 className="inline-block h-12 w-12 rounded-lg ring-2 ring-white"
                             />
-                            {profile && profile.map((profile: any, index: any) => {
+                            {/* {profile && profileData.map((profile: any, index: any) => {
+                                return (
+                                    <div key={index}>{profile.username}</div>
+                                )
+                            })} */}
+                            {/* <div>{profileData.username}</div> */}
+                            {Array.isArray(profileData) && profileData.map((profile: any, index: any) => {
                                 return (
                                     <div key={index}>{profile.username}</div>
                                 )

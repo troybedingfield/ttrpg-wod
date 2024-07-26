@@ -39,7 +39,8 @@ export default function AddDiscipline({ ...props }) {
 
     return (
         <>
-            <Button buttonClick={handleCreateDiscipline}>Add Discipline</Button>
+            {/* <Button buttonClick={handleCreateDiscipline}>Add Discipline</Button> */}
+            <div className="container flex w-full border rounded-lg border-slate-500 items-center justify-center min-h-20 cursor-pointer" onClick={handleCreateDiscipline}>Add Discipline</div>
         </>
     )
 }

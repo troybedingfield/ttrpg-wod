@@ -38,7 +38,7 @@ export default function CharFlaws({ ...props }) {
                 {flawData?.map(({ flaw_id, ...data }: { flaw_id: any }) => {
                     return (
 
-                        <CharFlaw key={flaw_id} params={params} data={data} />
+                        <CharFlaw key={flaw_id} dataId={flaw_id} params={params} data={data} />
 
                     )
                 })}

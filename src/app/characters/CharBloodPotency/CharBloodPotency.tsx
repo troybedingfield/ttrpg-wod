@@ -114,7 +114,7 @@ export default function CharBloodPotency({ ...props }) {
     return (
         <>
 
-            <div className="container flex flex-col">
+            <div className="container flex flex-col gap-2">
                 <div className="sectionTitle flex gap-2 justify-center">Blood Potency <a onClick={() => editBloodPotency()}><i
                     className="icon icon-edit-b"></i></a>
 
@@ -126,7 +126,7 @@ export default function CharBloodPotency({ ...props }) {
                         )
                     })}
                     {isEditingBP &&
-                        <form ref={bloodPotencyForm} className="flex flex-col gap-1" action="" onSubmit={(e) => handleBPFormSbumit(e, bloodPotencyForm)}>
+                        <form ref={bloodPotencyForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleBPFormSbumit(e, bloodPotencyForm)}>
                             <div className="flex gap-1">
                                 {bloodPotency.map((health: any, index: any) => {
                                     return (
@@ -146,25 +146,25 @@ export default function CharBloodPotency({ ...props }) {
                     </div>
                     <div className="container flex border border-slate-500 rounded-lg p-4">
                         <div className="container flex flex-col w-full gap-4">
-                            <div className="container flex w-full">
-                                Blood Surge: {bloodSurge}
+                            <div className="container flex w-full gap-2">
+                                Blood Surge: <span className="bpText">{bloodSurge}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Power Bonus: {powerBonus}
+                            <div className="container flex w-full gap-2">
+                                Power Bonus: <span className="bpText">{powerBonus}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Feeding Penalty: {feedingPenalty}
+                            <div className="container flex w-full gap-2">
+                                Feeding Penalty: <span className="bpText">{feedingPenalty}</span>
                             </div>
                         </div>
                         <div className="container flex flex-col w-full gap-4">
-                            <div className="container flex w-full">
-                                Mend Amount: {mendAmount}
+                            <div className="container flex w-full gap-2">
+                                Mend Amount: <span className="bpText">{mendAmount}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Rouse Re-Roll: {rouseReroll}
+                            <div className="container flex w-full gap-2">
+                                Rouse Re-Roll: <span className="bpText">{rouseReroll}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Bane Severity: {baneSeverity}
+                            <div className="container flex w-full gap-2">
+                                Bane Severity: <span className="bpText">{baneSeverity}</span>
                             </div>
                         </div>
                     </div>

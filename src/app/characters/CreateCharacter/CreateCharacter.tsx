@@ -152,7 +152,8 @@ export default function CreateCharacter({ ...props }) {
 
     return (
         <>
-            <Button buttonClick={handleCreateCharacter}>Add Character</Button>
+            {/* <Button buttonClick={handleCreateCharacter}>Add Character</Button> */}
+            <div className="container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg cursor-pointer" onClick={handleCreateCharacter}>Add Character</div>
         </>
     )
 }

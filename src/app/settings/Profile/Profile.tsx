@@ -3,7 +3,8 @@ import Button from '@/app/components/Button/Button'
 import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch'
 import './Profile.scss'
 import { createClient } from '@/utils/supabase/client'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
+import { UsernameContext } from '@/app/context/username'
 export default function Profile({ ...props }) {
     const { data, profile, user } = props;
 
@@ -12,7 +13,7 @@ export default function Profile({ ...props }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const [profileData, setProfileData] = useState(profile[0])
+    // const [profileData, setProfileData] = useState(profile[0])
     const [firstName, setFirstName] = useState(profile[0].first_name)
     const [lastName, setLastName] = useState(profile[0].last_name)
     const [username, setUsername] = useState(profile[0].username)
@@ -20,11 +21,19 @@ export default function Profile({ ...props }) {
 
     const form = useRef<any | undefined>();
 
+    const { profileData, setProfileData } = useContext<any>(UsernameContext)
+
     async function handleProfileUpdateSubmit(event: any, form: any) {
         event.preventDefault();
         let username = form.current[0].value;
         let firstName = form.current[1].value;
         let lastName = form.current[2].value;
+
+        let profileData = [{
+            firstName: firstName,
+            lastName: lastName,
+            username: username
+        }]
 
         const { data, error } = await supabase
             .from('userprofiles')
@@ -45,6 +54,7 @@ export default function Profile({ ...props }) {
             setFirstName(firstName);
             setLastName(lastName);
             setUsername(username);
+            setProfileData(profileData);
 
             setIsEditing(isEditing => !isEditing)
         }

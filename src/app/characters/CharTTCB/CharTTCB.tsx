@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
+import './CharTTCB.scss'
 
 export default function CharTTCB({ ...props }) {
     const { id, params, ttcb_id, tenets, touchstones, bane } = props;
@@ -149,7 +150,7 @@ export default function CharTTCB({ ...props }) {
 
                     </div>
                     {!isTenetEditing &&
-                        <div className="container border border-slate-500 rounded-lg h-80 p-4">
+                        <div className="notes container border border-slate-500 rounded-lg h-80 p-4">
                             <pre>{charTenet}</pre>
                         </div>}
                     {isTenetEditing &&
@@ -171,7 +172,7 @@ export default function CharTTCB({ ...props }) {
                         </div>
                     </div>
                     {!isTouchEditing &&
-                        <div className="container border border-slate-500 rounded-lg min-h-80 p-4">
+                        <div className="notes container border border-slate-500 rounded-lg min-h-80 p-4">
                             <pre>{charTouch}</pre>
                         </div>}
                     {isTouchEditing &&
@@ -193,7 +194,7 @@ export default function CharTTCB({ ...props }) {
                         </div>
                     </div>
                     {!isBaneEditing &&
-                        <div className="container border border-slate-500 rounded-lg min-h-80 p-4">
+                        <div className="notes container border border-slate-500 rounded-lg min-h-80 p-4">
                             <pre>{charBane}</pre>
                         </div>}
                     {isBaneEditing &&

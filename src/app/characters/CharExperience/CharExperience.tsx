@@ -93,7 +93,7 @@ export default function CharExperience({ ...props }) {
                     </div>
                 }
                 {isEditingTotal &&
-                    <div className="totalExp flex items-center sm:justify-end w-full gap-2">
+                    <div className="totalExp flex items-center sm:justify-end w-full gap-2 justify-center">
                         <a onClick={() => editTotal()}><i
                             className="icon icon-edit-b"></i></a>
                         <form ref={totalForm} action="" onSubmit={(e) => handleTotalFormSbumit(e, totalForm)}>
@@ -103,7 +103,7 @@ export default function CharExperience({ ...props }) {
                         </form>
                     </div>
                 }
-                {!isEditingSpent && <div className="spentExp flex items-center sm:justify-start w-full gap-2">
+                {!isEditingSpent && <div className="spentExp flex items-center sm:justify-start w-full gap-2 justify-center">
                     <a onClick={() => editSpent()}><i
                         className="icon icon-edit-b"></i></a><div className="flex border border-slate-500 gap-2 rounded-lg p-2">Spent Experience:<span className="expNumber">{charSpentExp}</span></div>
                 </div>}

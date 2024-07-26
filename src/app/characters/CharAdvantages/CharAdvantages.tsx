@@ -29,6 +29,8 @@ export default function CharAdvantages({ ...props }) {
         }
     }
 
+
+
     return (
         <>
             <div className="sectionTitle flex gap-2 justify-center">Advantages
@@ -38,7 +40,7 @@ export default function CharAdvantages({ ...props }) {
                 {advData?.map(({ adv_id, ...data }: { adv_id: any }) => {
                     return (
 
-                        <CharAdvantage key={adv_id} params={params} data={data} />
+                        <CharAdvantage key={adv_id} dataId={adv_id} params={params} data={data} />
 
                     )
                 })}

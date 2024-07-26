@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 
 export default function CharAdvantage({ ...props }) {
-    const { params, data } = props;
+    const { params, data, dataId } = props;
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -46,7 +46,7 @@ export default function CharAdvantage({ ...props }) {
                 advantageName: advantageName,
                 advantageLevels: advantageLevels
             })
-            .eq('adv_id', advData.adv_id)
+            .eq('adv_id', dataId)
             .select()
 
         if (error) {

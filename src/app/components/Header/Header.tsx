@@ -1,6 +1,8 @@
 import './Header.scss';
 import { createClient } from '@/utils/supabase/server';
 import RightHeaderMenu from './RightHeaderMenu/RightHeaderMenu';
+import { useContext } from 'react';
+
 
 
 export default async function Header({ ...props }) {
@@ -9,6 +11,8 @@ export default async function Header({ ...props }) {
     const {
 
     } = props
+
+
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
@@ -24,6 +28,7 @@ export default async function Header({ ...props }) {
         .from("userprofiles")
         .select()
         .eq('id', data?.user?.id)
+
 
 
     return (

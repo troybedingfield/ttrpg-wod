@@ -116,46 +116,17 @@ export default function CharacterInfo({ ...props }) {
         if (!error) {
 
             setCharName(name);
-
-
             setCharChron(chronicle);
-
-
             setCharSire(sire);
-
-
             setCharConcept(concept);
-
-
             setCharAmbition(ambition);
-
-
             setCharDesire(desire);
-
-
             setCharPredator(predator);
-
-
             setCharClan(clan);
-
-
             setCharGeneration(generation);
-
 
             setIsEditing(isEditing => !isEditing)
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

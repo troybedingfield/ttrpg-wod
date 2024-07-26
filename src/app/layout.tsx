@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/Header/Header";
+import UsernameProvider from "./provider/username";
 
 
 const roboto = Roboto({
@@ -24,13 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-mode="dark">
-      <body className={[roboto.className].join(' ')}>
-        <Header />
-        <div className="container mx-auto pt-4">
-          {children}
-        </div>
-      </body>
-    </html>
+    <UsernameProvider>
+      <html lang="en" data-mode="dark">
+
+        <body className={[roboto.className].join(' ')}>
+          <Header />
+          <div className="container mx-auto p-4">
+            {children}
+          </div>
+        </body>
+
+      </html>
+    </UsernameProvider>
   );
 }

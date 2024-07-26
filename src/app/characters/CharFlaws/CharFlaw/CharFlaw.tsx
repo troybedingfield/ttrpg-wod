@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 
 export default function CharFlaw({ ...props }) {
-    const { params, data } = props;
+    const { params, data, dataId } = props;
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -47,7 +47,7 @@ export default function CharFlaw({ ...props }) {
                 flawName: flawName,
                 flawLevels: flawLevels
             })
-            .eq('flaw_id', flawData.flaw_id)
+            .eq('flaw_id', dataId)
             .select()
 
         if (error) {

@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button"
 import { createClient } from "@/utils/supabase/client"
 import { useRef, useState } from "react"
+import './CharResonanceHungerHumanity.scss'
 
 export default function CharResonanceHungerHumanity({ ...props }) {
     const { rhh_id, id, params, data } = props
@@ -128,14 +129,14 @@ export default function CharResonanceHungerHumanity({ ...props }) {
         }
     }
     return (
-        <div className="container flex">
+        <div className="container flex ">
             {!isEditingResonance &&
-                <div className="container flex flex-col gap-2 w-full justify-center items-center">
+                <div className="container flex flex-col gap-2 w-full items-center">
                     <div className="flex gap-2">
                         <a onClick={() => editResonance()}><i
                             className="icon icon-edit-b"></i></a>Resonance:
                     </div>
-                    <div>{charResonance}</div>
+                    <div className="resonance">{charResonance}</div>
                 </div>
             }
             {isEditingResonance &&
@@ -145,17 +146,17 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                             className="icon icon-edit-b"></i></a>Resonance:
                     </div>
 
-                    <form ref={resonanceForm} action="" onSubmit={(e) => handleResonanceFormSbumit(e, resonanceForm)} >
+                    <form ref={resonanceForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleResonanceFormSbumit(e, resonanceForm)} >
                         <input type="text" defaultValue={charResonance} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>
             }
             {!isEditingHunger && <div className="container flex gap-2 w-full justify-center">
-                <a onClick={() => editHunger()}><i
-                    className="icon icon-edit-b"></i></a>
-                <div className="flex flex-col">
-                    <div className="container">Hunger</div>
+
+                <div className="flex flex-col  gap-2">
+                    <div className="container flex gap-2 justify-center"> <a onClick={() => editHunger()}><i
+                        className="icon icon-edit-b"></i></a>Hunger</div>
                     <div className="container flex gap-1">
                         {charHunger.map((hunger: any, index: any) => {
                             return (
@@ -166,11 +167,11 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                 </div>
             </div>}
             {isEditingHunger && <div className="container flex gap-2 w-full justify-center">
-                <a onClick={() => editHunger()}><i
-                    className="icon icon-edit-b"></i></a>
-                <div className="flex flex-col">
-                    <div className="container">Hunger</div>
-                    <form ref={hungerForm} action="" onSubmit={(e) => handleHungerFormSbumit(e, hungerForm)}>
+
+                <div className="flex flex-col gap-2">
+                    <div className="container flex gap-2 justify-center"><a onClick={() => editHunger()}><i
+                        className="icon icon-edit-b"></i></a>Hunger</div>
+                    <form ref={hungerForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleHungerFormSbumit(e, hungerForm)}>
                         <div className="container flex gap-1">
                             {charHunger.map((hunger: any, index: any) => {
                                 return (
@@ -184,10 +185,10 @@ export default function CharResonanceHungerHumanity({ ...props }) {
             </div>}
             {!isEditingHumanity &&
                 <div className="container flex w-full justify-center">
-                    <a onClick={() => editHumanity()}><i
-                        className="icon icon-edit-b"></i></a>
-                    <div className="flex flex-col">
-                        <div className="container">Humanity</div>
+
+                    <div className="flex flex-col gap-2 ">
+                        <div className="container flex gap-2 justify-center"><a onClick={() => editHumanity()}><i
+                            className="icon icon-edit-b"></i></a>Humanity</div>
                         <div className="container flex gap-1">
                             {charHumanity.map((humanity: any, index: any) => {
                                 return (
@@ -200,11 +201,11 @@ export default function CharResonanceHungerHumanity({ ...props }) {
             }
             {isEditingHumanity &&
                 <div className="container flex w-full justify-center">
-                    <a onClick={() => editHumanity()}><i
-                        className="icon icon-edit-b"></i></a>
-                    <div className="flex flex-col">
-                        <div className="container">Humanity</div>
-                        <form ref={humanityForm} action="" onSubmit={(e) => handleHumanityFormSbumit(e, humanityForm)}>
+
+                    <div className="flex flex-col gap-2">
+                        <div className="container flex gap-2 justify-center"><a onClick={() => editHumanity()}><i
+                            className="icon icon-edit-b"></i></a>Humanity</div>
+                        <form ref={humanityForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleHumanityFormSbumit(e, humanityForm)}>
                             <div className="container flex gap-1">
                                 {charHumanity.map((humanity: any, index: any) => {
                                     return (

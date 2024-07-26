@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
+import './CharBioAndNotes.scss'
 
 export default function CharBioAndNotes({ ...props }) {
     const { id, params, data } = props;
@@ -106,78 +107,40 @@ export default function CharBioAndNotes({ ...props }) {
 
     return (
         <>
-            <div className="container flex gap-4">
-                {!isEditingNotes &&
-                    <div className="container flex flex-col">
-                        <a onClick={() => editNotes()}><i
-                            className="icon icon-edit-b"></i></a>
-                        <div className="container flex border border-slate-500 rounded-lg h-full p-4">
-
-                            <div className="container flex flex-col w-full h-full">
-                                <div>Notes: </div>
-                                <div className="container flex h-full w-full">
-                                    <pre>{notes}</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                {isEditingNotes &&
-
-                    <div className="container flex flex-col h-full w-full">
-                        <a onClick={() => editNotes()}><i
-                            className="icon icon-edit-b"></i></a>
-                        <form ref={notesForm} className="flex w-full h-full flex-col gap-4" onSubmit={(e) => handleNotesFormSbumit(e, notesForm)}>
-                            <div className="container flex flex-col h-full border border-slate-500 rounded-lg p-4">
-
-                                <div className="container flex flex-col w-full h-full">
-
-                                    <div>Notes: </div>
-                                    <div className="flex h-full">
-                                        <textarea className="flex w-full h-60" name="" defaultValue={notes} id=""></textarea>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                            <Button type="submit">Save</Button>
-                        </form>
-                    </div>
-                }
+            <div className="container flex gap-4 sm:flex-row flex-col">
                 {!isEditingBio &&
                     <div className="container flex flex-col h-full w-full">
                         <a onClick={() => editBio()}><i
                             className="icon icon-edit-b"></i></a>
-                        <div className="container border border-slate-500 rounded-lg p-4 flex flex-col gap-4">
-                            <div className="container flex w-full">
-                                True Age: {trueAge}
+                        <div className="container border border-slate-500 rounded-lg p-4 flex flex-col gap-4 min-h-96">
+                            <div className="container flex w-full gap-2">
+                                True Age: <span className="bioText">{trueAge}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Apparent Age: {apparentAge}
+                            <div className="container flex w-full gap-2">
+                                Apparent Age: <span className="bioText">{apparentAge}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Date of birth: {DOB}
+                            <div className="container flex w-full gap-2">
+                                Date of birth: <span className="bioText">{DOB}</span>
                             </div>
-                            <div className="container flex w-full">
-                                Date of death: {DOD}
+                            <div className="container flex w-full gap-2">
+                                Date of death: <span className="bioText">{DOD}</span>
                             </div>
                             <div className="container flex flex-col w-full">
                                 <div>Appearance: </div>
                                 <div>
-                                    <pre>{appearance}</pre>
+                                    <pre className="bioText">{appearance}</pre>
                                 </div>
                             </div>
                             <div className="container flex flex-col w-full">
                                 <div>Distinguishing Features: </div>
                                 <div>
-                                    <pre>{distinguishingFeatures}</pre>
+                                    <pre className="bioText">{distinguishingFeatures}</pre>
                                 </div>
                             </div>
                             <div className="container flex flex-col w-full">
                                 <div>History: </div>
                                 <div>
-                                    <pre>{history}</pre>
+                                    <pre className="bioText">{history}</pre>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +151,7 @@ export default function CharBioAndNotes({ ...props }) {
                         <a onClick={() => editBio()}><i
                             className="icon icon-edit-b"></i></a>
                         <form ref={bioForm} className="flex flex-col gap-4" onSubmit={(e) => handleBioFormSbumit(e, bioForm)}>
-                            <div className="container border border-slate-500 rounded-lg p-4 flex flex-col gap-4">
+                            <div className="container border border-slate-500 rounded-lg p-4 flex flex-col gap-4 min-h-96">
                                 <div className="container flex w-full items-center gap-4">
                                     <div className="text-nowrap w-auto">True Age:</div> <input className="flex w-auto" type="text" defaultValue={trueAge} />
                                 </div>
@@ -218,6 +181,45 @@ export default function CharBioAndNotes({ ...props }) {
                         </form>
                     </div>
                 }
+                {!isEditingNotes &&
+                    <div className="container flex flex-col">
+                        <a onClick={() => editNotes()}><i
+                            className="icon icon-edit-b"></i></a>
+                        <div className="container flex border border-slate-500 rounded-lg h-full p-4 min-h-96">
+
+                            <div className="container flex flex-col w-full h-full">
+                                <div>Notes: </div>
+                                <div className="container flex h-full w-full">
+                                    <pre className="notes">{notes}</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                {isEditingNotes &&
+
+                    <div className="container flex flex-col h-full w-full">
+                        <a onClick={() => editNotes()}><i
+                            className="icon icon-edit-b"></i></a>
+                        <form ref={notesForm} className="flex w-full h-full flex-col gap-4" onSubmit={(e) => handleNotesFormSbumit(e, notesForm)}>
+                            <div className="container flex flex-col h-full border border-slate-500 rounded-lg p-4 min-h-96">
+
+                                <div className="container flex flex-col w-full h-full">
+
+                                    <div>Notes: </div>
+                                    <div className="flex h-full">
+                                        <textarea className="flex w-full h-60" name="" defaultValue={notes} id=""></textarea>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <Button type="submit">Save</Button>
+                        </form>
+                    </div>
+                }
+
             </div >
         </>
     )
