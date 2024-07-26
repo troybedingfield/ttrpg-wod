@@ -15,8 +15,12 @@ import CharBioAndNotes from '../CharBioAndNotes/CharBioAndNotes';
 import CharHealthAndWillpower from '../CharHealthAndWillpower/CharHealthAndWillpower';
 import CharResonanceHungerHumanity from '../CharResonanceHungerHumanity/CharResonanceHungerHumanity';
 
-export default async function Character({ ...props }) {
-    const { params } = props
+export default async function Character({ params, ...props }: { params: { characterID: number } }) {
+    // const { id } = props
+
+    const charID = params.characterID
+
+    console.log(charID)
 
     const supabase = createClient()
 
