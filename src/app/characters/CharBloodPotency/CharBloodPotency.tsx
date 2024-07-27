@@ -144,7 +144,7 @@ export default function CharBloodPotency({ ...props }) {
                         <a onClick={() => editBloodForm()}><i
                             className="icon icon-edit-b"></i></a>
                     </div>
-                    <div className="container flex sm:flex-row flex-col border border-slate-500 rounded-lg p-4">
+                    <div className="container flex sm:flex-row flex-col border border-slate-500 rounded-lg p-4 gap-4">
                         <div className="container flex flex-col w-full gap-4">
                             <div className="container flex w-full gap-2">
                                 Blood Surge: <span className="bpText">{bloodSurge}</span>
