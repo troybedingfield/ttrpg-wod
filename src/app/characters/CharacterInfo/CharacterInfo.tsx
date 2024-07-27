@@ -187,7 +187,7 @@ export default function CharacterInfo({ ...props }) {
 
             {isEditing && <form ref={form} id="characterSheetInfoFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
-                <div className="formFields">
+                <div className="formFields flex sm:flex-row flex-col">
                     <div className="characterInfoColumn">
                         <div className="characterName infoItem">
                             <label htmlFor="Name">Name: </label>
