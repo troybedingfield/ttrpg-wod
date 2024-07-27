@@ -87,7 +87,7 @@ export default function CharExperience({ ...props }) {
         <>
             <div className="container flex sm:flex-row flex-col gap-8">
                 {!isEditingTotal &&
-                    <div className="totalExp flex items-center sm:justify-end w-full gap-2">
+                    <div className="totalExp flex items-center sm:justify-end w-full gap-2 justify-center">
                         <a onClick={() => editTotal()}><i
                             className="icon icon-edit-b"></i></a> <div className="flex border border-slate-500 rounded-lg gap-2 p-2">Total Experience: <span className="expNumber">{charTotalExp}</span></div>
                     </div>

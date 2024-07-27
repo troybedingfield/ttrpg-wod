@@ -172,11 +172,12 @@ export default function CharAttributes({ ...props }) {
             </div>
             {!isEditing && <div id="characterSheetAttributesContainer">
                 <div className='container sm:columns-3'>
-                    <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterName attributeItem sm:columns-3">
+                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="characterName attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Strength</div>
-                            <div>{charStrCount > 0 && <div className='atrrCount'>{charStrCount}</div>}</div>
+
                             <div className="levels">
+                                {charStrCount > 0 && <div className='atrrCount pr-2'>{charStrCount}</div>}
                                 {charStr.map((str: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', str ? 'filled' : ''].join(' ')} ></div>
@@ -189,10 +190,11 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterChronicle attributeItem sm:columns-3">
+                        <div className="characterChronicle attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Dexterity</div>
-                            <div>{charDexCount > 0 && <div className='atrrCount'>{charDexCount}</div>}</div>
+
                             <div className="levels">
+                                {charDexCount > 0 && <div className='atrrCount pr-2'>{charDexCount}</div>}
                                 {charDex.map((dex: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', dex ? 'filled' : ''].join(' ')} ></div>
@@ -205,10 +207,11 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterSire attributeItem sm:columns-3">
+                        <div className="characterSire attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Stamina</div>
-                            <div>{charStamCount > 0 && <div className='atrrCount'>{charStamCount}</div>}</div>
+
                             <div className="levels">
+                                {charStamCount > 0 && <div className='atrrCount pr-2'>{charStamCount}</div>}
                                 {charStam.map((stam: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', stam ? 'filled' : ''].join(' ')} ></div>
@@ -222,11 +225,12 @@ export default function CharAttributes({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterConcept attributeItem sm:columns-3">
+                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="characterConcept attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Charisma</div>
-                            <div>{charCharCount > 0 && <div className='atrrCount'>{charCharCount}</div>}</div>
+
                             <div className="levels">
+                                {charCharCount > 0 && <div className='atrrCount pr-2'>{charCharCount}</div>}
                                 {charChar.map((char: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', char ? 'filled' : ''].join(' ')} ></div>
@@ -239,10 +243,10 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterAmbition attributeItem sm:columns-3">
+                        <div className="characterAmbition attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Manipulation</div>
-                            <div>{charManCount > 0 && <div className='atrrCount'>{charManCount}</div>}</div>
                             <div className="levels">
+                                {charManCount > 0 && <div className='atrrCount pr-2'>{charManCount}</div>}
                                 {charMan.map((man: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', man ? 'filled' : ''].join(' ')} ></div>
@@ -255,10 +259,10 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterDesire attributeItem sm:columns-3">
+                        <div className="characterDesire attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Composure</div>
-                            <div>{charCompCount > 0 && <div className='atrrCount'>{charCompCount}</div>}</div>
                             <div className="levels">
+                                {charCompCount > 0 && <div className='atrrCount pr-2'>{charCompCount}</div>}
                                 {charComp.map((comp: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', comp ? 'filled' : ''].join(' ')} ></div>
@@ -272,11 +276,11 @@ export default function CharAttributes({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-w-60 sm:mx-auto">
-                        <div className="characterPredator attributeItem sm:columns-3">
+                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="characterPredator attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Intelligence</div>
-                            <div>{charIntCount > 0 && <div className='atrrCount'>{charIntCount}</div>}</div>
                             <div className="levels">
+                                {charIntCount > 0 && <div className='atrrCount pr-2'>{charIntCount}</div>}
                                 {charInt.map((int: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', int ? 'filled' : ''].join(' ')} ></div>
@@ -289,10 +293,10 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterClan attributeItem sm:columns-3">
+                        <div className="characterClan attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Wits</div>
-                            <div>{charWitsCount > 0 && <div className='atrrCount'>{charWitsCount}</div>}</div>
                             <div className="levels">
+                                {charWitsCount > 0 && <div className='atrrCount pr-2'>{charWitsCount}</div>}
                                 {charWits.map((wits: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', wits ? 'filled' : ''].join(' ')} ></div>
@@ -305,10 +309,10 @@ export default function CharAttributes({ ...props }) {
                             <div className="circle filled" ></div> */}
                             </div>
                         </div>
-                        <div className="characterGeneration attributeItem sm:columns-3">
+                        <div className="characterGeneration attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Resolve</div>
-                            <div>{charResCount > 0 && <div className='atrrCount'>{charResCount}</div>}</div>
                             <div className="levels">
+                                {charResCount > 0 && <div className='atrrCount pr-2'>{charResCount}</div>}
                                 {charRes.map((res: any, index: any) => {
                                     return (
                                         <div key={index} className={['circle', res ? 'filled' : ''].join(' ')} ></div>
@@ -330,11 +334,12 @@ export default function CharAttributes({ ...props }) {
                     <form ref={form} id="characterSheetAttributesFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
                         <div className="container sm:columns-3">
-                            <div className="w-full max-w-60 sm:mx-auto">
-                                <div className="strengthAttribute attributeItem">
+                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                                <div className="strengthAttribute attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="strength">Strength</label></div>
-                                    <div>{charStrCount > 0 && <div className='atrrCount'>{charStrCount}</div>}</div>
+
                                     <div className="form-group levels" >
+                                        {charStrCount > 0 && <div className='atrrCount pr-2'>{charStrCount}</div>}
                                         {charStr.map((str: any, index: any) => {
                                             return (
 
@@ -344,10 +349,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="dexterityAttribute attributeItem">
+                                <div className="dexterityAttribute attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="dexterity">Dexterity </label></div>
-                                    <div>{charDexCount > 0 && <div className='atrrCount'>{charDexCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charDexCount > 0 && <div className='atrrCount pr-2'>{charDexCount}</div>}
                                         {charDex.map((dex: any, index: any) => {
                                             return (
 
@@ -357,10 +362,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="staminaAttribute attributeItem">
+                                <div className="staminaAttribute attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="stamina">Stamina </label></div>
-                                    <div>{charStamCount > 0 && <div className='atrrCount'>{charStamCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charStamCount > 0 && <div className='atrrCount pr-2'>{charStamCount}</div>}
                                         {charStam.map((stam: any, index: any) => {
                                             return (
 
@@ -372,11 +377,11 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
 
-                            <div className="w-full max-w-60 sm:mx-auto">
-                                <div className="characterConcept attributeItem">
+                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                                <div className="characterConcept attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="charisma">Charisma </label></div>
-                                    <div>{charCharCount > 0 && <div className='atrrCount'>{charCharCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charCharCount > 0 && <div className='atrrCount pr-2'>{charCharCount}</div>}
                                         {charChar.map((char: any, index: any) => {
                                             return (
 
@@ -386,10 +391,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="characterAmbition attributeItem">
+                                <div className="characterAmbition attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="manipulation">Manipulation </label></div>
-                                    <div>{charManCount > 0 && <div className='atrrCount'>{charManCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charManCount > 0 && <div className='atrrCount pr-2'>{charManCount}</div>}
                                         {charMan.map((man: any, index: any) => {
                                             return (
 
@@ -399,10 +404,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="characterDesire attributeItem">
+                                <div className="characterDesire attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="composure">Composure </label></div>
-                                    <div>{charCompCount > 0 && <div className='atrrCount'>{charCompCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charCompCount > 0 && <div className='atrrCount pr-2'>{charCompCount}</div>}
                                         {charComp.map((comp: any, index: any) => {
                                             return (
 
@@ -414,11 +419,11 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
 
-                            <div className="w-full max-w-60 sm:mx-auto">
-                                <div className="characterPredator attributeItem">
+                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                                <div className="characterPredator attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="intelligense">Intelligence </label></div>
-                                    <div>{charIntCount > 0 && <div className='atrrCount'>{charIntCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charIntCount > 0 && <div className='atrrCount pr-2'>{charIntCount}</div>}
                                         {charInt.map((int: any, index: any) => {
                                             return (
 
@@ -428,10 +433,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="characterClan attributeItem">
+                                <div className="characterClan attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="wits">Wits </label></div>
-                                    <div>{charWitsCount > 0 && <div className='atrrCount'>{charWitsCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charWitsCount > 0 && <div className='atrrCount pr-2'>{charWitsCount}</div>}
                                         {charWits.map((wits: any, index: any) => {
                                             return (
 
@@ -441,10 +446,10 @@ export default function CharAttributes({ ...props }) {
                                         })}
                                     </div>
                                 </div>
-                                <div className="characterGeneration attributeItem">
+                                <div className="characterGeneration attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="resolve">Resolve </label></div>
-                                    <div>{charResCount > 0 && <div className='atrrCount'>{charResCount}</div>}</div>
                                     <div className="form-group levels" >
+                                        {charResCount > 0 && <div className='atrrCount pr-2'>{charResCount}</div>}
                                         {charRes.map((res: any, index: any) => {
                                             return (
 

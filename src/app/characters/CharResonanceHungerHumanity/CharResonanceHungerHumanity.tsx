@@ -129,7 +129,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
         }
     }
     return (
-        <div className="container flex ">
+        <div className="container flex sm:flex-row flex-col gap-4 ">
             {!isEditingResonance &&
                 <div className="container flex flex-col gap-2 w-full items-center">
                     <div className="flex gap-2">

@@ -555,12 +555,13 @@ export default function CharSkills({ ...props }) {
             </div>
             {!isEditing && <div id="characterSheetSkillsContainer">
                 <div className='container sm:columns-3'>
-                    <div className="w-full max-w-60 sm:mx-auto">
+                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterName skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>Athletics</div>
-                                <div>{charAthCount > 0 && <div className='skillCount'>{charAthCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charAthCount > 0 && <div className='skillCount pr-2'>{charAthCount}</div>}
                                     {charAth.map((athletics: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', athletics ? 'filled' : ''].join(' ')} ></div>
@@ -573,10 +574,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterChronicle skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>brawl</div>
-                                <div>{charBrawlCount > 0 && <div className='skillCount'>{charBrawlCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charBrawlCount > 0 && <div className='skillCount pr-2'>{charBrawlCount}</div>}
                                     {charBrawl.map((brawl: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', brawl ? 'filled' : ''].join(' ')} ></div>
@@ -589,10 +591,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>craft</div>
-                                <div>{charCraftCount > 0 && <div className='skillCount'>{charCraftCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charCraftCount > 0 && <div className='skillCount pr-2'>{charCraftCount}</div>}
                                     {charCraft.map((craft: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', craft ? 'filled' : ''].join(' ')} ></div>
@@ -605,10 +608,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>drive</div>
-                                <div>{charDriveCount > 0 && <div className='skillCount'>{charDriveCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charDriveCount > 0 && <div className='skillCount pr-2'>{charDriveCount}</div>}
                                     {charDrive.map((drive: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', drive ? 'filled' : ''].join(' ')} ></div>
@@ -621,10 +625,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>firearms</div>
-                                <div>{charFirearmsCount > 0 && <div className='skillCount'>{charFirearmsCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charFirearmsCount > 0 && <div className='skillCount pr-2'>{charFirearmsCount}</div>}
                                     {charFirearms.map((firearms: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', firearms ? 'filled' : ''].join(' ')} ></div>
@@ -637,10 +642,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>larceny</div>
-                                <div>{charLarcenyCount > 0 && <div className='skillCount'>{charLarcenyCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charLarcenyCount > 0 && <div className='skillCount pr-2'>{charLarcenyCount}</div>}
                                     {charLarceny.map((larceny: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', larceny ? 'filled' : ''].join(' ')} ></div>
@@ -653,10 +659,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>melee</div>
-                                <div>{charMeleeCount > 0 && <div className='skillCount'>{charMeleeCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charMeleeCount > 0 && <div className='skillCount pr-2'>{charMeleeCount}</div>}
                                     {charMelee.map((melee: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', melee ? 'filled' : ''].join(' ')} ></div>
@@ -669,10 +676,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>stealth</div>
-                                <div>{charStealthCount > 0 && <div className='skillCount'>{charStealthCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charStealthCount > 0 && <div className='skillCount pr-2'>{charStealthCount}</div>}
                                     {charStealth.map((stealth: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', stealth ? 'filled' : ''].join(' ')} ></div>
@@ -685,10 +693,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterSire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>survival</div>
-                                <div>{charSurvivalCount > 0 && <div className='skillCount'>{charSurvivalCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charSurvivalCount > 0 && <div className='skillCount pr-2'>{charSurvivalCount}</div>}
                                     {charSurvival.map((survival: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', survival ? 'filled' : ''].join(' ')} ></div>
@@ -701,12 +710,13 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-w-60 sm:mx-auto">
+                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterConcept skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>animal ken</div>
-                                <div>{charAnimalkinCount > 0 && <div className='skillCount'>{charAnimalkinCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charAnimalkinCount > 0 && <div className='skillCount pr-2'>{charAnimalkinCount}</div>}
                                     {charAnimalkin.map((animalkin: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', animalkin ? 'filled' : ''].join(' ')} ></div>
@@ -719,10 +729,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterAmbition skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>etiquette</div>
-                                <div>{charEtiquetteCount > 0 && <div className='skillCount'>{charEtiquetteCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charEtiquetteCount > 0 && <div className='skillCount pr-2'>{charEtiquetteCount}</div>}
                                     {charEtiquette.map((etiquette: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', etiquette ? 'filled' : ''].join(' ')} ></div>
@@ -735,10 +746,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>insight</div>
-                                <div>{charInsightCount > 0 && <div className='skillCount'>{charInsightCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charInsightCount > 0 && <div className='skillCount pr-2'>{charInsightCount}</div>}
                                     {charInsight.map((insight: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', insight ? 'filled' : ''].join(' ')} ></div>
@@ -751,10 +763,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>intimidation</div>
-                                <div>{charIntimidationCount > 0 && <div className='skillCount'>{charIntimidationCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charIntimidationCount > 0 && <div className='skillCount pr-2'>{charIntimidationCount}</div>}
                                     {charIntimidation.map((intimidation: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', intimidation ? 'filled' : ''].join(' ')} ></div>
@@ -767,10 +780,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>leadership</div>
-                                <div>{charLeadershipCount > 0 && <div className='skillCount'>{charLeadershipCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charLeadershipCount > 0 && <div className='skillCount pr-2'>{charLeadershipCount}</div>}
                                     {charLeadership.map((leadership: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', leadership ? 'filled' : ''].join(' ')} ></div>
@@ -783,10 +797,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>performance</div>
-                                <div>{charPerformanceCount > 0 && <div className='skillCount'>{charPerformanceCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charPerformanceCount > 0 && <div className='skillCount pr-2'>{charPerformanceCount}</div>}
                                     {charPerformance.map((performance: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', performance ? 'filled' : ''].join(' ')} ></div>
@@ -799,10 +814,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>persuassion</div>
-                                <div>{charPersuassionCount > 0 && <div className='skillCount'>{charPersuassionCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charPersuassionCount > 0 && <div className='skillCount pr-2'>{charPersuassionCount}</div>}
                                     {charPersuassion.map((persuassion: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', persuassion ? 'filled' : ''].join(' ')} ></div>
@@ -815,10 +831,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>streetwise</div>
-                                <div>{charStreetwiseCount > 0 && <div className='skillCount'>{charStreetwiseCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charStreetwiseCount > 0 && <div className='skillCount pr-2'>{charStreetwiseCount}</div>}
                                     {charStreetwise.map((streetwise: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', streetwise ? 'filled' : ''].join(' ')} ></div>
@@ -831,10 +848,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterDesire skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>subterfuge</div>
-                                <div>{charSubterfugeCount > 0 && <div className='skillCount'>{charSubterfugeCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charSubterfugeCount > 0 && <div className='skillCount pr-2'>{charSubterfugeCount}</div>}
                                     {charSubterfuge.map((subterfuge: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', subterfuge ? 'filled' : ''].join(' ')} ></div>
@@ -847,12 +865,13 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-w-60 sm:mx-auto">
+                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterPredator skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>academics</div>
-                                <div>{charAcademicsCount > 0 && <div className='skillCount'>{charAcademicsCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charAcademicsCount > 0 && <div className='skillCount pr-2'>{charAcademicsCount}</div>}
                                     {charAcademics.map((academics: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', academics ? 'filled' : ''].join(' ')} ></div>
@@ -865,10 +884,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterClan skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>awareness</div>
-                                <div>{charAwarenessCount > 0 && <div className='skillCount'>{charAwarenessCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charAwarenessCount > 0 && <div className='skillCount pr-2'>{charAwarenessCount}</div>}
                                     {charAwareness.map((awareness: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', awareness ? 'filled' : ''].join(' ')} ></div>
@@ -881,10 +901,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>finance</div>
-                                <div>{charFinanceCount > 0 && <div className='skillCount'>{charFinanceCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charFinanceCount > 0 && <div className='skillCount pr-2'>{charFinanceCount}</div>}
                                     {charFinance.map((finance: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', finance ? 'filled' : ''].join(' ')} ></div>
@@ -897,10 +918,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>investigation</div>
-                                <div>{charInvestigationCount > 0 && <div className='skillCount'>{charInvestigationCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charInvestigationCount > 0 && <div className='skillCount pr-2'>{charInvestigationCount}</div>}
                                     {charInvestigation.map((investigation: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', investigation ? 'filled' : ''].join(' ')} ></div>
@@ -913,10 +935,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>medicine</div>
-                                <div>{charMedicineCount > 0 && <div className='skillCount'>{charMedicineCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charMedicineCount > 0 && <div className='skillCount pr-2'>{charMedicineCount}</div>}
                                     {charMedicine.map((medicine: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', medicine ? 'filled' : ''].join(' ')} ></div>
@@ -929,10 +952,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>occult</div>
-                                <div>{charOccultCount > 0 && <div className='skillCount'>{charOccultCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charOccultCount > 0 && <div className='skillCount pr-2'>{charOccultCount}</div>}
                                     {charOccult.map((occult: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', occult ? 'filled' : ''].join(' ')} ></div>
@@ -945,10 +969,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>politics</div>
-                                <div>{charPoliticsCount > 0 && <div className='skillCount'>{charPoliticsCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charPoliticsCount > 0 && <div className='skillCount pr-2'>{charPoliticsCount}</div>}
                                     {charPolitics.map((politics: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', politics ? 'filled' : ''].join(' ')} ></div>
@@ -961,10 +986,11 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>science</div>
-                                <div>{charScienceCount > 0 && <div className='skillCount'>{charScienceCount}</div>}</div>
+
                                 <div className="levels">
+                                    {charScienceCount > 0 && <div className='skillCount pr-2'>{charScienceCount}</div>}
                                     {charScience.map((science: any, index: any) => {
                                         return (
                                             <div key={index} className={['circle', science ? 'filled' : ''].join(' ')} ></div>
@@ -977,9 +1003,10 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                         <div className="characterGeneration skillItem">
-                            <div className="levelContainer sm:columns-3">
+                            <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>technology</div>
-                                <div>{charTechnologyCount > 0 && <div className='skillCount'>{charTechnologyCount}</div>}</div>
+
+                                {charTechnologyCount > 0 && <div className='skillCount pr-2'>{charTechnologyCount}</div>}
                                 <div className="levels">
                                     {charTechnology.map((technology: any, index: any) => {
                                         return (
@@ -1001,16 +1028,17 @@ export default function CharSkills({ ...props }) {
                 <form ref={form} id="characterSheetSkillsFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
                     <div className="container sm:columns-3">
-                        <div className="w-full max-w-60 sm:mx-auto">
+                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="strengthAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="athletics">Athletics </label></div>
-                                            <div>{charAthCount > 0 && <div className='skillCount'>{charAthCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charAthCount > 0 && <div className='skillCount pr-2'>{charAthCount}</div>}
                                                 {charAth.map((athletics: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={athletics} defaultChecked={athletics} />
@@ -1029,10 +1057,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="dexterityAttribute skillItem">
 
                                     <div className="form-group " >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="brawl">Brawl </label></div>
-                                            <div>{charBrawlCount > 0 && <div className='skillCount'>{charBrawlCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charBrawlCount > 0 && <div className='skillCount pr-2'>{charBrawlCount}</div>}
                                                 {charBrawl.map((brawl: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={brawl} defaultChecked={brawl} />
@@ -1051,10 +1080,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="craft">Craft </label></div>
-                                            <div>{charCraftCount > 0 && <div className='skillCount'>{charCraftCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charCraftCount > 0 && <div className='skillCount pr-2'>{charCraftCount}</div>}
                                                 {charCraft.map((craft: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={craft} defaultChecked={craft} />
@@ -1073,10 +1103,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group " >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="drive">Drive </label></div>
-                                            <div>{charDriveCount > 0 && <div className='skillCount'>{charDriveCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charDriveCount > 0 && <div className='skillCount pr-2'>{charDriveCount}</div>}
                                                 {charDrive.map((drive: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={drive} defaultChecked={drive} />
@@ -1096,10 +1127,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="firearms">Firearms </label></div>
-                                            <div>{charFirearmsCount > 0 && <div className='skillCount'>{charFirearmsCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charFirearmsCount > 0 && <div className='skillCount pr-2'>{charFirearmsCount}</div>}
                                                 {charFirearms.map((firearms: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={firearms} defaultChecked={firearms} />
@@ -1118,10 +1150,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="larceny">Larceny </label></div>
-                                            <div>{charLarcenyCount > 0 && <div className='skillCount'>{charLarcenyCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charLarcenyCount > 0 && <div className='skillCount pr-2'>{charLarcenyCount}</div>}
                                                 {charLarceny.map((larceny: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={larceny} defaultChecked={larceny} />
@@ -1140,10 +1173,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="melee">Melee </label></div>
-                                            <div>{charMeleeCount > 0 && <div className='skillCount'>{charMeleeCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charMeleeCount > 0 && <div className='skillCount pr-2'>{charMeleeCount}</div>}
                                                 {charMelee.map((melee: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={melee} defaultChecked={melee} />
@@ -1162,10 +1196,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="stealth">Stealth </label></div>
-                                            <div>{charStealthCount > 0 && <div className='skillCount'>{charStealthCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charStealthCount > 0 && <div className='skillCount pr-2'>{charStealthCount}</div>}
                                                 {charStealth.map((stealth: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={stealth} defaultChecked={stealth} />
@@ -1184,10 +1219,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="staminaAttribute skillItem">
 
                                     <div className="form-group " >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="survival">Survival </label></div>
-                                            <div>{charSurvivalCount > 0 && <div className='skillCount'>{charSurvivalCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charSurvivalCount > 0 && <div className='skillCount pr-2'>{charSurvivalCount}</div>}
                                                 {charSurvival.map((survival: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={survival} defaultChecked={survival} />
@@ -1205,16 +1241,17 @@ export default function CharSkills({ ...props }) {
                         </div>
 
 
-                        <div className="w-full max-w-60 sm:mx-auto">
+                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="characterConcept skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="animalken">Animal Ken </label></div>
-                                            <div>{charAnimalkinCount > 0 && <div className='skillCount'>{charAnimalkinCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charAnimalkinCount > 0 && <div className='skillCount pr-2'>{charAnimalkinCount}</div>}
                                                 {charAnimalkin.map((animalkin: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={animalkin} defaultChecked={animalkin} />
@@ -1234,10 +1271,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterAmbition skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="etiquette">Etiquette </label></div>
-                                            <div>{charEtiquetteCount > 0 && <div className='skillCount'>{charEtiquetteCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charEtiquetteCount > 0 && <div className='skillCount pr-2'>{charEtiquetteCount}</div>}
                                                 {charEtiquette.map((etiquette: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={etiquette} defaultChecked={etiquette} />
@@ -1260,10 +1298,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="insight">Insight </label></div>
-                                            <div>{charInsightCount > 0 && <div className='skillCount'>{charInsightCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charInsightCount > 0 && <div className='skillCount pr-2'>{charInsightCount}</div>}
                                                 {charInsight.map((insight: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={insight} defaultChecked={insight} />
@@ -1283,10 +1322,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="intimidation">Intimidation </label></div>
-                                            <div>{charIntimidationCount > 0 && <div className='skillCount'>{charIntimidationCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charIntimidationCount > 0 && <div className='skillCount pr-2'>{charIntimidationCount}</div>}
                                                 {charIntimidation.map((intimidation: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={intimidation} defaultChecked={intimidation} />
@@ -1307,10 +1347,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="leadership">Leadership </label></div>
-                                            <div>{charLeadershipCount > 0 && <div className='skillCount'>{charLeadershipCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charLeadershipCount > 0 && <div className='skillCount pr-2'>{charLeadershipCount}</div>}
                                                 {charLeadership.map((leadership: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={leadership} defaultChecked={leadership} />
@@ -1330,10 +1371,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="performance">Performance </label></div>
-                                            <div>{charPerformanceCount > 0 && <div className='skillCount'>{charPerformanceCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charPerformanceCount > 0 && <div className='skillCount pr-2'>{charPerformanceCount}</div>}
                                                 {charPerformance.map((performance: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={performance} defaultChecked={performance} />
@@ -1353,10 +1395,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="persuassion">Persuassion </label></div>
-                                            <div>{charPersuassionCount > 0 && <div className='skillCount'>{charPersuassionCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charPersuassionCount > 0 && <div className='skillCount pr-2'>{charPersuassionCount}</div>}
                                                 {charPerformance.map((performance: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={performance} defaultChecked={performance} />
@@ -1376,10 +1419,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="streetwise">Streetwise </label></div>
-                                            <div>{charStreetwiseCount > 0 && <div className='skillCount'>{charStreetwiseCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charStreetwiseCount > 0 && <div className='skillCount pr-2'>{charStreetwiseCount}</div>}
                                                 {charStreetwise.map((streetwise: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={streetwise} defaultChecked={streetwise} />
@@ -1399,10 +1443,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterDesire skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="subterfuge">Subterfuge </label></div>
-                                            <div>{charSubterfugeCount > 0 && <div className='skillCount'>{charSubterfugeCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charSubterfugeCount > 0 && <div className='skillCount pr-2'>{charSubterfugeCount}</div>}
                                                 {charSubterfuge.map((subterfuge: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={subterfuge} defaultChecked={subterfuge} />
@@ -1421,16 +1466,17 @@ export default function CharSkills({ ...props }) {
                         </div>
 
 
-                        <div className="w-full max-w-60 sm:mx-auto">
+                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="characterPredator skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="academics">Academics </label></div>
-                                            <div>{charAcademicsCount > 0 && <div className='skillCount'>{charAcademicsCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charAcademicsCount > 0 && <div className='skillCount pr-2'>{charAcademicsCount}</div>}
                                                 {charAcademics.map((academics: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={academics} defaultChecked={academics} />
@@ -1450,10 +1496,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterClan skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="awareness">Awareness </label></div>
-                                            <div>{charAwarenessCount > 0 && <div className='skillCount'>{charAwarenessCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charAwarenessCount > 0 && <div className='skillCount pr-2'>{charAwarenessCount}</div>}
                                                 {charAwareness.map((awareness: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={awareness} defaultChecked={awareness} />
@@ -1473,10 +1520,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="finance">Finance </label></div>
-                                            <div>{charFinanceCount > 0 && <div className='skillCount'>{charFinanceCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charFinanceCount > 0 && <div className='skillCount pr-2'>{charFinanceCount}</div>}
                                                 {charFinance.map((finance: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={finance} defaultChecked={finance} />
@@ -1496,10 +1544,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="investigation">Investigation </label></div>
-                                            <div>{charInvestigationCount > 0 && <div className='skillCount'>{charInvestigationCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charInvestigationCount > 0 && <div className='skillCount pr-2'>{charInvestigationCount}</div>}
                                                 {charInvestigation.map((investigation: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={investigation} defaultChecked={investigation} />
@@ -1519,10 +1568,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="medicine">Medicine </label></div>
-                                            <div>{charMedicineCount > 0 && <div className='skillCount'>{charMedicineCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charMedicineCount > 0 && <div className='skillCount pr-2'>{charMedicineCount}</div>}
                                                 {charMedicine.map((medicine: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={medicine} defaultChecked={medicine} />
@@ -1542,10 +1592,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="occult">Occult </label></div>
-                                            <div>{charOccultCount > 0 && <div className='skillCount'>{charOccultCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charOccultCount > 0 && <div className='skillCount pr-2'>{charOccultCount}</div>}
                                                 {charOccult.map((occult: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={occult} defaultChecked={occult} />
@@ -1565,10 +1616,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="politics">politics </label></div>
-                                            <div>{charPoliticsCount > 0 && <div className='skillCount'>{charPoliticsCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charPoliticsCount > 0 && <div className='skillCount pr-2'>{charPoliticsCount}</div>}
                                                 {charPolitics.map((politics: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={politics} defaultChecked={politics} />
@@ -1588,10 +1640,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="science">science </label></div>
-                                            <div>{charScienceCount > 0 && <div className='skillCount'>{charScienceCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charScienceCount > 0 && <div className='skillCount pr-2'>{charScienceCount}</div>}
                                                 {charScience.map((science: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={science} defaultChecked={science} />
@@ -1611,10 +1664,11 @@ export default function CharSkills({ ...props }) {
                                 <div className="characterGeneration skillItem">
 
                                     <div className="form-group" >
-                                        <div className="levels sm:columns-3">
+                                        <div className="levelcontainer sm:columns-2 flex-wrap">
                                             <div className='flex min-w-24'><label htmlFor="technology">technology </label></div>
-                                            <div>{charTechnologyCount > 0 && <div className='skillCount'>{charTechnologyCount}</div>}</div>
-                                            <div className="flex gap-1">
+
+                                            <div className="levels ">
+                                                {charTechnologyCount > 0 && <div className='skillCount pr-2'>{charTechnologyCount}</div>}
                                                 {charTechnology.map((technology: any, index: any) => {
                                                     return (
                                                         <input key={index} id={"level" + (index + 1)} className="checkbox-round" type="checkbox" defaultValue={technology} defaultChecked={technology} />

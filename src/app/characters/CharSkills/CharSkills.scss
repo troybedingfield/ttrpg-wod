@@ -18,12 +18,15 @@
     .levels {
         display: flex;
         gap: 4px;
+        height: 24px;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .levelContainer {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
+        // gap: 12px;
         align-items: center;
     }
 
@@ -69,18 +72,25 @@ label {
         justify-content: center;
     }
 
-    .levelsContainer {
+    .levels {
         display: flex;
         gap: 4px;
+        height: 24px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .levelcontainer {
+        display: flex;
+        justify-content: space-between;
+        // gap: 12px;
+        align-items: center;
     }
 
 }
 
-.levels {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
+
 
 #skillSpecialty {
     width: 100%;

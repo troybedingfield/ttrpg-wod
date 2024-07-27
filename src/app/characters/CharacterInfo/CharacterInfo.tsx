@@ -141,36 +141,45 @@ export default function CharacterInfo({ ...props }) {
             {!isEditing && <div id="characterSheetInfoContainer" className='container'>
                 <div className='container sm:columns-3'>
                     <div className="w-full sm:max-w-60 sm:mx-auto">
-                        <div className="characterName infoItem">
-                            Name: <span className='infoLabel'>{charName}</span>
+                        <div className="characterName infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Name:</div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charName}</span></div>
                         </div>
-                        <div className="characterChronicle infoItem">
-                            Chronicle: <span className='infoLabel'>{charChron}</span>
+                        <div className="characterChronicle infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Chronicle: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charChron}</span></div>
                         </div>
-                        <div className="characterSire infoItem">
-                            Sire: <span className='infoLabel'>{charSire}</span>
-                        </div>
-                    </div>
-                    <div className="w-full sm:max-w-60 sm:mx-auto">
-                        <div className="characterConcept infoItem">
-                            Concept: <span className='infoLabel'>{charConcept}</span>
-                        </div>
-                        <div className="characterAmbition infoItem">
-                            Ambition: <span className='infoLabel'>{charAmbition}</span>
-                        </div>
-                        <div className="characterDesire infoItem">
-                            Desire: <span className='infoLabel'>{charDesire}</span>
+                        <div className="characterSire infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Sire: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charSire}</span></div>
                         </div>
                     </div>
                     <div className="w-full sm:max-w-60 sm:mx-auto">
-                        <div className="characterPredator infoItem">
-                            Predator: <span className='infoLabel'>{charPredator}</span>
+                        <div className="characterConcept infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Concept:</div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charConcept}</span></div>
                         </div>
-                        <div className="characterClan infoItem">
-                            Clan: <span className='infoLabel'>{charClan}</span>
+                        <div className="characterAmbition infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Ambition: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charAmbition}</span></div>
                         </div>
-                        <div className="characterGeneration infoItem">
-                            Generation: <span className='infoLabel'>{charGeneration}</span>
+                        <div className="characterDesire infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Desire: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charDesire}</span></div>
+                        </div>
+                    </div>
+                    <div className="w-full sm:max-w-60 sm:mx-auto">
+                        <div className="characterPredator infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Predator: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charPredator}</span></div>
+                        </div>
+                        <div className="characterClan infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Clan: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charClan}</span></div>
+                        </div>
+                        <div className="characterGeneration infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
+                            <div className='flex sm:w-auto w-24'>Generation: </div>
+                            <div className='w-56 sm:w-auto'><span className='infoLabel'>{charGeneration}</span></div>
                         </div>
                     </div>
                 </div>
