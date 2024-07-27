@@ -1,5 +1,6 @@
 'use client'
 import './Character.scss'
+import Image from 'next/image'
 
 export default function Character({ ...props }) {
     const { id, name, chronicle } = props
@@ -12,11 +13,12 @@ export default function Character({ ...props }) {
         <>
             <div onClick={handleCardClick} className="characterCard container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg">
                 <div className='characterPic'>
-                    <img
+                    {/* <img
                         alt=""
                         src="placeholder-character.png"
                         className="inline-block h-12 w-12 rounded-lg ring-2 ring-white"
-                    />
+                    /> */}
+                    <Image className="inline-block h-12 w-12 rounded-lg ring-2 ring-white" src="/placeholder-character.png" width={48} height={48} alt="User Image" />
                 </div>
                 <div className='characterText flex flex-col items-center'>
                     <div className='characterName'>

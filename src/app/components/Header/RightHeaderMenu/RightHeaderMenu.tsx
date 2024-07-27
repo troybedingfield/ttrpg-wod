@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useContext } from "react";
 import DropDownMenu from "../../DropDownMenu/DropDownMenu";
 import { UsernameContext } from "@/app/context/username";
+import Image from 'next/image'
 
 export default function RightHeaderMenu({ ...props }) {
     const { data, profile, settings, error } = props;
@@ -97,11 +98,12 @@ export default function RightHeaderMenu({ ...props }) {
                     /> */}
                     <DropDownMenu dropdownItems={['Dashboard', 'Settings', 'Logout']} menuClick={handleDropMenuclick}>
                         <div className="flex gap-2 items-center">
-                            <img
+                            {/* <img
                                 alt=""
                                 src={avatarImage}
                                 className="inline-block h-12 w-12 rounded-lg ring-2 ring-white"
-                            />
+                            /> */}
+                            <Image className="inline-block h-12 w-12 rounded-lg ring-2 ring-white" src="/placeholder-character.png" width={48} height={48} alt="User Image" />
                             {/* {profile && profileData.map((profile: any, index: any) => {
                                 return (
                                     <div key={index}>{profile.username}</div>
