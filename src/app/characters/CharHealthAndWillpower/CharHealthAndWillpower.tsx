@@ -107,14 +107,14 @@ export default function CharHealthAndWillpower({ ...props }) {
                         {!isEditingHealth && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charHealth.map((health: any, index: any) => {
                                 return (
-                                    <div key={index} className={['rounded border border-slate-900 w-4 h-4', health[0] ? 'cross' : '', health[1] ? 'slash' : ''].join(' ')} ></div>
+                                    <div key={index} className={['rounded border border-slate-900 sm:w-4 sm:h-4 w-6 h-6', health[0] ? 'cross' : '', health[1] ? 'slash' : ''].join(' ')} ></div>
                                 )
                             })}
                         </div>}
 
 
                         {isEditingHealth && <form ref={healthForm} action="" onSubmit={(e) => handleHealthFormSbumit(e, healthForm)}>
-                            <div className="flex gap-2">
+                            <div className="flex sm:flex-row flex-col gap-2">
                                 <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 [&_div:nth-child(5)]:pr-2">
                                     {charHealth.map((health: any, index: any) => {
                                         return (
@@ -137,12 +137,12 @@ export default function CharHealthAndWillpower({ ...props }) {
                         {!isEditingWill && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charWillpower.map((willpower: any, index: any) => {
                                 return (
-                                    <div key={index} className={['rounded border border-slate-800 w-4 h-4', willpower[0] ? 'cross' : '', willpower[1] ? 'slash' : ''].join(' ')} ></div>
+                                    <div key={index} className={['rounded border border-slate-800 sm:w-4 sm:h-4 w-6 h-6 ', willpower[0] ? 'cross' : '', willpower[1] ? 'slash' : ''].join(' ')} ></div>
                                 )
                             })}
                         </div>}
                         {isEditingWill && <form ref={willPowerform} action="" onSubmit={(e) => handleWillpowerFormSbumit(e, willPowerform)}>
-                            <div className="flex gap-2">
+                            <div className="flex sm:flex-row flex-col gap-2">
                                 <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2  [&_div:nth-child(5)]:pr-2">
                                     {charWillpower.map((willpower: any, index: any) => {
                                         return (

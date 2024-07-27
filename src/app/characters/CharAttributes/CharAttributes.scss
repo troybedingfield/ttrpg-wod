@@ -87,17 +87,17 @@
     gap: 4px;
 }
 
-.levels .circle {
-    height: 16px;
-    width: 16px;
-    display: flex;
-    border-radius: 50px;
-    border: 1px solid black;
+// .levels .circle {
+//     height: 16px;
+//     width: 16px;
+//     display: flex;
+//     border-radius: 50px;
+//     border: 1px solid black;
 
-    &.filled {
-        background-color: black;
-    }
-}
+//     &.filled {
+//         background-color: black;
+//     }
+// }
 
 // .editBtn {
 
@@ -117,18 +117,18 @@ Dark Mode Theme
 ************************************************************/
 @media (prefers-color-scheme: dark) {
 
-    .levels .circle {
-        height: 16px;
-        width: 16px;
-        display: flex;
-        border-radius: 50px;
-        border: 1px solid red;
+    // .levels .circle {
+    //     height: 16px;
+    //     width: 16px;
+    //     display: flex;
+    //     border-radius: 50px;
+    //     border: 1px solid red;
 
-        &.filled {
-            background-color: rgb(185 28 28);
-            border: 1px solid rgb(185 28 28);
-        }
-    }
+    //     &.filled {
+    //         background-color: rgb(185 28 28);
+    //         border: 1px solid rgb(185 28 28);
+    //     }
+    // }
 
 
     #characterSheetAttributesFormContainer {

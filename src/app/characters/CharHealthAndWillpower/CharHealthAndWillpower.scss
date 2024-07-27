@@ -37,3 +37,37 @@ Dark Mode Theme
 ************************************************************
 ************************************************************/
 @media (prefers-color-scheme: dark) {}
+
+
+@media only screen and (max-width:475px) {
+    .slash {
+        position: relative;
+    }
+
+    .slash:before {
+        content: "/";
+        position: absolute;
+        top: 11px;
+        left: 7.48px;
+        font-size: 36px;
+        color: black;
+        line-height: 0;
+        // transition: all 0.2s;
+        opacity: 1 !important;
+        transform: scale(1) rotate(24deg) !important;
+    }
+
+    .cross {
+        position: relative;
+    }
+
+    .cross:before {
+        content: "✕";
+        position: absolute;
+        top: 11px;
+        left: -1px;
+        font-size: 30px;
+        color: red;
+        line-height: 0;
+    }
+}

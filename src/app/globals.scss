@@ -153,6 +153,19 @@ a>i.icon {
 }
 
 
+.levels .circle {
+  height: 16px;
+  width: 16px;
+  display: flex;
+  border-radius: 50px;
+  border: 1px solid black;
+
+  &.filled {
+    background-color: black;
+  }
+}
+
+
 /************************************************************
 ************************************************************
 Dark Mode Theme
@@ -217,4 +230,57 @@ Dark Mode Theme
     border-color: rgb(100 116 139);
   }
 
+
+  .levels .circle {
+    height: 16px;
+    width: 16px;
+    display: flex;
+    border-radius: 50px;
+    border: 1px solid red;
+
+    &.filled {
+      background-color: rgb(185 28 28);
+      border: 1px solid rgb(185 28 28);
+    }
+  }
+
+
+  .circle {
+    height: 16px;
+    width: 16px;
+    display: flex;
+    border-radius: 50px;
+    border: 1px solid red;
+
+    &.filled {
+      background-color: rgb(185 28 28);
+      border: 1px solid rgb(185 28 28);
+    }
+  }
+
+
+}
+
+
+@media only screen and (max-width:475px) {
+  .levels .circle {
+    height: 20px;
+    width: 20px;
+
+  }
+
+  .circle {
+    height: 20px;
+    width: 20px;
+  }
+
+  .checkbox-round {
+    width: 20px;
+    height: 20px;
+
+  }
+
+  body * {
+    font-size: 18px;
+  }
 }
