@@ -18,9 +18,7 @@ import CharResonanceHungerHumanity from '../CharResonanceHungerHumanity/CharReso
 export default async function Character({ params, ...props }: { params: { characterID: number } }) {
     // const { id } = props
 
-    const charID = params.characterID
 
-    console.log(charID)
 
     const supabase = createClient()
 
@@ -97,7 +95,6 @@ export default async function Character({ params, ...props }: { params: { charac
     if (error || !data?.user) {
         redirect('/login')
     }
-
 
 
     return (
@@ -313,7 +310,7 @@ export default async function Character({ params, ...props }: { params: { charac
                     </div>
                 </div>
             </div>
-            {charTTCB?.map(({ id, ttcb_id, chronTenets: tenets, touchstoneAndConvitions: touchstones, clanBane: bane }, character) => {
+            {charTTCB?.map(({ id, ttcb_id, chronTenets: tenets, touchstoneAndConvictions: touchstones, clanBane: bane }, character) => {
 
                 return (
 

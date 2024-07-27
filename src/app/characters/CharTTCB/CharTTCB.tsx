@@ -16,7 +16,6 @@ export default function CharTTCB({ ...props }) {
     const [charBane, setCharBane] = useState(bane)
 
 
-
     const formTenet = useRef<any | undefined>();
     const formTouch = useRef<any | undefined>();
     const formBane = useRef<any | undefined>();
