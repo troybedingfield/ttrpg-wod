@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/Header/Header";
@@ -16,6 +16,12 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Welcome to your Unlife",
   description: "Hub for your WOD Character Sheets",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  width: "device-width",
+  maximumScale: 1,
 };
 
 
