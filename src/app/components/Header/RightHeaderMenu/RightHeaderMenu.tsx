@@ -17,10 +17,12 @@ export default function RightHeaderMenu({ ...props }) {
 
 
         if (data === 'Dashboard') {
-            window.location.href = '/dashboard'
+            // window.location.href = '/dashboard'
+            router.push('/dashboard');
         }
         if (data === 'Settings') {
-            window.location.href = '/settings'
+            // window.location.href = '/settings'
+            router.push('/settings');
         }
         if (data === 'Logout') {
             logout();

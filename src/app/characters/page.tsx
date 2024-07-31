@@ -12,14 +12,19 @@ export default async function Characters() {
 
 
 
-
-
-
-
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
         redirect('/login')
     }
+
+
+
+    const { data: character, error: charError } = await supabase
+        .from('character')
+        .select()
+        .eq('uuid', data.user.id)
+
+
 
     return (
         <>
@@ -34,9 +39,9 @@ export default async function Characters() {
 
                     )
                 })}
-                <div className='container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg'>
+                {character?.length! < 5 &&
                     <CreateCharacter user={data.user.id} />
-                </div>
+                }
             </div>
         </>
     )

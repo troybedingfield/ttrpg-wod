@@ -1,13 +1,15 @@
 'use client'
 import Button from "@/app/components/Button/Button"
 import { createClient } from "@/utils/supabase/client"
+import { useFormState } from "react-dom"
+import { createChar } from "../actions"
 
 export default function CreateCharacter({ ...props }) {
     const { user } = props
 
     const supabase = createClient()
 
-
+    const [state, formAction] = useFormState(createChar, null)
 
 
     async function handleCreateCharacter() {
@@ -153,7 +155,12 @@ export default function CreateCharacter({ ...props }) {
     return (
         <>
             {/* <Button buttonClick={handleCreateCharacter}>Add Character</Button> */}
-            <div className="container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg cursor-pointer" onClick={handleCreateCharacter}>Add Character</div>
+            {/* <div className="container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg cursor-pointer" onClick={handleCreateCharacter}>Add Character</div> */}
+
+            <form action={formAction}>
+                <input type="hidden" name="user" value={user} />
+                <Button type="submit" classNames="container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg cursor-pointer" minWidth="136" minHeight="160">Add Character</Button>
+            </form>
         </>
     )
 }

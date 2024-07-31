@@ -1,4 +1,5 @@
 import Button from '../components/Button/Button'
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 import { login, signup } from './actions'
 import './page.scss'
 
@@ -15,6 +16,7 @@ export default function LoginPage() {
                     {/* <Button formAction={signup}>Sign up</Button> */}
                 </form>
             </div>
+            {/* <LoadingSpinner /> */}
         </div>
     )
 }

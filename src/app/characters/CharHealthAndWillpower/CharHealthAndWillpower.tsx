@@ -14,6 +14,9 @@ export default function CharHealthAndWillpower({ ...props }) {
     const [charHealth, setCharHealth] = useState(data.charHealth)
     const [charWillpower, setCharWillpower] = useState(data.charWillpower)
 
+    const [health, setHealth] = useState(data.health)
+    const [willpower, setWillpower] = useState(data.willpower)
+
     const healthForm = useRef<any | undefined>();
     const willPowerform = useRef<any | undefined>();
 
@@ -38,7 +41,8 @@ export default function CharHealthAndWillpower({ ...props }) {
         let level7 = [form.current[6].checked, form.current[6].indeterminate]
         let level8 = [form.current[7].checked, form.current[7].indeterminate]
         let level9 = [form.current[8].checked, form.current[8].indeterminate]
-        let level10 = [form.current[8].checked, form.current[8].indeterminate]
+        let level10 = [form.current[9].checked, form.current[9].indeterminate]
+        let healthNumber = form.current[10].value
         let health = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 
         const { data: charHealth, error: charHealthError } = await supabase
@@ -56,9 +60,11 @@ export default function CharHealthAndWillpower({ ...props }) {
         if (!charHealthError) {
 
             setCharHealth(health);
+            setHealth(healthNumber);
 
             setIsEditingHealth(isEditingHealth => !isEditingHealth)
         }
+
     }
 
     async function handleWillpowerFormSbumit(event: any, form: any) {
@@ -72,7 +78,8 @@ export default function CharHealthAndWillpower({ ...props }) {
         let level7 = [form.current[6].checked, form.current[6].indeterminate]
         let level8 = [form.current[7].checked, form.current[7].indeterminate]
         let level9 = [form.current[8].checked, form.current[8].indeterminate]
-        let level10 = [form.current[8].checked, form.current[8].indeterminate]
+        let level10 = [form.current[9].checked, form.current[9].indeterminate]
+        let willpowerNumber = form.current[10].value
         let willpower = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 
         const { data: charWillpower, error: charWillpowerError } = await supabase
@@ -90,6 +97,7 @@ export default function CharHealthAndWillpower({ ...props }) {
         if (!charWillpowerError) {
 
             setCharWillpower(willpower);
+            setWillpower(willpowerNumber);
 
             setIsEditingWill(isEditingWill => !isEditingWill)
         }
@@ -101,8 +109,10 @@ export default function CharHealthAndWillpower({ ...props }) {
             <div className="container flex sm:flex-row flex-col gap-8">
                 <div className="totalExp flex items-center sm:justify-end w-full justify-center">
                     <div className="flex flex-col">
-                        <div className="sectionTitle flex gap-2 justify-center">Health <a onClick={() => editHealth()}><i
-                            className="icon icon-edit-b"></i></a>
+                        <div className="sectionTitle flex gap-2 justify-center">Health
+                            {health != null && <span className="healthNumber">{health}</span>}
+                            <a onClick={() => editHealth()}><i
+                                className="icon icon-edit-b"></i></a>
                         </div>
                         {!isEditingHealth && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charHealth.map((health: any, index: any) => {
@@ -123,6 +133,9 @@ export default function CharHealthAndWillpower({ ...props }) {
                                         )
                                     })}
                                 </div>
+                                <div>
+                                    <input type="number" defaultValue={health} />
+                                </div>
                                 <Button size="small">Save</Button>
                             </div>
                         </form>}
@@ -131,8 +144,10 @@ export default function CharHealthAndWillpower({ ...props }) {
                 </div>
                 <div className="spentExp flex items-center sm:justify-start w-full justify-center">
                     <div className="flex flex-col">
-                        <div className="sectionTitle flex gap-2 justify-center">Willpower <a onClick={() => editWillpower()}><i
-                            className="icon icon-edit-b"></i></a>
+                        <div className="sectionTitle flex gap-2 justify-center">Willpower
+                            {willpower != null && <span className="willpowerNumber">{willpower}</span>}
+                            <a onClick={() => editWillpower()}><i
+                                className="icon icon-edit-b"></i></a>
                         </div>
                         {!isEditingWill && <div className="flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 gap-0.5 [&_div:nth-child(5)]:mr-2">
                             {charWillpower.map((willpower: any, index: any) => {
@@ -151,6 +166,9 @@ export default function CharHealthAndWillpower({ ...props }) {
                                                 indeterminate={willpower[1]} data={willpower} />
                                         )
                                     })}
+                                </div>
+                                <div>
+                                    <input type="number" defaultValue={willpower} />
                                 </div>
                                 <Button size="small">Save</Button>
                             </div>

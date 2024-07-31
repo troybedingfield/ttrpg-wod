@@ -15,11 +15,12 @@ export default function Button({ ...props }) {
         customBGColor,
         buttonClick,
         formAction,
-        classNames
+        classNames,
+        minHeight
     } = props
 
     return (
-        <button style={{ minWidth: minWidth + 'px', maxWidth: maxWidth + 'px' }} className={[classNames, color, fill, size, uppercase ? 'text-uppercase' : ''].join(' ')} onClick={buttonClick}
+        <button style={{ minWidth: minWidth + 'px', maxWidth: maxWidth + 'px', minHeight: minHeight + 'px' }} className={[color, fill, size, uppercase ? 'text-uppercase' : '', classNames].join(' ')} onClick={buttonClick}
             formAction={formAction} disabled={disabled ? disabled : null}>{children}</button>
     )
 }

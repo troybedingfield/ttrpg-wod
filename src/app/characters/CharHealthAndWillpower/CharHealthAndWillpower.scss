@@ -29,6 +29,14 @@
     line-height: 0;
 }
 
+.healthNumber {
+    color: black;
+}
+
+.willpowerNumber {
+    color: black;
+}
+
 
 
 /************************************************************
@@ -39,7 +47,7 @@ Dark Mode Theme
 @media (prefers-color-scheme: dark) {}
 
 
-@media only screen and (max-width:475px) {
+@media only screen and (max-width:639px) {
     .slash {
         position: relative;
     }
@@ -70,4 +78,13 @@ Dark Mode Theme
         color: red;
         line-height: 0;
     }
+
+    .healthNumber {
+        color: red;
+    }
+
+    .willpowerNumber {
+        color: red;
+    }
+
 }

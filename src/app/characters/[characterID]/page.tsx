@@ -14,6 +14,7 @@ import CharExperience from '../CharExperience/CharExperience';
 import CharBioAndNotes from '../CharBioAndNotes/CharBioAndNotes';
 import CharHealthAndWillpower from '../CharHealthAndWillpower/CharHealthAndWillpower';
 import CharResonanceHungerHumanity from '../CharResonanceHungerHumanity/CharResonanceHungerHumanity';
+import CharDelete from '../Character/CharDelete/CharDelete';
 
 export default async function Character({ params, ...props }: { params: { characterID: number } }) {
     // const { id } = props
@@ -347,6 +348,8 @@ export default async function Character({ params, ...props }: { params: { charac
 
                 )
             })}
+
+            <CharDelete params={params} />
 
 
         </div>
