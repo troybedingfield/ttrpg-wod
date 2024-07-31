@@ -185,59 +185,60 @@ export default function CharacterInfo({ ...props }) {
                 </div>
             </div>}
 
-            {isEditing && <form ref={form} id="characterSheetInfoFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
+            {isEditing &&
+                <form ref={form} id="characterSheetInfoFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
-                <div className="formFields flex sm:flex-row flex-col">
-                    <div className="characterInfoColumn">
-                        <div className="characterName infoItem">
-                            <label htmlFor="Name">Name: </label>
-                            <input id="Name" defaultValue={charName} type="text" />
+                    <div className="formFields flex sm:flex-row flex-col">
+                        <div className="characterInfoColumn">
+                            <div className="characterName infoItem">
+                                <label htmlFor="Name">Name: </label>
+                                <input id="Name" defaultValue={charName} type="text" />
+                            </div>
+                            <div className="characterChronicle infoItem">
+                                <label htmlFor="Chronicle">Chronicle: </label>
+                                <input id="Chronicle" defaultValue={charChron} type="text" />
+                            </div>
+                            <div className="characterSire infoItem">
+                                <label htmlFor="Sire">Sire: </label>
+                                <input id="Sire" defaultValue={charSire} type="text" />
+                            </div>
                         </div>
-                        <div className="characterChronicle infoItem">
-                            <label htmlFor="Chronicle">Chronicle: </label>
-                            <input id="Chronicle" defaultValue={charChron} type="text" />
+
+                        <div className="characterInfoColumn">
+                            <div className="characterConcept infoItem">
+                                <label htmlFor="Concept">Concept: </label>
+                                <input id="Concept" defaultValue={charConcept} type="text" />
+                            </div>
+                            <div className="characterAmbition infoItem">
+                                <label htmlFor="Ambition">Ambition: </label>
+                                <input id="Ambition" defaultValue={charAmbition} type="text" />
+                            </div>
+                            <div className="characterDesire infoItem">
+                                <label htmlFor="Desire">Desire: </label>
+                                <input id="Desire" defaultValue={charDesire} type="text" />
+                            </div>
                         </div>
-                        <div className="characterSire infoItem">
-                            <label htmlFor="Sire">Sire: </label>
-                            <input id="Sire" defaultValue={charSire} type="text" />
+
+                        <div className="characterInfoColumn">
+                            <div className="characterPredator infoItem">
+                                <label htmlFor="Predator">Predator: </label>
+                                <input id="Predator" defaultValue={charPredator} type="text" />
+                            </div>
+                            <div className="characterClan infoItem">
+                                <label htmlFor="Clan">Clan: </label>
+                                <input id="Clan" defaultValue={charClan} type="text" />
+                            </div>
+                            <div className="characterGeneration infoItem">
+                                <label htmlFor="Generation">Generation: </label>
+                                <input id="Generation" defaultValue={charGeneration} type="text" />
+                            </div>
                         </div>
                     </div>
-
-                    <div className="characterInfoColumn">
-                        <div className="characterConcept infoItem">
-                            <label htmlFor="Concept">Concept: </label>
-                            <input id="Concept" defaultValue={charConcept} type="text" />
-                        </div>
-                        <div className="characterAmbition infoItem">
-                            <label htmlFor="Ambition">Ambition: </label>
-                            <input id="Ambition" defaultValue={charAmbition} type="text" />
-                        </div>
-                        <div className="characterDesire infoItem">
-                            <label htmlFor="Desire">Desire: </label>
-                            <input id="Desire" defaultValue={charDesire} type="text" />
-                        </div>
+                    <div className="buttonContainer">
+                        <Button type="submit">Update</Button>
+                        <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
                     </div>
-
-                    <div className="characterInfoColumn">
-                        <div className="characterPredator infoItem">
-                            <label htmlFor="Predator">Predator: </label>
-                            <input id="Predator" defaultValue={charPredator} type="text" />
-                        </div>
-                        <div className="characterClan infoItem">
-                            <label htmlFor="Clan">Clan: </label>
-                            <input id="Clan" defaultValue={charClan} type="text" />
-                        </div>
-                        <div className="characterGeneration infoItem">
-                            <label htmlFor="Generation">Generation: </label>
-                            <input id="Generation" defaultValue={charGeneration} type="text" />
-                        </div>
-                    </div>
-                </div>
-                <div className="buttonContainer">
-                    <Button type="submit">Update</Button>
-                    <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
-                </div>
-            </form>}
+                </form>}
         </>
     )
 }

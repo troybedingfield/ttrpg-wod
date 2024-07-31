@@ -17,9 +17,9 @@ export default async function Dashboard() {
 
 
             <div className='container flex flex-col gap-4'>
-                <section>
+                {/* <section>
                     <Link href="/chronicles" className='container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg'>Chronicles</Link>
-                </section>
+                </section> */}
 
                 <section>
                     <Link href="/characters" className='container flex items-center content-center justify-center min-h-40 max-w-36 flex-col gap-2 border border-slate-300 rounded-lg'>Characters</Link>
