@@ -2,7 +2,6 @@
 import { useRef, useState } from 'react';
 import './CharAttributes.scss';
 import Button from '@/app/components/Button/Button';
-import { createClient } from '@/utils/supabase/client';
 import { updateAttributes } from '../actions';
 
 export default function CharAttributes({ ...props }) {
@@ -32,10 +31,6 @@ export default function CharAttributes({ ...props }) {
     const [charResCount, setResCharCount] = useState(charRes.filter(Boolean).length)
 
 
-
-
-
-    const supabase = createClient()
 
     const form = useRef<any | undefined>();
 
@@ -177,11 +172,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', str ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterChronicle attributeItem sm:columns-2 flex-wrap">
@@ -194,11 +184,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', dex ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterSire attributeItem sm:columns-2 flex-wrap">
@@ -211,11 +196,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', stam ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                     </div>
@@ -230,11 +210,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', char ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterAmbition attributeItem sm:columns-2 flex-wrap">
@@ -246,11 +221,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', man ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterDesire attributeItem sm:columns-2 flex-wrap">
@@ -262,11 +232,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', comp ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                     </div>
@@ -280,11 +245,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', int ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterClan attributeItem sm:columns-2 flex-wrap">
@@ -296,11 +256,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', wits ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                         <div className="characterGeneration attributeItem sm:columns-2 flex-wrap">
@@ -312,11 +267,6 @@ export default function CharAttributes({ ...props }) {
                                         <div key={index} className={['circle', res ? 'filled' : ''].join(' ')} ></div>
                                     )
                                 })}
-                                {/* <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled" ></div>
-                            <div className="circle filled"></div>
-                            <div className="circle filled" ></div> */}
                             </div>
                         </div>
                     </div>

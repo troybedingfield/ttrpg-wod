@@ -6,9 +6,6 @@ import { createDiscipline } from "../actions"
 export default function AddDiscipline({ ...props }) {
     const { user, params } = props
 
-    const supabase = createClient()
-
-
 
     async function handleCreateDiscipline() {
         createDiscipline(user, params);

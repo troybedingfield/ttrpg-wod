@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import './CharHealthAndWillpower.scss'
 import CheckBox from "@/app/components/CheckBox/CheckBox";
 import Button from "@/app/components/Button/Button";
-import { createClient } from "@/utils/supabase/client";
 import { updateHealth, updateWillpower } from "../actions";
 
 export default function CharHealthAndWillpower({ ...props }) {
@@ -21,7 +20,6 @@ export default function CharHealthAndWillpower({ ...props }) {
     const healthForm = useRef<any | undefined>();
     const willPowerform = useRef<any | undefined>();
 
-    const supabase = createClient();
 
     function editHealth() {
         setIsEditingHealth(isEditingHealth => !isEditingHealth)

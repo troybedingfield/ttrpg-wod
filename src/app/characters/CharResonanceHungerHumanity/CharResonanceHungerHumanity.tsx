@@ -1,6 +1,5 @@
 'use client'
 import Button from "@/app/components/Button/Button"
-import { createClient } from "@/utils/supabase/client"
 import { useRef, useState } from "react"
 import './CharResonanceHungerHumanity.scss'
 import { updateHumanity, updateHunger, updateResonance } from "../actions"
@@ -20,7 +19,6 @@ export default function CharResonanceHungerHumanity({ ...props }) {
     const humanityForm = useRef<any | undefined>();
     const resonanceForm = useRef<any | undefined>();
 
-    const supabase = createClient();
 
     function editResonance() {
         setIsEditingResonance(isEditingResonance => !isEditingResonance)
