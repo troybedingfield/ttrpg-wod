@@ -2,7 +2,6 @@
 import Button from '@/app/components/Button/Button';
 import './CharDisciplines.scss';
 import { useRef, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
 import { deleteDiscipline, updateDiscipline } from '../actions';
 
 export default function CharDisciplines({ ...props }) {
@@ -16,7 +15,7 @@ export default function CharDisciplines({ ...props }) {
 
 
 
-    const supabase = createClient()
+
 
     const form = useRef<any | undefined>();
 

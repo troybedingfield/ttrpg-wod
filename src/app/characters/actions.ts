@@ -507,9 +507,7 @@ export async function createDiscipline(user: any, id: any) {
         console.log(newDiscError);
     }
 
-    if (!newDiscError) {
 
-    }
     revalidatePath(`/characters/${id}`, 'layout');
     redirect(`/characters/${id}`);
 }
@@ -538,9 +536,7 @@ export async function updateDiscipline(formData: any) {
         console.log(error);
     }
 
-    if (!error) {
 
-    }
 }
 
 
@@ -553,10 +549,72 @@ export async function deleteDiscipline(disID: any, id: any) {
         console.log(error);
     }
 
-    if (!error) {
 
-    }
 
     revalidatePath(`/characters/${id}`, 'layout');
     redirect(`/characters/${id}`);
+}
+
+
+export async function updateTenets(formData: any) {
+    let id = formData.id
+    let chronTenets = formData.chronTenets
+
+
+    const { data, error } = await supabase
+        .from('charTTCB')
+        .update({
+            chronTenets: chronTenets,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+
+}
+
+export async function updateTouchstones(formData: any) {
+    let id = formData.id
+    let touchConvictions = formData.touchConvictions
+
+
+    const { data, error } = await supabase
+        .from('charTTCB')
+        .update({
+            touchstoneAndConvictions: touchConvictions,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+
+}
+
+
+export async function updateClanBane(formData: any) {
+    let id = formData.id
+    let clanBane = formData.clanBane
+
+    const { data, error } = await supabase
+        .from('charTTCB')
+        .update({
+            clanBane: clanBane,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+
 }

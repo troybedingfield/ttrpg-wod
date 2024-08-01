@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import './CharTTCB.scss'
+import { updateClanBane, updateTenets, updateTouchstones } from "../actions";
 
 export default function CharTTCB({ ...props }) {
     const { id, params, ttcb_id, tenets, touchstones, bane } = props;
@@ -49,91 +50,57 @@ export default function CharTTCB({ ...props }) {
     async function handleTenetsUpdate(event: any, form: any) {
         event.preventDefault();
 
-        console.log(form.current[0].value)
 
         let chronTenets = form.current[0].value;
+        let id = form.current[1].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charTTCB')
-            .update({
-                chronTenets: chronTenets,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            chronTenets
         }
 
-        if (!error) {
+        updateTenets(formData);
+        setCharTenet(chronTenets);
+        setIsTenetEditing(isTenetEditing => !isTenetEditing)
 
-            setCharTenet(chronTenets);
 
-            setIsTenetEditing(isTenetEditing => !isTenetEditing)
-        }
 
     }
     async function handleTouchstonesUpdate(event: any, form: any) {
         event.preventDefault();
 
-        console.log(form.current[0].value)
 
         let touchConvictions = form.current[0].value;
+        let id = form.current[1].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charTTCB')
-            .update({
-                touchstoneAndConvictions: touchConvictions,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            touchConvictions
         }
 
-        if (!error) {
+        updateTouchstones(formData);
+        setCharTouch(touchConvictions);
+        setIsTouchEditing(isTenetEditing => !isTenetEditing)
 
-            setCharTouch(touchConvictions);
 
-            setIsTouchEditing(isTenetEditing => !isTenetEditing)
-        }
 
     }
     async function handleBaneUpdate(event: any, form: any) {
         event.preventDefault();
 
-        console.log(form.current[0].value)
 
         let clanBane = form.current[0].value;
+        let id = form.current[1].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charTTCB')
-            .update({
-                clanBane: clanBane,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            clanBane
         }
 
-        if (!error) {
+        updateClanBane(formData);
+        setCharBane(clanBane);
+        setIsBaneEditing(isTenetEditing => !isTenetEditing)
 
-            setCharBane(clanBane);
-
-            setIsBaneEditing(isTenetEditing => !isTenetEditing)
-        }
     }
 
 
@@ -156,6 +123,7 @@ export default function CharTTCB({ ...props }) {
 
                         <form ref={formTenet} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleTenetsUpdate(e, formTenet)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charTenet}></textarea>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditTenet}>Cancel</Button>
                         </form>
@@ -178,6 +146,7 @@ export default function CharTTCB({ ...props }) {
 
                         <form ref={formTouch} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleTouchstonesUpdate(e, formTouch)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charTouch}></textarea>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditTouch}>Cancel</Button>
                         </form>
@@ -199,6 +168,7 @@ export default function CharTTCB({ ...props }) {
                     {isBaneEditing &&
                         <form ref={formBane} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleBaneUpdate(e, formBane)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charBane}></textarea>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditBane}>Cancel</Button>
                         </form>
