@@ -811,3 +811,66 @@ export async function updateBloodForm(formData: any) {
 
     }
 }
+
+
+export async function updateNotes(formData: any) {
+    let id = formData.id;
+    let notes = formData.notes;
+
+
+    const { data, error } = await supabase
+        .from('charBioAndNotes')
+        .update({
+            notes: notes,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
+
+
+export async function updateBio(formData: any) {
+    let id = formData.id;
+    let trueAge = formData.trueAge;
+    let apparentAge = formData.apparentAge;
+    let DOB = formData.DOB;
+    let DOD = formData.DOD;
+    let appearance = formData.appearance;
+    let distinguishingFeatures = formData.distinguishingFeatures;
+    let history = formData.history;
+
+    console.log(id, trueAge, apparentAge, DOB, DOD, appearance, distinguishingFeatures, history)
+
+    const { data, error } = await supabase
+        .from('charBioAndNotes')
+        .update({
+            trueAge: trueAge,
+            apparentAge: apparentAge,
+            DOB: DOB,
+            DOD: DOD,
+            appearance: appearance,
+            distinguishingFeatures: distinguishingFeatures,
+            history: history,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}

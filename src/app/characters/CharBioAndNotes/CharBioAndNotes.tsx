@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import './CharBioAndNotes.scss'
+import { updateBio, updateNotes } from "../actions";
 
 export default function CharBioAndNotes({ ...props }) {
     const { id, params, data } = props;
@@ -36,30 +37,21 @@ export default function CharBioAndNotes({ ...props }) {
     async function handleNotesFormSbumit(event: any, form: any) {
         event.preventDefault()
         let notes = form.current[0].value;
+        let id = form.current[1].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charBioAndNotes')
-            .update({
-                notes: notes,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            notes
         }
 
-        if (!error) {
 
-            setNotes(notes);
+        updateNotes(formData)
+        setNotes(notes);
 
-            setIsEditingNotes(isEditingNotes => !isEditingNotes)
-        }
+        setIsEditingNotes(isEditingNotes => !isEditingNotes)
+
     }
-    async function handleBioFormSbumit(event: any, form: any) {
+    async function handleBioFormSubmit(event: any, form: any) {
         event.preventDefault()
         let trueAge = form.current[0].value;
         let apparentAge = form.current[1].value;
@@ -68,40 +60,32 @@ export default function CharBioAndNotes({ ...props }) {
         let appearance = form.current[4].value;
         let distinguishingFeatures = form.current[5].value;
         let history = form.current[6].value;
+        let id = form.current[7].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charBioAndNotes')
-            .update({
-                trueAge: trueAge,
-                apparentAge: apparentAge,
-                DOB: DOB,
-                DOD: DOD,
-                appearance: appearance,
-                distinguishingFeatures: distinguishingFeatures,
-                history: history,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            trueAge,
+            apparentAge,
+            DOB,
+            DOD,
+            appearance,
+            distinguishingFeatures,
+            history
         }
 
-        if (!error) {
 
-            setTrueAge(trueAge)
-            setApparentAge(apparentAge)
-            setDOB(DOB)
-            setDOD(DOD)
-            setAppearance(appearance)
-            setDistinguishingFeatures(distinguishingFeatures)
-            setHistory(history)
+        updateBio(formData);
+        setTrueAge(trueAge)
+        setApparentAge(apparentAge)
+        setDOB(DOB)
+        setDOD(DOD)
+        setAppearance(appearance)
+        setDistinguishingFeatures(distinguishingFeatures)
+        setHistory(history)
 
-            setIsEditingBio(isEditingBio => !isEditingBio)
-        }
+        setIsEditingBio(isEditingBio => !isEditingBio)
+
+
     }
 
 
@@ -150,7 +134,7 @@ export default function CharBioAndNotes({ ...props }) {
                     <div className="container flex flex-col h-full w-full">
                         <a onClick={() => editBio()}><i
                             className="icon icon-edit-b"></i></a>
-                        <form ref={bioForm} className="flex flex-col gap-4" onSubmit={(e) => handleBioFormSbumit(e, bioForm)}>
+                        <form ref={bioForm} className="flex flex-col gap-4" onSubmit={(e) => handleBioFormSubmit(e, bioForm)}>
                             <div className="container border border-slate-500 rounded-lg p-4 flex flex-col gap-4 min-h-96">
                                 <div className="container flex w-full items-center gap-4">
                                     <div className="text-nowrap w-auto">True Age:</div> <input className="flex w-auto" type="text" defaultValue={trueAge} />
@@ -177,6 +161,7 @@ export default function CharBioAndNotes({ ...props }) {
                                     <div><textarea className="flex w-full h-60" name="" defaultValue={history} id=""></textarea></div>
                                 </div>
                             </div>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>
@@ -208,13 +193,14 @@ export default function CharBioAndNotes({ ...props }) {
 
                                     <div>Notes: </div>
                                     <div className="flex h-full">
-                                        <textarea className="flex w-full h-60" name="" defaultValue={notes} id=""></textarea>
+                                        <textarea className="flex w-full h-full" name="" defaultValue={notes} id=""></textarea>
                                     </div>
 
 
 
                                 </div>
                             </div>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>
