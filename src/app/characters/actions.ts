@@ -359,3 +359,135 @@ export async function updateAttributes(formData: any) {
 
     }
 }
+
+
+
+export async function updateSkills(formData: any) {
+
+    let id = formData.id
+    let ath = formData.ath
+    let athSpec = formData.athSpec
+    let bra = formData.bra
+    let braSpec = formData.braSpec
+    let cra = formData.cra
+    let craSpec = formData.craSpec
+    let dri = formData.dri
+    let driSpec = formData.driSpec
+    let fir = formData.fir
+    let firSpec = formData.firSpec
+    let lar = formData.lar
+    let larSpec = formData.larSpec
+    let mel = formData.mel
+    let melSpec = formData.melSpec
+    let ste = formData.ste
+    let steSpec = formData.steSpec
+    let sur = formData.sur
+    let surSpec = formData.surSpec
+    let ani = formData.ani
+    let aniSpec = formData.aniSpec
+    let eti = formData.eti
+    let etiSpec = formData.etiSpec
+    let ins = formData.ins
+    let insSpec = formData.insSpec
+    let int = formData.int
+    let intSpec = formData.intSpec
+    let lea = formData.lea
+    let leaSpec = formData.leaSpec
+    let perf = formData.perf
+    let perfSpec = formData.perfSpec
+    let per = formData.per
+    let perSpec = formData.perSpec
+    let str = formData.str
+    let strSpec = formData.strSpec
+    let sub = formData.sub
+    let subSpec = formData.subSpec
+    let aca = formData.aca
+    let acaSpec = formData.acaSpec
+    let awa = formData.awa
+    let awaSpec = formData.awaSpec
+    let fin = formData.fin
+    let finSpec = formData.finSpec
+    let inv = formData.inv
+    let invSpec = formData.invSpec
+    let med = formData.med
+    let medSpec = formData.medSpec
+    let occ = formData.occ
+    let occSpec = formData.occSpec
+    let pol = formData.pol
+    let polSpec = formData.polSpec
+    let sci = formData.sci
+    let sciSpec = formData.sciSpec
+    let tec = formData.tec
+    let tecSpec = formData.tecSpec
+
+    const { data, error } = await supabase
+        .from('charSkills')
+        .update({
+            charAth: ath,
+            charAthSpec: athSpec,
+            charBrawl: bra,
+            charBrawlSpec: braSpec,
+            charCraft: cra,
+            charCraftSpec: craSpec,
+            charDrive: dri,
+            charDriveSpec: driSpec,
+            charFire: fir,
+            charFireSpec: firSpec,
+            charLarc: lar,
+            charLarcSpec: larSpec,
+            charMelee: mel,
+            charMeleeSpec: melSpec,
+            charStealth: ste,
+            charStealthSpec: steSpec,
+            charSurv: sur,
+            charSurvSpec: surSpec,
+            charAK: ani,
+            charAKSpec: aniSpec,
+            charEtiq: eti,
+            charEtiqSpec: etiSpec,
+            charInsi: ins,
+            charInsiSpec: insSpec,
+            charIntim: int,
+            charIntimSpec: intSpec,
+            charLead: lea,
+            charLeadSpec: leaSpec,
+            charPerf: perf,
+            charPerfSpec: perfSpec,
+            charPers: per,
+            charPersSpec: perSpec,
+            charStreet: str,
+            charStreetSpec: strSpec,
+            charSubt: sub,
+            charSubtSpec: subSpec,
+            charAcad: aca,
+            charAcadSpec: acaSpec,
+            charAware: awa,
+            charAwareSpec: awaSpec,
+            charFin: fin,
+            charFinSpec: finSpec,
+            charInvest: inv,
+            charInvestSpec: invSpec,
+            charMed: med,
+            charMedSpec: medSpec,
+            charOccult: occ,
+            charOccutSpec: occSpec,
+            charPol: pol,
+            charPolSpec: polSpec,
+            charSci: sci,
+            charSciSpec: sciSpec,
+            charTech: tec,
+            charTechSpec: tecSpec
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}

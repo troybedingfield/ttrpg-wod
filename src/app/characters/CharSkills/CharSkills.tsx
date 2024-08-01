@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import './CharSkills.scss'
 import Button from '@/app/components/Button/Button';
 import { createClient } from '@/utils/supabase/client';
+import { updateSkills } from '../actions';
 
 export default function CharSkills({ ...props }) {
     const {
@@ -388,162 +389,310 @@ export default function CharSkills({ ...props }) {
             form.current[160].checked
         ]
         let tecSpec = form.current[161].value
-        // console.log(str);
+        let id = form.current[162].value
 
-        const { data, error } = await supabase
-            .from('charSkills')
-            .update({
-                charAth: ath,
-                charAthSpec: athSpec,
-                charBrawl: bra,
-                charBrawlSpec: braSpec,
-                charCraft: cra,
-                charCraftSpec: craSpec,
-                charDrive: dri,
-                charDriveSpec: driSpec,
-                charFire: fir,
-                charFireSpec: firSpec,
-                charLarc: lar,
-                charLarcSpec: larSpec,
-                charMelee: mel,
-                charMeleeSpec: melSpec,
-                charStealth: ste,
-                charStealthSpec: steSpec,
-                charSurv: sur,
-                charSurvSpec: surSpec,
-                charAK: ani,
-                charAKSpec: aniSpec,
-                charEtiq: eti,
-                charEtiqSpec: etiSpec,
-                charInsi: ins,
-                charInsiSpec: insSpec,
-                charIntim: int,
-                charIntimSpec: intSpec,
-                charLead: lea,
-                charLeadSpec: leaSpec,
-                charPerf: perf,
-                charPerfSpec: perfSpec,
-                charPers: per,
-                charPersSpec: perSpec,
-                charStreet: str,
-                charStreetSpec: strSpec,
-                charSubt: sub,
-                charSubtSpec: subSpec,
-                charAcad: aca,
-                charAcadSpec: acaSpec,
-                charAware: awa,
-                charAwareSpec: awaSpec,
-                charFin: fin,
-                charFinSpec: finSpec,
-                charInvest: inv,
-                charInvestSpec: invSpec,
-                charMed: med,
-                charMedSpec: medSpec,
-                charOccult: occ,
-                charOccutSpec: occSpec,
-                charPol: pol,
-                charPolSpec: polSpec,
-                charSci: sci,
-                charSciSpec: sciSpec,
-                charTech: tec,
-                charTechSpec: tecSpec
+        let formData = {
+            id,
+            ath,
+            athSpec,
+            bra,
+            braSpec,
+            cra,
+            craSpec,
+            dri,
+            driSpec,
+            fir,
+            firSpec,
+            lar,
+            larSpec,
+            mel,
+            melSpec,
+            ste,
+            steSpec,
+            sur,
+            surSpec,
+            ani,
+            aniSpec,
+            eti,
+            etiSpec,
+            ins,
+            insSpec,
+            int,
+            intSpec,
+            lea,
+            leaSpec,
+            perf,
+            perfSpec,
+            per,
+            perSpec,
+            str,
+            strSpec,
+            sub,
+            subSpec,
+            aca,
+            acaSpec,
+            awa,
+            awaSpec,
+            fin,
+            finSpec,
+            inv,
+            invSpec,
+            med,
+            medSpec,
+            occ,
+            occSpec,
+            pol,
+            polSpec,
+            sci,
+            sciSpec,
+            tec,
+            tecSpec,
 
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
         }
 
-        if (!error) {
 
-            setCharAth(ath);
-            setCharAthSpec(athSpec);
-            setCharBrawl(bra);
-            setCharBrawlSpec(braSpec);
-            setCharCraft(cra);
-            setCharCraftSpec(craSpec);
-            setCharDrive(dri);
-            setCharDriveSpec(driSpec);
-            setCharFirearms(fir);
-            setCharFirearmsSpec(firSpec);
-            setCharLarceny(lar);
-            setCharLarcenySpec(larSpec);
-            setCharMelee(mel);
-            setCharMeleeSpec(melSpec);
-            setCharStealth(ste);
-            setCharStealthSpec(steSpec);
-            setCharSurvival(sur);
-            setCharSurvivalSpec(surSpec);
-            setCharAnimalkin(ani);
-            setCharAnimalKinSpec(aniSpec);
-            setCharEtiquette(eti);
-            setCharEtiquetteSpec(etiSpec);
-            setCharInsight(ins);
-            setCharInsightSpec(insSpec);
-            setCharIntimidation(int);
-            setCharIntimidationSpec(intSpec);
-            setCharLeadership(lea);
-            setcharLeadershipSpec(leaSpec);
-            setCharPerformance(perf);
-            setCharPerformanceSpec(perfSpec);
-            setCharPersuassion(per);
-            setCharPersuassionSpec(perSpec);
-            setCharStreetwise(str);
-            setCharStreetwiseSpec(strSpec);
-            setcharSubterfuge(sub);
-            setCharSubterfugeSpec(subSpec);
-            setCharAcademics(aca);
-            setCharAcademicsSpec(acaSpec);
-            setCharAwareness(awa);
-            setCharAwarenessSpec(awaSpec);
-            setCharFinance(fin);
-            setCharFinanceSpec(finSpec);
-            setCharInvestigation(inv);
-            setCharInvestigationSpec(invSpec);
-            setCharMedicine(med);
-            setcharMedicineSpec(medSpec);
-            setCharOccult(occ);
-            setcharOccultSpec(occSpec);
-            setCharPolitics(pol);
-            setCharPoliticsSpec(polSpec);
-            setCharScience(sci);
-            setCharScienceSpec(sciSpec);
-            setCharTechnology(tec);
-            setCharTechnologySpec(tecSpec);
+        updateSkills(formData);
+
+        setCharAth(ath);
+        setCharAthSpec(athSpec);
+        setCharBrawl(bra);
+        setCharBrawlSpec(braSpec);
+        setCharCraft(cra);
+        setCharCraftSpec(craSpec);
+        setCharDrive(dri);
+        setCharDriveSpec(driSpec);
+        setCharFirearms(fir);
+        setCharFirearmsSpec(firSpec);
+        setCharLarceny(lar);
+        setCharLarcenySpec(larSpec);
+        setCharMelee(mel);
+        setCharMeleeSpec(melSpec);
+        setCharStealth(ste);
+        setCharStealthSpec(steSpec);
+        setCharSurvival(sur);
+        setCharSurvivalSpec(surSpec);
+        setCharAnimalkin(ani);
+        setCharAnimalKinSpec(aniSpec);
+        setCharEtiquette(eti);
+        setCharEtiquetteSpec(etiSpec);
+        setCharInsight(ins);
+        setCharInsightSpec(insSpec);
+        setCharIntimidation(int);
+        setCharIntimidationSpec(intSpec);
+        setCharLeadership(lea);
+        setcharLeadershipSpec(leaSpec);
+        setCharPerformance(perf);
+        setCharPerformanceSpec(perfSpec);
+        setCharPersuassion(per);
+        setCharPersuassionSpec(perSpec);
+        setCharStreetwise(str);
+        setCharStreetwiseSpec(strSpec);
+        setcharSubterfuge(sub);
+        setCharSubterfugeSpec(subSpec);
+        setCharAcademics(aca);
+        setCharAcademicsSpec(acaSpec);
+        setCharAwareness(awa);
+        setCharAwarenessSpec(awaSpec);
+        setCharFinance(fin);
+        setCharFinanceSpec(finSpec);
+        setCharInvestigation(inv);
+        setCharInvestigationSpec(invSpec);
+        setCharMedicine(med);
+        setcharMedicineSpec(medSpec);
+        setCharOccult(occ);
+        setcharOccultSpec(occSpec);
+        setCharPolitics(pol);
+        setCharPoliticsSpec(polSpec);
+        setCharScience(sci);
+        setCharScienceSpec(sciSpec);
+        setCharTechnology(tec);
+        setCharTechnologySpec(tecSpec);
 
 
-            setCharAthCount(ath.filter(Boolean).length);
-            setCharBrawlCount(bra.filter(Boolean).length);
-            setCharCraftCount(cra.filter(Boolean).length);
-            setCharDriveCount(dri.filter(Boolean).length);
-            setCharFirearmsCount(fir.filter(Boolean).length);
-            setCharLarcenyCount(lar.filter(Boolean).length);
-            setCharMeleeCount(mel.filter(Boolean).length);
-            setCharStealthCount(ste.filter(Boolean).length);
-            setCharSurvivalCount(sur.filter(Boolean).length);
-            setCharAnimalkinCount(ani.filter(Boolean).length);
-            setCharEtiquetteCount(eti.filter(Boolean).length);
-            setCharInsightCount(ins.filter(Boolean).length);
-            setCharIntimidationCount(int.filter(Boolean).length);
-            setCharLeadershipCount(lea.filter(Boolean).length);
-            setCharPerformanceCount(perf.filter(Boolean).length);
-            setCharPersuassionCount(per.filter(Boolean).length);
-            setCharStreetwiseCount(str.filter(Boolean).length);
-            setCharSubterfugeCount(sub.filter(Boolean).length);
-            setCharAcademicsCount(aca.filter(Boolean).length);
-            setCharAwarenessCount(awa.filter(Boolean).length);
-            setCharFinanceCount(fin.filter(Boolean).length);
-            setCharInvestigationCount(inv.filter(Boolean).length);
-            setCharMedicineCount(med.filter(Boolean).length);
-            setCharOccultCount(occ.filter(Boolean).length);
-            setCharPoliticsCount(pol.filter(Boolean).length);
-            setCharScienceCount(sci.filter(Boolean).length);
-            setCharTechnologyCount(tec.filter(Boolean).length);
+        setCharAthCount(ath.filter(Boolean).length);
+        setCharBrawlCount(bra.filter(Boolean).length);
+        setCharCraftCount(cra.filter(Boolean).length);
+        setCharDriveCount(dri.filter(Boolean).length);
+        setCharFirearmsCount(fir.filter(Boolean).length);
+        setCharLarcenyCount(lar.filter(Boolean).length);
+        setCharMeleeCount(mel.filter(Boolean).length);
+        setCharStealthCount(ste.filter(Boolean).length);
+        setCharSurvivalCount(sur.filter(Boolean).length);
+        setCharAnimalkinCount(ani.filter(Boolean).length);
+        setCharEtiquetteCount(eti.filter(Boolean).length);
+        setCharInsightCount(ins.filter(Boolean).length);
+        setCharIntimidationCount(int.filter(Boolean).length);
+        setCharLeadershipCount(lea.filter(Boolean).length);
+        setCharPerformanceCount(perf.filter(Boolean).length);
+        setCharPersuassionCount(per.filter(Boolean).length);
+        setCharStreetwiseCount(str.filter(Boolean).length);
+        setCharSubterfugeCount(sub.filter(Boolean).length);
+        setCharAcademicsCount(aca.filter(Boolean).length);
+        setCharAwarenessCount(awa.filter(Boolean).length);
+        setCharFinanceCount(fin.filter(Boolean).length);
+        setCharInvestigationCount(inv.filter(Boolean).length);
+        setCharMedicineCount(med.filter(Boolean).length);
+        setCharOccultCount(occ.filter(Boolean).length);
+        setCharPoliticsCount(pol.filter(Boolean).length);
+        setCharScienceCount(sci.filter(Boolean).length);
+        setCharTechnologyCount(tec.filter(Boolean).length);
 
-            setIsEditing(isEditing => !isEditing);
-        }
+        setIsEditing(isEditing => !isEditing);
+
+        // const { data, error } = await supabase
+        //     .from('charSkills')
+        //     .update({
+        //         charAth: ath,
+        //         charAthSpec: athSpec,
+        //         charBrawl: bra,
+        //         charBrawlSpec: braSpec,
+        //         charCraft: cra,
+        //         charCraftSpec: craSpec,
+        //         charDrive: dri,
+        //         charDriveSpec: driSpec,
+        //         charFire: fir,
+        //         charFireSpec: firSpec,
+        //         charLarc: lar,
+        //         charLarcSpec: larSpec,
+        //         charMelee: mel,
+        //         charMeleeSpec: melSpec,
+        //         charStealth: ste,
+        //         charStealthSpec: steSpec,
+        //         charSurv: sur,
+        //         charSurvSpec: surSpec,
+        //         charAK: ani,
+        //         charAKSpec: aniSpec,
+        //         charEtiq: eti,
+        //         charEtiqSpec: etiSpec,
+        //         charInsi: ins,
+        //         charInsiSpec: insSpec,
+        //         charIntim: int,
+        //         charIntimSpec: intSpec,
+        //         charLead: lea,
+        //         charLeadSpec: leaSpec,
+        //         charPerf: perf,
+        //         charPerfSpec: perfSpec,
+        //         charPers: per,
+        //         charPersSpec: perSpec,
+        //         charStreet: str,
+        //         charStreetSpec: strSpec,
+        //         charSubt: sub,
+        //         charSubtSpec: subSpec,
+        //         charAcad: aca,
+        //         charAcadSpec: acaSpec,
+        //         charAware: awa,
+        //         charAwareSpec: awaSpec,
+        //         charFin: fin,
+        //         charFinSpec: finSpec,
+        //         charInvest: inv,
+        //         charInvestSpec: invSpec,
+        //         charMed: med,
+        //         charMedSpec: medSpec,
+        //         charOccult: occ,
+        //         charOccutSpec: occSpec,
+        //         charPol: pol,
+        //         charPolSpec: polSpec,
+        //         charSci: sci,
+        //         charSciSpec: sciSpec,
+        //         charTech: tec,
+        //         charTechSpec: tecSpec
+
+        //     })
+        //     .eq('id', params.characterID)
+        //     .select()
+
+        // if (error) {
+        //     console.log(error);
+        // }
+
+        // if (!error) {
+
+        //     setCharAth(ath);
+        //     setCharAthSpec(athSpec);
+        //     setCharBrawl(bra);
+        //     setCharBrawlSpec(braSpec);
+        //     setCharCraft(cra);
+        //     setCharCraftSpec(craSpec);
+        //     setCharDrive(dri);
+        //     setCharDriveSpec(driSpec);
+        //     setCharFirearms(fir);
+        //     setCharFirearmsSpec(firSpec);
+        //     setCharLarceny(lar);
+        //     setCharLarcenySpec(larSpec);
+        //     setCharMelee(mel);
+        //     setCharMeleeSpec(melSpec);
+        //     setCharStealth(ste);
+        //     setCharStealthSpec(steSpec);
+        //     setCharSurvival(sur);
+        //     setCharSurvivalSpec(surSpec);
+        //     setCharAnimalkin(ani);
+        //     setCharAnimalKinSpec(aniSpec);
+        //     setCharEtiquette(eti);
+        //     setCharEtiquetteSpec(etiSpec);
+        //     setCharInsight(ins);
+        //     setCharInsightSpec(insSpec);
+        //     setCharIntimidation(int);
+        //     setCharIntimidationSpec(intSpec);
+        //     setCharLeadership(lea);
+        //     setcharLeadershipSpec(leaSpec);
+        //     setCharPerformance(perf);
+        //     setCharPerformanceSpec(perfSpec);
+        //     setCharPersuassion(per);
+        //     setCharPersuassionSpec(perSpec);
+        //     setCharStreetwise(str);
+        //     setCharStreetwiseSpec(strSpec);
+        //     setcharSubterfuge(sub);
+        //     setCharSubterfugeSpec(subSpec);
+        //     setCharAcademics(aca);
+        //     setCharAcademicsSpec(acaSpec);
+        //     setCharAwareness(awa);
+        //     setCharAwarenessSpec(awaSpec);
+        //     setCharFinance(fin);
+        //     setCharFinanceSpec(finSpec);
+        //     setCharInvestigation(inv);
+        //     setCharInvestigationSpec(invSpec);
+        //     setCharMedicine(med);
+        //     setcharMedicineSpec(medSpec);
+        //     setCharOccult(occ);
+        //     setcharOccultSpec(occSpec);
+        //     setCharPolitics(pol);
+        //     setCharPoliticsSpec(polSpec);
+        //     setCharScience(sci);
+        //     setCharScienceSpec(sciSpec);
+        //     setCharTechnology(tec);
+        //     setCharTechnologySpec(tecSpec);
+
+
+        //     setCharAthCount(ath.filter(Boolean).length);
+        //     setCharBrawlCount(bra.filter(Boolean).length);
+        //     setCharCraftCount(cra.filter(Boolean).length);
+        //     setCharDriveCount(dri.filter(Boolean).length);
+        //     setCharFirearmsCount(fir.filter(Boolean).length);
+        //     setCharLarcenyCount(lar.filter(Boolean).length);
+        //     setCharMeleeCount(mel.filter(Boolean).length);
+        //     setCharStealthCount(ste.filter(Boolean).length);
+        //     setCharSurvivalCount(sur.filter(Boolean).length);
+        //     setCharAnimalkinCount(ani.filter(Boolean).length);
+        //     setCharEtiquetteCount(eti.filter(Boolean).length);
+        //     setCharInsightCount(ins.filter(Boolean).length);
+        //     setCharIntimidationCount(int.filter(Boolean).length);
+        //     setCharLeadershipCount(lea.filter(Boolean).length);
+        //     setCharPerformanceCount(perf.filter(Boolean).length);
+        //     setCharPersuassionCount(per.filter(Boolean).length);
+        //     setCharStreetwiseCount(str.filter(Boolean).length);
+        //     setCharSubterfugeCount(sub.filter(Boolean).length);
+        //     setCharAcademicsCount(aca.filter(Boolean).length);
+        //     setCharAwarenessCount(awa.filter(Boolean).length);
+        //     setCharFinanceCount(fin.filter(Boolean).length);
+        //     setCharInvestigationCount(inv.filter(Boolean).length);
+        //     setCharMedicineCount(med.filter(Boolean).length);
+        //     setCharOccultCount(occ.filter(Boolean).length);
+        //     setCharPoliticsCount(pol.filter(Boolean).length);
+        //     setCharScienceCount(sci.filter(Boolean).length);
+        //     setCharTechnologyCount(tec.filter(Boolean).length);
+
+        //     setIsEditing(isEditing => !isEditing);
+        // }
     }
 
     return (
@@ -1686,6 +1835,7 @@ export default function CharSkills({ ...props }) {
 
                         </div>
                     </div>
+                    <input type="hidden" name="id" defaultValue={params.characterID} />
                     <div className="buttonContainer">
                         <Button type="submit">Update</Button>
                         <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
