@@ -1,9 +1,23 @@
+import { createClient } from '@/utils/supabase/server'
 import Button from '../components/Button/Button'
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 import { login, signup } from './actions'
 import './page.scss'
+import { redirect } from 'next/navigation'
 
-export default function LoginPage() {
+export default async function LoginPage() {
+
+    const supabase = createClient()
+
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+
+    }
+    if (!error) {
+        redirect('/dashboard')
+    }
+
+
     return (
         <div className='auth-container content-center items-center'>
             <div className='authFormContainer mx-auto '>

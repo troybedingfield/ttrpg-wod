@@ -4,6 +4,7 @@ import './CharHealthAndWillpower.scss'
 import CheckBox from "@/app/components/CheckBox/CheckBox";
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
+import { updateHealth, updateWillpower } from "../actions";
 
 export default function CharHealthAndWillpower({ ...props }) {
     const { id, data, params } = props;
@@ -43,27 +44,21 @@ export default function CharHealthAndWillpower({ ...props }) {
         let level9 = [form.current[8].checked, form.current[8].indeterminate]
         let level10 = [form.current[9].checked, form.current[9].indeterminate]
         let healthNumber = form.current[10].value
+        let id = form.current[11].value
         let health = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 
-        const { data: charHealth, error: charHealthError } = await supabase
-            .from('charHealthAndWillpower')
-            .update({
-                charHealth: health,
-            })
-            .eq('id', params.characterID)
-            .select()
+        setCharHealth(health);
+        setHealth(healthNumber);
 
-        if (charHealthError) {
-            console.log(charHealthError);
+        let formData = {
+            id,
+            healthNumber,
+            health
         }
 
-        if (!charHealthError) {
+        updateHealth(formData);
+        setIsEditingHealth(isEditingHealth => !isEditingHealth)
 
-            setCharHealth(health);
-            setHealth(healthNumber);
-
-            setIsEditingHealth(isEditingHealth => !isEditingHealth)
-        }
 
     }
 
@@ -80,27 +75,22 @@ export default function CharHealthAndWillpower({ ...props }) {
         let level9 = [form.current[8].checked, form.current[8].indeterminate]
         let level10 = [form.current[9].checked, form.current[9].indeterminate]
         let willpowerNumber = form.current[10].value
+        let id = form.current[11].value
         let willpower = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 
-        const { data: charWillpower, error: charWillpowerError } = await supabase
-            .from('charHealthAndWillpower')
-            .update({
-                charWillpower: willpower,
-            })
-            .eq('id', params.characterID)
-            .select()
+        setCharWillpower(willpower);
+        setWillpower(willpowerNumber);
 
-        if (charWillpowerError) {
-            console.log(charWillpowerError);
+
+        let formData = {
+            id,
+            willpowerNumber,
+            willpower
         }
 
-        if (!charWillpowerError) {
+        updateWillpower(formData);
+        setIsEditingWill(isEditingWill => !isEditingWill)
 
-            setCharWillpower(willpower);
-            setWillpower(willpowerNumber);
-
-            setIsEditingWill(isEditingWill => !isEditingWill)
-        }
     }
     return (
         <>
@@ -123,22 +113,24 @@ export default function CharHealthAndWillpower({ ...props }) {
                         </div>}
 
 
-                        {isEditingHealth && <form ref={healthForm} action="" onSubmit={(e) => handleHealthFormSbumit(e, healthForm)}>
-                            <div className="flex sm:flex-row flex-col gap-2">
-                                <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 [&_div:nth-child(5)]:pr-2">
-                                    {charHealth.map((health: any, index: any) => {
-                                        return (
-                                            <CheckBox key={index} id={"customHealthCheckbox" + index} checked={health[0]}
-                                                indeterminate={health[1]} data={health} />
-                                        )
-                                    })}
+                        {isEditingHealth &&
+                            <form ref={healthForm} action="" onSubmit={(e) => handleHealthFormSbumit(e, healthForm)}>
+                                <div className="flex sm:flex-row flex-col gap-2">
+                                    <div className="relative flex border border-slate-500 dark:border-0 dark:bg-white dark:bg-opacity-60 rounded-lg p-2 [&_div:nth-child(5)]:pr-2">
+                                        {charHealth.map((health: any, index: any) => {
+                                            return (
+                                                <CheckBox key={index} id={"customHealthCheckbox" + index} checked={health[0]}
+                                                    indeterminate={health[1]} data={health} />
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="flex justify-center items-center">
+                                        <input className="max-w-16" type="number" defaultValue={health} />
+                                    </div>
+                                    <input type="hidden" name="id" value={params.characterID} />
+                                    <Button size="small">Save</Button>
                                 </div>
-                                <div>
-                                    <input type="number" defaultValue={health} />
-                                </div>
-                                <Button size="small">Save</Button>
-                            </div>
-                        </form>}
+                            </form>}
                     </div>
 
                 </div>
@@ -167,9 +159,10 @@ export default function CharHealthAndWillpower({ ...props }) {
                                         )
                                     })}
                                 </div>
-                                <div>
-                                    <input type="number" defaultValue={willpower} />
+                                <div className="flex justify-center items-center">
+                                    <input className="max-w-16" type="number" defaultValue={willpower} />
                                 </div>
+                                <input type="hidden" name="id" value={params.characterID} />
                                 <Button size="small">Save</Button>
                             </div>
                         </form>}

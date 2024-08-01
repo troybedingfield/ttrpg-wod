@@ -7,6 +7,7 @@ import { createClient } from '@/utils/supabase/server'
 const supabase = createClient()
 
 
+
 export async function deleteChar(prevState: any, formData: FormData) {
     let id = formData.get('id')
     const { error } = await supabase
@@ -21,6 +22,8 @@ export async function deleteChar(prevState: any, formData: FormData) {
     revalidatePath('/characters', 'layout')
     redirect('/characters')
 }
+
+
 
 
 export async function createChar(prevState: any, formData: FormData) {
@@ -129,14 +132,190 @@ export async function createChar(prevState: any, formData: FormData) {
         }
 
 
-
-
-
-
         if (!newAttError && !newSKillsError && !newAttError && !newTTCBError && !newRHHError && !newHWError && !newExpError && !newBPError && !newBNError) {
             revalidatePath('/characters', 'layout')
-            redirect('/characters')
+            redirect(`/characters/${newCharacter[0].id}`)
         }
     }
 }
 
+
+export async function updateCharacterInfo(formData: any) {
+    let id = formData.id;
+    let name = formData.name;
+    let chronicle = formData.chronicle;
+    let sire = formData.sire;
+    let concept = formData.concept;
+    let ambition = formData.ambition;
+    let desire = formData.desire;
+    let predator = formData.predator;
+    let clan = formData.clan;
+    let generation = formData.generation;
+
+    const { data, error } = await supabase
+        .from('character')
+        .update({
+            charName: name,
+            charChronicle: chronicle,
+            charSire: sire,
+            charConcept: concept,
+            charAmbition: ambition,
+            charDesire: desire,
+            charPredator: predator,
+            charClan: clan,
+            charGen: generation
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+
+}
+
+
+export async function updateHealth(formData: any) {
+
+    let id = formData.id
+    let healthNumber = formData.healthNumber
+    let health = formData.health
+
+
+    const { data: charHealth, error: charHealthError } = await supabase
+        .from('charHealthAndWillpower')
+        .update({
+            charHealth: health,
+            health: healthNumber
+        })
+        .eq('id', id)
+        .select()
+
+    if (charHealthError) {
+        console.log(charHealthError);
+    }
+
+    if (!charHealthError) {
+
+
+    }
+
+
+}
+
+
+export async function updateWillpower(formData: any) {
+
+    let id = formData.id
+    let willpowerNumber = formData.willpowerNumber
+    let willpower = formData.willpower
+
+
+
+    const { data: charWillpower, error: charWillpowerError } = await supabase
+        .from('charHealthAndWillpower')
+        .update({
+            charWillpower: willpower,
+            willpower: willpowerNumber
+        })
+        .eq('id', id)
+        .select()
+
+    if (charWillpowerError) {
+        console.log(charWillpowerError);
+    }
+
+    if (!charWillpowerError) {
+
+
+    }
+}
+
+
+export async function updateResonance(formData: any) {
+
+    let id = formData.id
+    let resonance = formData.resonance
+
+
+    const { data, error } = await supabase
+        .from('charRHH')
+        .update({
+            resonance: resonance,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
+
+
+export async function updateHunger(formData: any) {
+
+    let id = formData.id
+    let hunger = formData.hunger
+
+    console.log(id, hunger);
+
+    const { data, error } = await supabase
+        .from('charRHH')
+        .update({
+            hunger: hunger,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
+
+
+export async function updateHumanity(formData: any) {
+    let id = formData.id
+    let humanity = formData.humanity
+
+    // console.log(id, humanity);
+
+    const { data, error } = await supabase
+        .from('charRHH')
+        .update({
+            humanity: humanity,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+
+    }
+
+}

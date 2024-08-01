@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button"
 import { createClient } from "@/utils/supabase/client"
 import { useRef, useState } from "react"
 import './CharResonanceHungerHumanity.scss'
+import { updateHumanity, updateHunger, updateResonance } from "../actions"
 
 export default function CharResonanceHungerHumanity({ ...props }) {
     const { rhh_id, id, params, data } = props
@@ -40,55 +41,35 @@ export default function CharResonanceHungerHumanity({ ...props }) {
             form.current[3].checked,
             form.current[4].checked,
         ];
-
-
-
-        const { data, error } = await supabase
-            .from('charRHH')
-            .update({
-                hunger: hunger,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let id = form.current[5].value
+        let formData = {
+            id,
+            hunger
         }
+        setCharHunger(hunger);
 
-        if (!error) {
+        updateHunger(formData);
+        setIsEditingHunger(isEditingHunger => !isEditingHunger)
 
-            setCharHunger(hunger);
 
-            setIsEditingHunger(isEditingHunger => !isEditingHunger)
-        }
+
 
     }
     async function handleResonanceFormSbumit(event: any, form: any) {
         event.preventDefault()
         let resonance = form.current[0].value;
+        let id = form.current[1].value
 
-
-
-        const { data, error } = await supabase
-            .from('charRHH')
-            .update({
-                resonance: resonance,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            resonance
         }
 
-        if (!error) {
+        setCharResonance(resonance);
 
-            setCharResonance(resonance);
+        updateResonance(formData);
+        setIsEditingResonance(isEditingResonance => !isEditingResonance)
 
-            setIsEditingResonance(isEditingResonance => !isEditingResonance)
-        }
     }
     async function handleHumanityFormSbumit(event: any, form: any) {
         event.preventDefault()
@@ -105,28 +86,18 @@ export default function CharResonanceHungerHumanity({ ...props }) {
             form.current[9].checked,
 
         ];
+        let id = form.current[10].value
 
+        setCharHumanity(humanity);
 
-
-        const { data, error } = await supabase
-            .from('charRHH')
-            .update({
-                humanity: humanity,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            humanity
         }
 
-        if (!error) {
+        updateHumanity(formData);
+        setIsEditingHumanity(isEditingHumanity => !isEditingHumanity)
 
-            setCharHumanity(humanity);
-            setIsEditingHumanity(isEditingHumanity => !isEditingHumanity)
-
-        }
     }
     return (
         <div className="container flex sm:flex-row flex-col gap-4 ">
@@ -147,7 +118,8 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                     </div>
 
                     <form ref={resonanceForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleResonanceFormSbumit(e, resonanceForm)} >
-                        <input type="text" defaultValue={charResonance} />
+                        <input type="text" name="resonance" defaultValue={charResonance} />
+                        <input type="hidden" name="id" value={params.characterID} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>
@@ -179,6 +151,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                                 )
                             })}
                         </div>
+                        <input type="hidden" name="id" value={params.characterID} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>
@@ -213,6 +186,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                                     )
                                 })}
                             </div>
+                            <input type="hidden" name="id" value={params.characterID} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>

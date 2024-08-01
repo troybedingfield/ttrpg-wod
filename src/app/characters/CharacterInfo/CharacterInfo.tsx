@@ -2,7 +2,12 @@
 import { useRef, useState } from 'react';
 import './CharacterInfo.scss'
 import Button from '@/app/components/Button/Button';
-import { createClient } from '@/utils/supabase/client';
+import { updateCharacterInfo } from '../actions';
+
+
+const initialState = {
+    message: null,
+}
 
 export default function CharacterInfo({ ...props }) {
     const {
@@ -16,10 +21,6 @@ export default function CharacterInfo({ ...props }) {
         clan,
         generation,
         params } = props
-
-    const supabase = createClient()
-
-
 
 
     const [isEditing, setIsEditing] = useState(false);
@@ -40,47 +41,13 @@ export default function CharacterInfo({ ...props }) {
 
     }
 
-    // function handleNameChange(event: any) {
-    //     setCharName(event.target.value);
-    // }
-    // function handleChronicleChange(event: any) {
-    //     setCharChron(event.target.value);
-    // }
-    // function handleSireChange(event: any) {
-    //     setCharSire(event.target.value);
-    // }
-    // function handleConceptChange(event: any) {
-    //     setCharConcept(event.target.value);
-    // }
-    // function handleAmbitionChange(event: any) {
-    //     setCharAmbition(event.target.value);
-    // }
-    // function handleDesireChange(event: any) {
-    //     setCharDesire(event.target.value);
-    // }
-    // function handlePredatorChange(event: any) {
-    //     setCharPredator(event.target.value);
-    // }
-    // function handleClanChange(event: any) {
-    //     setCharClan(event.target.value);
-    // }
-    // function handleGenerationChange(event: any) {
-    //     setCharGeneration(event.target.value);
-    // }
-
-
-
     function cancelFormEdit() {
         setIsEditing(isEditing => !isEditing)
     }
 
 
-    async function handleFormSubmit(event: any, form: any) {
-
+    function handleFormSubmit(event: any, form: any) {
         event.preventDefault();
-
-        // console.log(event)
-
         let name = form.current[0].value;
         let chronicle = form.current[1].value;
         let sire = form.current[2].value;
@@ -90,45 +57,25 @@ export default function CharacterInfo({ ...props }) {
         let predator = form.current[6].value;
         let clan = form.current[7].value;
         let generation = form.current[8].value;
+        let id = form.current[9].value;
 
-        // console.log(name, chronicle, sire, concept, ambition, desire, predator, clan, generation)
 
-        const { data, error } = await supabase
-            .from('character')
-            .update({
-                charName: name,
-                charChronicle: chronicle,
-                charSire: sire,
-                charConcept: concept,
-                charAmbition: ambition,
-                charDesire: desire,
-                charPredator: predator,
-                charClan: clan,
-                charGen: generation
-            })
-            .eq('id', params.characterID)
-            .select()
+        setCharName(name);
+        setCharChron(chronicle);
+        setCharSire(sire);
+        setCharConcept(concept);
+        setCharAmbition(ambition);
+        setCharDesire(desire);
+        setCharPredator(predator);
+        setCharClan(clan);
+        setCharGeneration(generation);
 
-        if (error) {
-            console.log(error);
-        }
+        let formData = { id, name, chronicle, sire, concept, ambition, desire, predator, clan, generation }
 
-        if (!error) {
-
-            setCharName(name);
-            setCharChron(chronicle);
-            setCharSire(sire);
-            setCharConcept(concept);
-            setCharAmbition(ambition);
-            setCharDesire(desire);
-            setCharPredator(predator);
-            setCharClan(clan);
-            setCharGeneration(generation);
-
-            setIsEditing(isEditing => !isEditing)
-        }
-
+        updateCharacterInfo(formData);
+        setIsEditing(isEditing => !isEditing)
     }
+
 
     return (
         <>
@@ -185,6 +132,8 @@ export default function CharacterInfo({ ...props }) {
                 </div>
             </div>}
 
+
+
             {isEditing &&
                 <form ref={form} id="characterSheetInfoFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
@@ -192,53 +141,55 @@ export default function CharacterInfo({ ...props }) {
                         <div className="characterInfoColumn">
                             <div className="characterName infoItem">
                                 <label htmlFor="Name">Name: </label>
-                                <input id="Name" defaultValue={charName} type="text" />
+                                <input id="Name" name="name" defaultValue={charName} type="text" />
                             </div>
                             <div className="characterChronicle infoItem">
                                 <label htmlFor="Chronicle">Chronicle: </label>
-                                <input id="Chronicle" defaultValue={charChron} type="text" />
+                                <input id="Chronicle" name="chronicle" defaultValue={charChron} type="text" />
                             </div>
                             <div className="characterSire infoItem">
                                 <label htmlFor="Sire">Sire: </label>
-                                <input id="Sire" defaultValue={charSire} type="text" />
+                                <input id="Sire" name="sire" defaultValue={charSire} type="text" />
                             </div>
                         </div>
 
                         <div className="characterInfoColumn">
                             <div className="characterConcept infoItem">
                                 <label htmlFor="Concept">Concept: </label>
-                                <input id="Concept" defaultValue={charConcept} type="text" />
+                                <input id="Concept" name="concept" defaultValue={charConcept} type="text" />
                             </div>
                             <div className="characterAmbition infoItem">
                                 <label htmlFor="Ambition">Ambition: </label>
-                                <input id="Ambition" defaultValue={charAmbition} type="text" />
+                                <input id="Ambition" name="ambition" defaultValue={charAmbition} type="text" />
                             </div>
                             <div className="characterDesire infoItem">
                                 <label htmlFor="Desire">Desire: </label>
-                                <input id="Desire" defaultValue={charDesire} type="text" />
+                                <input id="Desire" name="desire" defaultValue={charDesire} type="text" />
                             </div>
                         </div>
 
                         <div className="characterInfoColumn">
                             <div className="characterPredator infoItem">
                                 <label htmlFor="Predator">Predator: </label>
-                                <input id="Predator" defaultValue={charPredator} type="text" />
+                                <input id="Predator" name="predator" defaultValue={charPredator} type="text" />
                             </div>
                             <div className="characterClan infoItem">
                                 <label htmlFor="Clan">Clan: </label>
-                                <input id="Clan" defaultValue={charClan} type="text" />
+                                <input id="Clan" name="clan" defaultValue={charClan} type="text" />
                             </div>
                             <div className="characterGeneration infoItem">
                                 <label htmlFor="Generation">Generation: </label>
-                                <input id="Generation" defaultValue={charGeneration} type="text" />
+                                <input id="Generation" name="generation" defaultValue={charGeneration} type="text" />
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="id" value={params.characterID} />
                     <div className="buttonContainer">
                         <Button type="submit">Update</Button>
                         <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
                     </div>
                 </form>}
+
         </>
     )
 }

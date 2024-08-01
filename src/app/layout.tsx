@@ -33,11 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <UsernameProvider>
-      <html lang="en" data-mode="dark">
+      <html lang="en" data-mode="dark" className="h-full">
 
-        <body className={[roboto.className].join(' ')}>
+        <body className={[roboto.className, "relative", "flex", "flex-col", "w-full", "h-full"].join(' ')}>
           <Header />
-          <div className="container mx-auto p-4">
+          <div className="container relative flex flex-col w-full h-full mx-auto p-4">
             {children}
           </div>
         </body>

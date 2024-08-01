@@ -44,7 +44,15 @@
 Dark Mode Theme
 ************************************************************
 ************************************************************/
-@media (prefers-color-scheme: dark) {}
+@media (prefers-color-scheme: dark) {
+    .healthNumber {
+        color: red;
+    }
+
+    .willpowerNumber {
+        color: red;
+    }
+}
 
 
 @media only screen and (max-width:639px) {
