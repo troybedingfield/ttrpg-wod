@@ -491,3 +491,25 @@ export async function updateSkills(formData: any) {
 
     }
 }
+
+
+export async function createDiscipline(user: any, id: any) {
+
+    const { data: newDiscipline, error: newDiscError } = await supabase
+        .from('charDisciplines')
+        .insert([
+            { uuid: user, id: id, disciplineName: 'Discipline Name' },
+        ])
+        .select()
+
+
+    if (newDiscError) {
+        console.log(newDiscError);
+    }
+
+    if (!newDiscError) {
+
+    }
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}
