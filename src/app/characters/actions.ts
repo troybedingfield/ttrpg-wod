@@ -618,3 +618,136 @@ export async function updateClanBane(formData: any) {
 
 
 }
+
+
+export async function addAdvantage(user: any, id: any) {
+    const { data: newAdv, error: newAdvError } = await supabase
+        .from('charAdvantages')
+        .insert([
+            { uuid: user, id: id, advantageName: null },
+        ])
+        .select()
+
+
+    if (newAdvError) {
+        console.log(newAdvError);
+    }
+
+    if (!newAdvError) {
+
+    }
+
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}
+
+
+export async function updateAdvantage(formData: any) {
+    let advID = formData.advID
+    let advantageName = formData.advantageName
+    let advantageLevels = formData.advantageLevels
+
+
+
+    const { data, error } = await supabase
+        .from('charAdvantages')
+        .update({
+            advantageName: advantageName,
+            advantageLevels: advantageLevels
+        })
+        .eq('adv_id', advID)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
+
+
+export async function deleteAdvantage(advID: any, id: any) {
+
+    const { error } = await supabase
+        .from('charAdvantages')
+        .delete()
+        .eq('adv_id', advID)
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+    }
+
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}
+
+
+export async function addFlaw(user: any, id: any) {
+
+    const { data: newFlaw, error: newAdvError } = await supabase
+        .from('charFlaws')
+        .insert([
+            { uuid: user, id: id, flawName: null },
+        ])
+        .select()
+
+
+    if (newAdvError) {
+        console.log(newAdvError);
+    }
+
+    if (!newAdvError) {
+
+    }
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}
+
+
+export async function updateFlaw(formData: any) {
+    let flawID = formData.flawID
+    let flawName = formData.flawName
+    let flawLevels = formData.flawLevels
+
+    const { data, error } = await supabase
+        .from('charFlaws')
+        .update({
+            flawName: flawName,
+            flawLevels: flawLevels
+        })
+        .eq('flaw_id', flawID)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+    }
+}
+
+
+export async function deleteFlaw(flawID: any, id: any) {
+
+    const { error } = await supabase
+        .from('charFlaws')
+        .delete()
+        .eq('flaw_id', flawID)
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+    }
+
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}

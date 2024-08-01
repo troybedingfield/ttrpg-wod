@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
+import { deleteFlaw, updateFlaw } from "../../actions";
 
 export default function CharFlaw({ ...props }) {
     const { params, data, dataId } = props;
@@ -39,42 +40,26 @@ export default function CharFlaw({ ...props }) {
             form.current[4].checked,
             form.current[5].checked
         ]
+        let flawID = form.current[6].value;
 
-
-        const { data, error } = await supabase
-            .from('charFlaws')
-            .update({
-                flawName: flawName,
-                flawLevels: flawLevels
-            })
-            .eq('flaw_id', dataId)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            flawID,
+            flawName,
+            flawLevels
         }
 
-        if (!error) {
+        updateFlaw(formData);
+        setFlawName(flawName);
+        setFlawLevels(flawLevels);
+        setIsEditing(isEditing => !isEditing);
 
-            setFlawName(flawName);
-            setFlawLevels(flawLevels);
 
-            setIsEditing(isEditing => !isEditing)
-        }
     }
 
-    async function deleteFlaw() {
-        const { error } = await supabase
-            .from('charFlaws')
-            .delete()
-            .eq('flaw_id', flawData.flaw_id)
-        if (error) {
-            console.log(error);
-        }
+    async function handleDeleteFlaw() {
 
-        if (!error) {
-            window.location.reload();
-        }
+        deleteFlaw(dataId, params.characterID);
+
     }
 
     return (
@@ -105,10 +90,11 @@ export default function CharFlaw({ ...props }) {
                             })}
                         </div>
                     </div>
+                    <input type="hidden" name="flawID" value={dataId} />
                     <div className="container flex gap-8">
                         <Button classNames={"w-full"} type="submit">Update</Button>
                         <Button classNames={"w-full"} type="cancel" buttonClick={cancelEditFlaw}>Cancel</Button>
-                        <Button classNames={"w-full"} type="delete" buttonClick={deleteFlaw}>Delete</Button>
+                        <Button classNames={"w-full"} type="delete" buttonClick={handleDeleteFlaw}>Delete</Button>
                     </div>
                 </form>
             }

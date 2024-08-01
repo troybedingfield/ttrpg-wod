@@ -1,7 +1,7 @@
 'use client'
 import Button from "@/app/components/Button/Button";
-import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
+import { deleteAdvantage, updateAdvantage } from "../../actions";
 
 export default function CharAdvantage({ ...props }) {
     const { params, data, dataId } = props;
@@ -14,7 +14,6 @@ export default function CharAdvantage({ ...props }) {
 
     const form = useRef<any | undefined>();
 
-    const supabase = createClient();
 
 
 
@@ -38,42 +37,25 @@ export default function CharAdvantage({ ...props }) {
             form.current[4].checked,
             form.current[5].checked
         ]
+        let advID = form.current[6].value;
 
-
-        const { data, error } = await supabase
-            .from('charAdvantages')
-            .update({
-                advantageName: advantageName,
-                advantageLevels: advantageLevels
-            })
-            .eq('adv_id', dataId)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            advID,
+            advantageName,
+            advantageLevels
         }
 
-        if (!error) {
+        updateAdvantage(formData);
+        setAdvName(advantageName);
+        setAdvLevels(advantageLevels);
+        setIsEditing(isEditing => !isEditing);
 
-            setAdvName(advantageName);
-            setAdvLevels(advantageLevels);
-
-            setIsEditing(isEditing => !isEditing)
-        }
     }
 
-    async function deleteAdvantage() {
-        const { error } = await supabase
-            .from('charAdvantages')
-            .delete()
-            .eq('adv_id', advData.adv_id)
-        if (error) {
-            console.log(error);
-        }
+    async function handleDeleteAdvantage() {
 
-        if (!error) {
-            window.location.reload();
-        }
+        deleteAdvantage(dataId, params.characterID);
+
     }
 
     return (
@@ -104,10 +86,11 @@ export default function CharAdvantage({ ...props }) {
                             })}
                         </div>
                     </div>
+                    <input type="hidden" name="advID" value={dataId} />
                     <div className="container flex gap-8">
                         <Button classNames={"w-full"} type="submit">Update</Button>
                         <Button classNames={"w-full"} type="cancel" buttonClick={cancelEditAdvantage}>Cancel</Button>
-                        <Button classNames={"w-full"} type="delete" buttonClick={deleteAdvantage}>Delete</Button>
+                        <Button classNames={"w-full"} type="delete" buttonClick={handleDeleteAdvantage}>Delete</Button>
                     </div>
                 </form>
             }
