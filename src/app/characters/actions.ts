@@ -271,7 +271,6 @@ export async function updateHunger(formData: any) {
     let id = formData.id
     let hunger = formData.hunger
 
-    console.log(id, hunger);
 
     const { data, error } = await supabase
         .from('charRHH')
@@ -297,7 +296,6 @@ export async function updateHumanity(formData: any) {
     let id = formData.id
     let humanity = formData.humanity
 
-    // console.log(id, humanity);
 
     const { data, error } = await supabase
         .from('charRHH')
@@ -847,8 +845,6 @@ export async function updateBio(formData: any) {
     let appearance = formData.appearance;
     let distinguishingFeatures = formData.distinguishingFeatures;
     let history = formData.history;
-
-    console.log(id, trueAge, apparentAge, DOB, DOD, appearance, distinguishingFeatures, history)
 
     const { data, error } = await supabase
         .from('charBioAndNotes')

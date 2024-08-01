@@ -1,6 +1,5 @@
 'use client'
 import Button from "@/app/components/Button/Button";
-import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import './CharTTCB.scss'
 import { updateClanBane, updateTenets, updateTouchstones } from "../actions";
@@ -21,7 +20,6 @@ export default function CharTTCB({ ...props }) {
     const formTouch = useRef<any | undefined>();
     const formBane = useRef<any | undefined>();
 
-    const supabase = createClient();
 
     function editTenet() {
         setIsTenetEditing(isTenetEditing => !isTenetEditing)

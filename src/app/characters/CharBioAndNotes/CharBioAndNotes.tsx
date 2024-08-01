@@ -1,6 +1,5 @@
 'use client'
 import Button from "@/app/components/Button/Button";
-import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import './CharBioAndNotes.scss'
 import { updateBio, updateNotes } from "../actions";
@@ -24,7 +23,6 @@ export default function CharBioAndNotes({ ...props }) {
     const notesForm = useRef<any | undefined>();
     const bioForm = useRef<any | undefined>();
 
-    const supabase = createClient();
 
 
     function editNotes() {
