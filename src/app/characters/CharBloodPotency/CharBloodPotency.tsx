@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import './CharBloodPotency.scss'
 import Button from "@/app/components/Button/Button";
-import { createClient } from "@/utils/supabase/client";
+import { updateBloodForm, updateBloodPotency } from "../actions";
 
 export default function CharBloodPotency({ ...props }) {
     const { id, params, data } = props;
@@ -21,7 +21,7 @@ export default function CharBloodPotency({ ...props }) {
     const bloodPotencyForm = useRef<any | undefined>();
     const bloodForm = useRef<any | undefined>();
 
-    const supabase = createClient();
+
 
     function editBloodPotency() {
         setIsEditingBP(isEditingBP => !isEditingBP)
@@ -44,28 +44,19 @@ export default function CharBloodPotency({ ...props }) {
             form.current[8].checked,
             form.current[9].checked,
         ]
+        let id = form.current[10].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charBloodPotency')
-            .update({
-                bloodPotency: bloodPotency,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            bloodPotency
         }
 
-        if (!error) {
 
-            setBloodPotency(bloodPotency);
+        updateBloodPotency(formData);
+        setBloodPotency(bloodPotency);
+        setIsEditingBP(isEditingBP => !isEditingBP);
 
-            setIsEditingBP(isEditingBP => !isEditingBP)
-        }
+
     }
 
     async function handleBloodFormSbumit(event: any, form: any) {
@@ -76,38 +67,30 @@ export default function CharBloodPotency({ ...props }) {
         let mendAmount = form.current[3].value;
         let rouseReroll = form.current[4].value;
         let baneSeverity = form.current[5].value;
+        let id = form.current[6].value;
 
-
-
-        const { data, error } = await supabase
-            .from('charBloodPotency')
-            .update({
-                bloodSurge: bloodSurge,
-                powerBonus: powerBonus,
-                feedingPenalty: feedingPenalty,
-                mendAmount: mendAmount,
-                rouseReroll: rouseReroll,
-                baneSeverity: baneSeverity,
-
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            bloodSurge,
+            powerBonus,
+            feedingPenalty,
+            mendAmount,
+            rouseReroll,
+            baneSeverity
         }
 
-        if (!error) {
+        updateBloodForm(formData);
+        setBloodSurge(bloodSurge);
+        setPowerBonus(powerBonus);
+        setFeedingPenalty(feedingPenalty);
+        setMendAmount(mendAmount);
+        setRouseReroll(rouseReroll);
+        setBaneSeverity(baneSeverity);
 
-            setBloodSurge(bloodSurge);
-            setPowerBonus(powerBonus);
-            setFeedingPenalty(feedingPenalty);
-            setMendAmount(mendAmount);
-            setRouseReroll(rouseReroll);
-            setBaneSeverity(baneSeverity);
+        setIsEditingBloodForm(isEditingBloodForm => !isEditingBloodForm)
 
-            setIsEditingBloodForm(isEditingBloodForm => !isEditingBloodForm)
-        }
+
+
     }
 
 
@@ -134,6 +117,7 @@ export default function CharBloodPotency({ ...props }) {
                                     )
                                 })}
                             </div>
+                            <input type="hidden" name="id" defaultValue={params.characterID} />
                             <Button type="submit">Save</Button>
                         </form>}
                 </div>
@@ -208,6 +192,7 @@ export default function CharBloodPotency({ ...props }) {
                             </div>
 
                         </div>
+                        <input type="hidden" name="id" defaultValue={params.characterID} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>

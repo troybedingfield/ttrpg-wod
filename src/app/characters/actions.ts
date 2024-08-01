@@ -751,3 +751,63 @@ export async function deleteFlaw(flawID: any, id: any) {
     revalidatePath(`/characters/${id}`, 'layout');
     redirect(`/characters/${id}`);
 }
+
+
+export async function updateBloodPotency(formData: any) {
+    let id = formData.id;
+    let bloodPotency = formData.bloodPotency
+
+
+    const { data, error } = await supabase
+        .from('charBloodPotency')
+        .update({
+            bloodPotency: bloodPotency,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
+
+export async function updateBloodForm(formData: any) {
+    let id = formData.id;
+    let bloodSurge = formData.bloodSurge
+    let powerBonus = formData.powerBonus
+    let feedingPenalty = formData.feedingPenalty
+    let mendAmount = formData.mendAmount
+    let rouseReroll = formData.rouseReroll
+    let baneSeverity = formData.baneSeverity
+
+
+
+    const { data, error } = await supabase
+        .from('charBloodPotency')
+        .update({
+            bloodSurge: bloodSurge,
+            powerBonus: powerBonus,
+            feedingPenalty: feedingPenalty,
+            mendAmount: mendAmount,
+            rouseReroll: rouseReroll,
+            baneSeverity: baneSeverity,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}
