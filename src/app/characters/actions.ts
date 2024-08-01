@@ -319,3 +319,43 @@ export async function updateHumanity(formData: any) {
     }
 
 }
+
+
+export async function updateAttributes(formData: any) {
+    let id = formData.id
+    let str = formData.str
+    let dex = formData.dex
+    let stam = formData.stam
+    let char = formData.char
+    let man = formData.man
+    let comp = formData.comp
+    let int = formData.int
+    let wits = formData.wits
+    let res = formData.res
+
+
+    const { data, error } = await supabase
+        .from('charAttributes')
+        .update({
+            charStr: str,
+            charDex: dex,
+            charStam: stam,
+            charChar: char,
+            charMan: man,
+            charComp: comp,
+            charInt: int,
+            charWits: wits,
+            charRes: res
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+
+    }
+}

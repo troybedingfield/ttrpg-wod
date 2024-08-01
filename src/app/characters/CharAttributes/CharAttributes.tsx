@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import './CharAttributes.scss';
 import Button from '@/app/components/Button/Button';
 import { createClient } from '@/utils/supabase/client';
+import { updateAttributes } from '../actions';
 
 export default function CharAttributes({ ...props }) {
     const { params, str, dex, stam, char, man, comp, int, wits, res } = props
@@ -49,7 +50,6 @@ export default function CharAttributes({ ...props }) {
     async function handleFormSubmit(event: any, form: any) {
         event.preventDefault();
 
-        // console.log(event)
         let str = [
             form.current[0].checked,
             form.current[1].checked,
@@ -113,53 +113,47 @@ export default function CharAttributes({ ...props }) {
             form.current[43].checked,
             form.current[44].checked
         ]
+        let id = form.current[45].value
 
-
-        const { data, error } = await supabase
-            .from('charAttributes')
-            .update({
-                charStr: str,
-                charDex: dex,
-                charStam: stam,
-                charChar: char,
-                charMan: man,
-                charComp: comp,
-                charInt: int,
-                charWits: wits,
-                charRes: res
-            })
-            .eq('id', params.characterID)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            id,
+            str,
+            dex,
+            stam,
+            char,
+            man,
+            comp,
+            int,
+            wits,
+            res
         }
 
-        if (!error) {
 
-            setCharStr(str);
-            setCharDex(dex);
-            setCharStam(stam);
-            setCharChar(char);
-            setCharMan(man);
-            setCharComp(comp);
-            setCharInt(int);
-            setCharWits(wits);
-            setCharRes(res);
+        setCharStr(str);
+        setCharDex(dex);
+        setCharStam(stam);
+        setCharChar(char);
+        setCharMan(man);
+        setCharComp(comp);
+        setCharInt(int);
+        setCharWits(wits);
+        setCharRes(res);
 
-            setStrCharCount(str.filter(Boolean).length);
-            setDexCharCount(dex.filter(Boolean).length);
-            setStamCharCount(stam.filter(Boolean).length);
-            setCharCharCount(char.filter(Boolean).length);
-            setManCharCount(man.filter(Boolean).length);
-            setCompCharCount(comp.filter(Boolean).length);
-            setIntCharCount(int.filter(Boolean).length);
-            setWitsCharCount(wits.filter(Boolean).length);
-            setResCharCount(res.filter(Boolean).length);
+        setStrCharCount(str.filter(Boolean).length);
+        setDexCharCount(dex.filter(Boolean).length);
+        setStamCharCount(stam.filter(Boolean).length);
+        setCharCharCount(char.filter(Boolean).length);
+        setManCharCount(man.filter(Boolean).length);
+        setCompCharCount(comp.filter(Boolean).length);
+        setIntCharCount(int.filter(Boolean).length);
+        setWitsCharCount(wits.filter(Boolean).length);
+        setResCharCount(res.filter(Boolean).length);
 
 
-            setIsEditing(isEditing => !isEditing);
-        }
+        updateAttributes(formData);
+        setIsEditing(isEditing => !isEditing);
+
+
     }
 
     return (
@@ -461,6 +455,7 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
                         </div>
+                        <input type='hidden' name="id" value={params.characterID} />
                         <div className="buttonContainer">
                             <Button type="submit">Update</Button>
                             <Button type="button" buttonClick={cancelFormEdit}>Cancel</Button>
