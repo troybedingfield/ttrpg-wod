@@ -3,9 +3,10 @@ import Button from '@/app/components/Button/Button';
 import './CharDisciplines.scss';
 import { useRef, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import { deleteDiscipline, updateDiscipline } from '../actions';
 
 export default function CharDisciplines({ ...props }) {
-    const { data, params } = props
+    const { data, params, dis_id } = props
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -31,7 +32,6 @@ export default function CharDisciplines({ ...props }) {
     async function handleFormSubmit(event: any, form: any) {
         event.preventDefault();
 
-        // console.log(form.current)
         let discName = form.current[0].value
         let discLevels = [
             form.current[1].checked,
@@ -41,47 +41,31 @@ export default function CharDisciplines({ ...props }) {
             form.current[5].checked
         ]
         let discNotes = form.current[6].value
+        let disID = form.current[7].value
 
-
-
-
-        const { data: disData, error } = await supabase
-            .from('charDisciplines')
-            .update({
-                disciplineName: discName,
-                disciplineLevels: discLevels,
-                disciplineNotes: discNotes
-            })
-            .eq('dis_id', data.dis_id)
-            .select()
-
-        if (error) {
-            console.log(error);
+        let formData = {
+            disID,
+            discName,
+            discLevels,
+            discNotes
         }
 
-        if (!error) {
-            setDisName(discName)
-            setDisLevel(discLevels)
-            setDisNotes(discNotes)
+        updateDiscipline(formData);
+
+        setDisName(discName);
+        setDisLevel(discLevels);
+        setDisNotes(discNotes);
+        setIsEditing(isEditing => !isEditing);
 
 
-            setIsEditing(isEditing => !isEditing);
-        }
     }
 
 
-    async function deleteDiscipline() {
-        const { error } = await supabase
-            .from('charDisciplines')
-            .delete()
-            .eq('dis_id', data.dis_id)
-        if (error) {
-            console.log(error);
-        }
+    async function handleDeleteDisc() {
 
-        if (!error) {
-            window.location.reload();
-        }
+
+        deleteDiscipline(dis_id, params.characterID);
+
     }
 
 
@@ -133,8 +117,9 @@ export default function CharDisciplines({ ...props }) {
                             <textarea className="border w-full" defaultValue={disNotes} id="disNotes"  ></textarea>
 
                         </div>
+                        <input type="hidden" name="disID" value={dis_id} />
                         <Button type="submit">Update</Button>
-                        <Button type="delete" buttonClick={deleteDiscipline}>Delete</Button>
+                        <Button type="delete" buttonClick={handleDeleteDisc}>Delete</Button>
                         <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
                     </form>
 

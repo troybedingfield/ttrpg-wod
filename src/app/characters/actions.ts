@@ -513,3 +513,50 @@ export async function createDiscipline(user: any, id: any) {
     revalidatePath(`/characters/${id}`, 'layout');
     redirect(`/characters/${id}`);
 }
+
+
+export async function updateDiscipline(formData: any) {
+
+    let disID = formData.disID
+    let discName = formData.discName
+    let discLevels = formData.discLevels
+    let discNotes = formData.discNotes
+
+
+
+    const { data: disData, error } = await supabase
+        .from('charDisciplines')
+        .update({
+            disciplineName: discName,
+            disciplineLevels: discLevels,
+            disciplineNotes: discNotes
+        })
+        .eq('dis_id', disID)
+        .select()
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+    }
+}
+
+
+export async function deleteDiscipline(disID: any, id: any) {
+    const { error } = await supabase
+        .from('charDisciplines')
+        .delete()
+        .eq('dis_id', disID)
+    if (error) {
+        console.log(error);
+    }
+
+    if (!error) {
+
+    }
+
+    revalidatePath(`/characters/${id}`, 'layout');
+    redirect(`/characters/${id}`);
+}

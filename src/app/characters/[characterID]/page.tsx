@@ -301,7 +301,7 @@ export default async function Character({ params, ...props }: { params: { charac
                         {charDisciplines?.map(({ dis_id, ...data }) => {
                             return (
 
-                                <CharDisciplines key={dis_id} params={params} data={data} />
+                                <CharDisciplines key={dis_id} params={params} data={data} dis_id={dis_id} />
 
                             )
                         })}
