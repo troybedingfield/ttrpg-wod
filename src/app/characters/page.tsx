@@ -8,7 +8,7 @@ import Character from './Character/Character';
 export default async function Characters() {
     const supabase = createClient()
 
-    const { data: characters } = await supabase.from("character").select().order('id', { ascending: true });
+
 
 
 
@@ -17,12 +17,14 @@ export default async function Characters() {
         redirect('/login')
     }
 
-
-
-    const { data: character, error: charError } = await supabase
-        .from('character')
+    const { data: characters } = await supabase
+        .from("character")
         .select()
         .eq('uuid', data.user.id)
+        .order('id', { ascending: true });
+
+
+
 
 
 
@@ -39,7 +41,7 @@ export default async function Characters() {
 
                     )
                 })}
-                {character?.length! < 5 &&
+                {characters?.length! < 5 &&
                     <CreateCharacter user={data.user.id} />
                 }
             </div>
