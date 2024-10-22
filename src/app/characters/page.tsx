@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
-import Button from '../components/Button/Button';
 import CreateCharacter from './CreateCharacter/CreateCharacter';
 import Character from './Character/Character';
+import { MAX_FREE_CHARACTERS } from '../lib/constants';
 
 export default async function Characters() {
     const supabase = createClient()
@@ -41,7 +41,7 @@ export default async function Characters() {
 
                     )
                 })}
-                {characters?.length! < 5 &&
+                {characters?.length! < MAX_FREE_CHARACTERS &&
                     <CreateCharacter user={data.user.id} />
                 }
             </div>

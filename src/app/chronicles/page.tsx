@@ -2,6 +2,8 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import CreateChronicle from "./CreateChronicle/CreateChronicle";
 import Chronicle from "./Chronicle/Chronicle";
+import { MAX_FREE_CHRONICLES } from "../lib/constants";
+import { QueryData } from "@supabase/supabase-js";
 
 export default async function Chronicles() {
 
@@ -18,7 +20,43 @@ export default async function Chronicles() {
         .eq('storyteller', data.user.id)
         .order('chron_id', { ascending: true });
 
-    console.log(chronicles);
+
+
+    // const chroncielsWithCharactersQuery = supabase.from('chronicle').select(`
+    //         chron_id,
+    //         chronName,
+    //         character (
+    //           id,
+    //           charName,
+    //           chronicle
+    //         )
+    //       `)
+    // type ChroncielsWithCharacters = QueryData<typeof chroncielsWithCharactersQuery>
+
+    // const { data: chronChars, error: chronCharsErrors } = await chroncielsWithCharactersQuery
+    // if (chronCharsErrors) throw chronCharsErrors
+    // const chroncielsWithCharacters: ChroncielsWithCharacters = chronChars
+
+
+    // console.log(chroncielsWithCharacters)
+
+
+    const { data: chronChars, error: chronCharsError } = await supabase
+        .from('chronicle').select(`
+        chron_id, 
+        chronName, 
+        chroniclePlayers ( 
+        chron_id, 
+        character_id,
+        character (
+        id,
+        charName
+        ) 
+        )
+      `)
+
+    // console.log(chronChars);
+
 
     return (
         // <div className='container flex flex-wrap gap-8'>
@@ -28,16 +66,19 @@ export default async function Chronicles() {
         //         <CreateChronicle user={data.user.id} />
         //     </div>
         // </div>
+
         <div className='container flex flex-wrap gap-8'>
-            {chronicles?.map(({ chron_id, id, chronName: name }) => {
+            <pre>{JSON.stringify(chronChars, null, 2)}</pre>
+
+            {chronicles?.map(({ chron_id, chronName: name }) => {
                 return (
 
-                    <Chronicle key={chron_id} id={id} name={name} />
+                    <Chronicle key={chron_id} id={chron_id} name={name} />
 
 
                 )
             })}
-            {chronicles?.length! < 5 &&
+            {chronicles?.length! < MAX_FREE_CHRONICLES &&
                 <CreateChronicle user={data.user.id} />
             }
         </div>

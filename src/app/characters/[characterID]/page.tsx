@@ -16,11 +16,11 @@ import CharHealthAndWillpower from '../CharHealthAndWillpower/CharHealthAndWillp
 import CharResonanceHungerHumanity from '../CharResonanceHungerHumanity/CharResonanceHungerHumanity';
 import CharDelete from '../Character/CharDelete/CharDelete';
 
+
 export default async function Character({ params, ...props }: { params: { characterID: number } }) {
     // const { id } = props
 
-
-
+    let characterData;
     const supabase = createClient()
 
     // const { data: characters } = await supabase.from("characterInfo").select();
@@ -98,9 +98,18 @@ export default async function Character({ params, ...props }: { params: { charac
     }
 
 
+
     return (
 
+
+
         <div className='charaterSheetContainer mt-8 mb-16'>
+            {/* {cookieStore.getAll().map((cookie) => (
+                <div key={cookie.name}>
+                    <p>Name: {cookie.name}</p>
+                    <p>Value: {cookie.value}</p>
+                </div>
+            ))} */}
             {charExperience?.map(({ exp_id, ...data }) => {
                 return (
 
