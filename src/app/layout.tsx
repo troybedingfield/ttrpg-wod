@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/Header/Header";
 import UsernameProvider from "./provider/username";
+// import { StoreProvider } from "./StoreProvider";
 
 
 const roboto = Roboto({
@@ -32,6 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // <StoreProvider>
     <UsernameProvider>
       <html lang="en" data-mode="dark" className="h-full">
 
@@ -44,5 +46,6 @@ export default function RootLayout({
 
       </html>
     </UsernameProvider>
+    // </StoreProvider>
   );
 }
