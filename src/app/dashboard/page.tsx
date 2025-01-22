@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export default async function Dashboard() {
     const supabase = createClient()
@@ -13,7 +15,7 @@ export default async function Dashboard() {
     }
 
     return (
-        <>
+        <Suspense fallback={<Loading />}>
 
 
             <div className='container flex flex-col gap-4'>
@@ -26,6 +28,6 @@ export default async function Dashboard() {
                 </section>
             </div>
 
-        </>
+        </Suspense>
     )
 }
