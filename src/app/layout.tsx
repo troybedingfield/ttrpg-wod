@@ -3,6 +3,8 @@ import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/Header/Header";
 import UsernameProvider from "./provider/username";
+import { Suspense } from "react";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 
 const roboto = Roboto({
@@ -32,7 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <UsernameProvider>
+
       <html lang="en" data-mode="dark" className="h-full">
 
         <body className={[roboto.className, "relative", "flex", "flex-col", "w-full", "h-full"].join(' ')}>
@@ -43,6 +47,8 @@ export default function RootLayout({
         </body>
 
       </html>
+
     </UsernameProvider>
+
   );
 }

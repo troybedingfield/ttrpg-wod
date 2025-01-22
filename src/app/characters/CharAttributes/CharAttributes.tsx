@@ -159,8 +159,8 @@ export default function CharAttributes({ ...props }) {
                 <a onClick={() => editAttributes()}><i
                     className="icon icon-edit-b"></i></a>
             </div>
-            {!isEditing && <div id="characterSheetAttributesContainer">
-                <div className='container sm:columns-3'>
+            {!isEditing && <div id="characterSheetAttributesContainer" className=''>
+                <div className='container  sm:columns-3'>
                     <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterName attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Strength</div>

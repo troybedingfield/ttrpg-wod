@@ -4,6 +4,8 @@ import { createClient } from '@/utils/supabase/server'
 import CreateCharacter from './CreateCharacter/CreateCharacter';
 import Character from './Character/Character';
 import { MAX_FREE_CHARACTERS } from '../lib/constants';
+import { Suspense } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 export default async function Characters() {
     const supabase = createClient()
@@ -29,7 +31,7 @@ export default async function Characters() {
 
 
     return (
-        <>
+        <Suspense fallback={<LoadingSpinner />}>
             {/* <pre>{JSON.stringify(characters, null, 2)}</pre> */}
 
             <div className='container flex flex-wrap gap-8'>
@@ -45,6 +47,6 @@ export default async function Characters() {
                     <CreateCharacter user={data.user.id} />
                 }
             </div>
-        </>
+        </Suspense>
     )
 }

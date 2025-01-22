@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 export default async function Dashboard() {
     const supabase = createClient()
@@ -13,7 +15,7 @@ export default async function Dashboard() {
     }
 
     return (
-        <>
+        <Suspense fallback={<LoadingSpinner />}>
 
 
             <div className='container flex flex-col gap-4'>
@@ -26,6 +28,6 @@ export default async function Dashboard() {
                 </section>
             </div>
 
-        </>
+        </Suspense>
     )
 }
