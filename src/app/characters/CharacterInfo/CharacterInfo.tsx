@@ -86,8 +86,8 @@ export default function CharacterInfo({ ...props }) {
                 {/* <Button class="editBtn" buttonClick={(e: any) => editInfo(e)}>edit</Button> */}
             </div>
             {!isEditing && <div id="characterSheetInfoContainer" className='container'>
-                <div className='container sm:columns-3'>
-                    <div className="w-full xl:mx-12 sm:max-w-60 sm:mx-auto">
+                <div className='container md:flex sm:columns-3'>
+                    <div className="w-full xl:mx-12 sm:mx-auto">
                         <div className="characterName infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
                             <div className='flex sm:w-auto w-24'>Name:</div>
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charName}</span></div>
