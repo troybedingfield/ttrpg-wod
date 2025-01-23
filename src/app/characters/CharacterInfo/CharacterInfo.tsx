@@ -87,7 +87,7 @@ export default function CharacterInfo({ ...props }) {
             </div>
             {!isEditing && <div id="characterSheetInfoContainer" className='container'>
                 <div className='container sm:columns-3'>
-                    <div className="w-full sm:max-w-60 sm:mx-auto">
+                    <div className="w-full xl:mx-12 sm:max-w-60 sm:mx-auto">
                         <div className="characterName infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
                             <div className='flex sm:w-auto w-24'>Name:</div>
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charName}</span></div>
@@ -101,7 +101,7 @@ export default function CharacterInfo({ ...props }) {
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charSire}</span></div>
                         </div>
                     </div>
-                    <div className="w-full sm:max-w-60 sm:mx-auto">
+                    <div className="w-full xl:mx-12 sm:mx-auto">
                         <div className="characterConcept infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
                             <div className='flex sm:w-auto w-24'>Concept:</div>
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charConcept}</span></div>
@@ -115,7 +115,7 @@ export default function CharacterInfo({ ...props }) {
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charDesire}</span></div>
                         </div>
                     </div>
-                    <div className="w-full sm:max-w-60 sm:mx-auto">
+                    <div className="w-full xl:mx-12 sm:mx-auto">
                         <div className="characterPredator infoItem container justify-center sm:justify-start flex sm:columns-auto columns-2">
                             <div className='flex sm:w-auto w-24'>Predator: </div>
                             <div className='w-56 sm:w-auto'><span className='infoLabel'>{charPredator}</span></div>

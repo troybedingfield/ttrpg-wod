@@ -161,7 +161,7 @@ export default function CharAttributes({ ...props }) {
             </div>
             {!isEditing && <div id="characterSheetAttributesContainer" className=''>
                 <div className='container  sm:columns-3'>
-                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="flex flex-col xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterName attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Strength</div>
 
@@ -199,7 +199,7 @@ export default function CharAttributes({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="flex flex-col  xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterConcept attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Charisma</div>
 
@@ -235,7 +235,7 @@ export default function CharAttributes({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="flex flex-col  xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterPredator attributeItem sm:columns-2 flex-wrap">
                             <div className='flex min-w-24'>Intelligence</div>
                             <div className="levels">
@@ -278,7 +278,7 @@ export default function CharAttributes({ ...props }) {
                     <form ref={form} id="characterSheetAttributesFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
                         <div className="container sm:columns-3">
-                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                            <div className="flex flex-col  xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                                 <div className="strengthAttribute attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="strength">Strength</label></div>
 
@@ -321,7 +321,7 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                            <div className="flex flex-col  xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                                 <div className="characterConcept attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="charisma">Charisma </label></div>
                                     <div className="form-group levels" >
@@ -363,7 +363,7 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col  sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                            <div className="flex flex-col  xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                                 <div className="characterPredator attributeItem sm:columns-2 flex-wrap">
                                     <div className='flex min-w-24'><label htmlFor="intelligense">Intelligence </label></div>
                                     <div className="form-group levels" >

@@ -548,7 +548,7 @@ export default function CharSkills({ ...props }) {
             </div>
             {!isEditing && <div id="characterSheetSkillsContainer">
                 <div className='container sm:columns-3'>
-                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterName skillItem">
                             <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>Athletics</div>
@@ -703,7 +703,7 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterConcept skillItem">
                             <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>animal ken</div>
@@ -858,7 +858,7 @@ export default function CharSkills({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                    <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
                         <div className="characterPredator skillItem">
                             <div className="levelContainer sm:columns-2 flex-wrap">
                                 <div className='flex min-w-24'>academics</div>
@@ -1021,7 +1021,7 @@ export default function CharSkills({ ...props }) {
                 <form ref={form} id="characterSheetSkillsFormContainer" onSubmit={(e) => handleFormSubmit(e, form)}>
 
                     <div className="container sm:columns-3">
-                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="strengthAttribute skillItem">
@@ -1234,7 +1234,7 @@ export default function CharSkills({ ...props }) {
                         </div>
 
 
-                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="characterConcept skillItem">
@@ -1459,7 +1459,7 @@ export default function CharSkills({ ...props }) {
                         </div>
 
 
-                        <div className="sm:mx-0 max-w-xs w-full mx-auto w-xs">
+                        <div className="xl:mx-12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
 
                             <div className="itemWrapper">
                                 <div className="characterPredator skillItem">
