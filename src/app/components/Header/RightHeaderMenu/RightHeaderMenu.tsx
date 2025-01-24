@@ -7,6 +7,7 @@ import DropDownMenu from "../../DropDownMenu/DropDownMenu";
 import { UsernameContext } from "@/app/context/username";
 import Image from 'next/image'
 
+
 export default function RightHeaderMenu({ ...props }) {
     const { data, profile, settings, error } = props;
     const router = useRouter()
@@ -39,8 +40,7 @@ export default function RightHeaderMenu({ ...props }) {
 
     useEffect(() => {
         return setProfileData(profile)
-    }, []);
-
+    }, [profile, setProfileData]);
 
 
 
@@ -121,6 +121,7 @@ export default function RightHeaderMenu({ ...props }) {
                     </DropDownMenu>
                 </div>
             }
+
         </div>
     )
 }

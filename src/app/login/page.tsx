@@ -11,7 +11,7 @@ export default async function LoginPage() {
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
-
+        // console.log(error);
     }
     if (!error) {
         redirect('/dashboard')

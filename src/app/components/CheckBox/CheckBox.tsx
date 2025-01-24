@@ -57,7 +57,7 @@ export default function CheckBox({ ...props }) {
             setCheckChecked(false)
             setCheckInd(true)
         }
-    }, [isChecked]);
+    }, [isChecked, CHECKBOX_STATES.Checked, CHECKBOX_STATES.Empty, CHECKBOX_STATES.Indeterminate]);
 
     return (
         <div id="checkboxContainer">

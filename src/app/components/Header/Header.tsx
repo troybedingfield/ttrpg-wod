@@ -3,10 +3,12 @@ import { createClient } from '@/utils/supabase/server';
 import RightHeaderMenu from './RightHeaderMenu/RightHeaderMenu';
 import { useContext } from 'react';
 import Link from 'next/link';
+import { getProfileData, getUserSettings } from './actions';
 
 
 
 export default async function Header({ ...props }) {
+
     const supabase = createClient()
 
     const {
@@ -20,16 +22,19 @@ export default async function Header({ ...props }) {
 
     }
 
-    const { data: settings, error: settingError } = await supabase
-        .from("usersettings")
-        .select()
-        .eq('id', data?.user?.id)
+    // const { data: settings, error: settingError } = await supabase
+    //     .from("usersettings")
+    //     .select()
+    //     .eq('id', data?.user?.id)
 
-    const { data: userProfile, error: userProfileError } = await supabase
-        .from("userprofiles")
-        .select()
-        .eq('id', data?.user?.id)
+    // const { data: userProfile, error: userProfileError } = await supabase
+    //     .from("userprofiles")
+    //     .select()
+    //     .eq('id', data?.user?.id)
 
+
+    let userProfile = await getProfileData();
+    let settings = await getUserSettings();
 
 
     return (
@@ -41,6 +46,7 @@ export default async function Header({ ...props }) {
             </div>
             <RightHeaderMenu data={data} settings={settings}
                 profile={userProfile} />
+
 
         </header>
     )

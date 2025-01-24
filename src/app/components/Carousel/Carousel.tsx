@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import './Carousel.scss'
 import { start } from 'repl';
+import Image from 'next/image'
 
 export default function Carousel({ ...props }) {
     const {
@@ -71,7 +72,7 @@ export default function Carousel({ ...props }) {
                     if (index === currentSlide) {
                         return (
 
-                            <img key={index} src={item} className="slide fade" />
+                            <Image key={index} src={item} alt="carousel image" className="slide fade" />
                         )
                     }
                 })}
