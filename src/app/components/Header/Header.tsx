@@ -8,33 +8,21 @@ import { getProfileData, getUserSettings } from './actions';
 
 
 export default async function Header({ ...props }) {
-
-    const supabase = createClient()
-
     const {
 
     } = props
 
 
+    const supabase = createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
 
     }
 
-    // const { data: settings, error: settingError } = await supabase
-    //     .from("usersettings")
-    //     .select()
-    //     .eq('id', data?.user?.id)
-
-    // const { data: userProfile, error: userProfileError } = await supabase
-    //     .from("userprofiles")
-    //     .select()
-    //     .eq('id', data?.user?.id)
-
-
     let userProfile = await getProfileData();
     let settings = await getUserSettings();
+
 
 
     return (

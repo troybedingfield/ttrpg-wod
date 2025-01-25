@@ -11,11 +11,12 @@ async function checkUser() {
     const supabase = createClient()
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
-        console.log(error);
-        // redirect('/');
+        return console.log(error);
     }
+    if (!error) {
 
-    return data;
+        return data;
+    }
 }
 
 
@@ -31,7 +32,7 @@ export async function getProfileData() {
 
 
 
-    return await userProfile;
+    return userProfile;
 }
 
 export async function getUserSettings() {
