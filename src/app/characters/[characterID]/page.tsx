@@ -15,6 +15,7 @@ import CharBioAndNotes from '../CharBioAndNotes/CharBioAndNotes';
 import CharHealthAndWillpower from '../CharHealthAndWillpower/CharHealthAndWillpower';
 import CharResonanceHungerHumanity from '../CharResonanceHungerHumanity/CharResonanceHungerHumanity';
 import CharDelete from '../Character/CharDelete/CharDelete';
+import DiceRoller from '@/app/components/DiceRoller/DiceRoller';
 
 
 export default async function Character({ params, ...props }: { params: { characterID: number } }) {
@@ -103,7 +104,7 @@ export default async function Character({ params, ...props }: { params: { charac
 
 
 
-        <div className='charaterSheetContainer mt-8 mb-16'>
+        <div className='charaterSheetContainer flex relative h-auto mt-8 mb-16'>
             {/* {cookieStore.getAll().map((cookie) => (
                 <div key={cookie.name}>
                     <p>Name: {cookie.name}</p>
@@ -358,9 +359,13 @@ export default async function Character({ params, ...props }: { params: { charac
                 )
             })}
 
-            <CharDelete params={params} />
+            <div className="container flex flex-col w-full mb-9">
+                <CharDelete params={params} />
+            </div>
 
-
+            {/* <div className="container flex flex-col w-full mb-12">
+                <DiceRoller />
+            </div> */}
         </div>
     )
 

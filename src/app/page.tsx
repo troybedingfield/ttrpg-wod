@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
+import "./page.scss";
 import Button from "./components/Button/Button";
 import Link from "next/link";
 import { Suspense } from "react";
