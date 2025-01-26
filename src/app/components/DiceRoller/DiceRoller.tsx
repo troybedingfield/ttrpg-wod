@@ -127,6 +127,45 @@ export default function DiceRoller() {
         setRouse(0);
     }
 
+    function handleWillpowerReroll(event: React.MouseEvent<Element, MouseEvent>) {
+        event.preventDefault();
+
+        let rerollPool = rolledDice.filter((num) =>
+            num < 6
+        )
+
+        let diceToBeRerolled: number[] = [];
+
+        rolledDice.forEach(item => diceToBeRerolled.push(item))
+
+        const filterCondition = (num: number) => num < 6;
+
+        const filteredIndices = diceToBeRerolled
+            .map((element, index) => (filterCondition(element) ? index : -1))
+            .filter((index) => index !== -1);
+
+        // rerollPool.forEach((item, index) => {
+        //     console.log(item, index - 1)
+        // })
+
+        let indexsToReplace: number[] = filteredIndices
+
+
+
+        let trimmedIndexes = indexsToReplace.splice(0, 3);
+
+        trimmedIndexes.forEach((element, index) => {
+            console.log(element);
+            let rerolledNum = Math.floor(Math.random()
+                * 10) + 1
+            diceToBeRerolled[element] = rerolledNum;
+        })
+
+        console.log(diceToBeRerolled)
+
+        setRolledDice(diceToBeRerolled);
+    }
+
 
     return (
 
@@ -296,30 +335,33 @@ export default function DiceRoller() {
 
 
 
-            <form action="">
-                <div>
-                    <label htmlFor="attribute">Attribute/Skill</label>
-                    <input type="number" value={num1} onChange={(e) => handleNum1(e.target.valueAsNumber)}></input>
-                </div>
-                <div>
-                    <label htmlFor="skill">Attribute/Skill</label>
-                    <input type="number" value={num2} onChange={(e) => handleNum2(e.target.valueAsNumber)}></input>
-                </div>
-                <div>
-                    <label htmlFor="mods">Modifiers</label>
-                    <input type="number" value={mods} onChange={(e) => handleMods(e.target.valueAsNumber)}></input>
-                </div>
-                <div>
-                    <label htmlFor="hunger">Hunger</label>
-                    <input type="number" value={hunger} onChange={(e) => handleHunger(e.target.valueAsNumber)}></input>
-                </div>
-                <div>
-                    <label htmlFor="difficulty">Difficulty</label>
-                    <input type="number" value={diff} onChange={(e) => handleDiff(e.target.valueAsNumber)}></input>
+            <form action="" className="flex flex-col">
+                <div className="flex flex-row gap-4">
+                    <div className="flex flex-col">
+                        <label htmlFor="attribute">Attribute/Skill</label>
+                        <input type="number" min="0" value={num1} onChange={(e) => handleNum1(e.target.valueAsNumber)}></input>
+                    </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="skill">Attribute/Skill</label>
+                        <input type="number" min="0" value={num2} onChange={(e) => handleNum2(e.target.valueAsNumber)}></input>
+                    </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="mods">Modifiers</label>
+                        <input type="number" min="0" value={mods} onChange={(e) => handleMods(e.target.valueAsNumber)}></input>
+                    </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="hunger">Hunger</label>
+                        <input type="number" min="0" value={hunger} onChange={(e) => handleHunger(e.target.valueAsNumber)}></input>
+                    </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="difficulty">Difficulty</label>
+                        <input type="number" min="0" value={diff} onChange={(e) => handleDiff(e.target.valueAsNumber)}></input>
+                    </div>
                 </div>
 
-                <div className="flex items-end">
+                <div className="flex gap-4">
                     <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleDiceRoll(e, num1, num2, mods, hunger)}>Roll</Button>
+                    <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleWillpowerReroll(e)}>Willpower Reroll</Button>
                     <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleRouse(e)}>Rouse</Button>
                     <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleClear(e)}>Clear</Button>
                 </div>
