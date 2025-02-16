@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, useContext } from "react";
 import DropDownMenu from "../../DropDownMenu/DropDownMenu";
 import { UsernameContext } from "@/app/context/username";
 import Image from 'next/image'
+import Link from "next/link";
 
 
 export default function RightHeaderMenu({ ...props }) {
@@ -85,12 +86,15 @@ export default function RightHeaderMenu({ ...props }) {
 
     return (
         <div className="flex w-full gap-2">
+
             {!data.user &&
                 <div className="flex items-center w-full justify-end">
+                    <Link className="pr-2 hover:underline cursor-pointer" href='/diceroller'>Dice Roller</Link>
                     <Button minWidth="70" buttonClick={() => router.push('/login')}>Login</Button>
                 </div>}
             {data.user &&
                 <div className="flex items-center w-full justify-end gap-2">
+                    <Link className="pr-2 hover:underline cursor-pointer" href='/diceroller'>Dice Roller</Link>
                     {/* <a href="/dashboard">dashboard</a>
                     <Button minWidth="70" buttonClick={() => logout()}>Logout</Button>
                     <img

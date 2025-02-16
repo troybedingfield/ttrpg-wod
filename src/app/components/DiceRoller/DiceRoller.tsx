@@ -166,11 +166,12 @@ export default function DiceRoller() {
         setRolledDice(diceToBeRerolled);
     }
 
+    console.log(rouse);
 
     return (
 
         <div className="diceRollContainer">
-            <div>Dice Roller</div>
+            {/* <div>Dice Roller</div> */}
             <div className="statsContainer">
                 <div className="stats">
                     <div>Attribute/Skill: {num1}</div>
@@ -360,10 +361,10 @@ export default function DiceRoller() {
                 </div>
 
                 <div className="flex gap-4">
-                    <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleDiceRoll(e, num1, num2, mods, hunger)}>Roll</Button>
-                    <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleWillpowerReroll(e)}>Willpower Reroll</Button>
+                    {rolledDice.length === 0 && <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleDiceRoll(e, num1, num2, mods, hunger)}>Roll</Button>}
+                    {rolledDice.length !== 0 && rouse === 0 && <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleWillpowerReroll(e)}>Willpower Reroll</Button>}
                     <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleRouse(e)}>Rouse</Button>
-                    <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleClear(e)}>Clear</Button>
+                    {rolledDice.length !== 0 && <Button maxHeight={36} buttonClick={(e: MouseEvent<Element, MouseEvent>) => handleClear(e)}>Clear</Button>}
                 </div>
             </form>
         </div>
