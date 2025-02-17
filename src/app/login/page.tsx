@@ -37,7 +37,7 @@ export default function LoginPage() {
                             {/* <Button formAction={signup}>Sign up</Button> */}
                         </form>
                     </div>
-                    <p className='hover:underline w-auto mx-auto' onClick={() => setResetPassword(!resetPassword)}>{resetPassword ? "login" : "Reset Password"}</p>
+                    {/* <p className='hover:underline w-auto mx-auto' onClick={() => setResetPassword(!resetPassword)}>{resetPassword ? "login" : "Reset Password"}</p> */}
                 </div>
                 {/* <LoadingSpinner /> */}
             </div>}
