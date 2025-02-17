@@ -81,7 +81,7 @@ export async function sendResetPassword(formData: FormData, request: NextRequest
 
     try {
         const { data: resetData, error } = await supabase.auth.resetPasswordForEmail(data.email, {
-            redirectTo: `https://wod.robotknifefight.com/reset`
+            redirectTo: `wod.robotknifefight.com/reset`
         })
     } catch (error) {
         console.log(error)
