@@ -1,9 +1,13 @@
+'use client'
 import { createPortal } from "react-dom"
 import './Toast.scss'
 import { useRef } from "react"
+// import useToast from "./useToast"
 
 export default function Toast({ ...props }) {
     const { message, type, state = 'close' } = props
+
+    // const { toasts, addToast, removeToast } = useToast();
 
     const toast = useRef<any | undefined>(null)
 

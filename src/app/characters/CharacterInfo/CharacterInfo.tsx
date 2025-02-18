@@ -1,8 +1,11 @@
 'use client'
-import { useRef, useState } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import './CharacterInfo.scss'
 import Button from '@/app/components/Button/Button';
 import { updateCharacterInfo } from '../actions';
+import { useToast } from '@/app/components/Toast/useToast';
+
+
 
 
 const initialState = {
@@ -34,6 +37,8 @@ export default function CharacterInfo({ ...props }) {
     const [charClan, setCharClan] = useState(clan);
     const [charGeneration, setCharGeneration] = useState(generation);
 
+    const [isPending, setIsPending] = useState(false);
+
     const form = useRef<any | undefined>(null);
 
     function editInfo() {
@@ -45,8 +50,10 @@ export default function CharacterInfo({ ...props }) {
         setIsEditing(isEditing => !isEditing)
     }
 
+    const { showToast } = useToast();
 
-    function handleFormSubmit(event: any, form: any) {
+
+    async function handleFormSubmit(event: any, form: any) {
         event.preventDefault();
         let name = form.current[0].value;
         let chronicle = form.current[1].value;
@@ -72,13 +79,26 @@ export default function CharacterInfo({ ...props }) {
 
         let formData = { id, name, chronicle, sire, concept, ambition, desire, predator, clan, generation }
 
-        updateCharacterInfo(formData);
+        // updateCharacterInfo(formData);
         setIsEditing(isEditing => !isEditing)
+
+        setIsPending(true);
+        const result = await updateCharacterInfo(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
+
+
     }
 
 
     return (
         <>
+
             <div id="sectionTitle">
                 <div className="sectionTitle">Info</div>
                 <a onClick={() => editInfo()}><i
@@ -183,7 +203,7 @@ export default function CharacterInfo({ ...props }) {
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="id" value={params.characterID} />
+                    <input type="hidden" name="id" value={params} />
                     <div className="buttonContainer">
                         <Button type="submit">Update</Button>
                         <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>

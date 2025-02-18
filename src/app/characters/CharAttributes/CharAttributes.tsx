@@ -405,7 +405,7 @@ export default function CharAttributes({ ...props }) {
                                 </div>
                             </div>
                         </div>
-                        <input type='hidden' name="id" value={params.characterID} />
+                        <input type='hidden' name="id" value={params} />
                         <div className="buttonContainer">
                             <Button type="submit">Update</Button>
                             <Button type="button" buttonClick={cancelFormEdit}>Cancel</Button>

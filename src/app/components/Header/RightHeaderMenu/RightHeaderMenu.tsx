@@ -22,6 +22,10 @@ export default function RightHeaderMenu({ ...props }) {
             // window.location.href = '/dashboard'
             router.push('/dashboard');
         }
+        if (data === 'Characters') {
+            // window.location.href = '/dashboard'
+            router.push('/characters');
+        }
         if (data === 'Settings') {
             // window.location.href = '/settings'
             router.push('/settings');
@@ -102,7 +106,7 @@ export default function RightHeaderMenu({ ...props }) {
                         src="placeholder-character.png"
                         className="inline-block h-12 w-12 rounded-lg ring-2 ring-white"
                     /> */}
-                    <DropDownMenu dropdownItems={['Dashboard', 'Settings', 'Logout']} menuClick={handleDropMenuclick}>
+                    <DropDownMenu dropdownItems={['Dashboard', 'Characters', 'Settings', 'Logout']} menuClick={handleDropMenuclick}>
                         <div className="flex gap-2 items-center">
                             {/* <img
                                 alt=""

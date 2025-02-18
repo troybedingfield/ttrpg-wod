@@ -5,6 +5,10 @@ import Header from "./components/Header/Header";
 import UsernameProvider from "./provider/username";
 import { Suspense } from "react";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import { ToastProvider } from "./provider/ToastProvider";
+
+
+
 
 
 const roboto = Roboto({
@@ -42,7 +46,9 @@ export default function RootLayout({
         <body className={[roboto.className, "relative", "flex", "flex-col", "w-full", "h-full"].join(' ')}>
           <Header />
           <div className="container relative flex flex-col w-full h-full mx-auto p-4">
-            {children}
+            <ToastProvider>
+              {children}
+            </ToastProvider>
           </div>
         </body>
 

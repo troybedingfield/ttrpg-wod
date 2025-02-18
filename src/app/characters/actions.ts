@@ -7,6 +7,26 @@ import { createClient } from '@/utils/supabase/server'
 
 
 
+async function checkUser() {
+    const supabase = await createClient()
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+        redirect('/login')
+    }
+    if (!error) {
+
+        return data;
+    }
+}
+
+
+export async function getCharacterSheet() {
+    let data = await checkUser();
+
+
+}
+
+
 
 export async function deleteChar(prevState: any, formData: FormData) {
     let id = formData.get('id')
@@ -21,7 +41,7 @@ export async function deleteChar(prevState: any, formData: FormData) {
 
 
     revalidatePath('/characters', 'layout')
-    // redirect('/characters')
+
 }
 
 
@@ -179,6 +199,7 @@ export async function updateCharacterInfo(formData: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Character Info Updated!", type: "success" };
     // redirect(`/characters/${id}`);
 
 }

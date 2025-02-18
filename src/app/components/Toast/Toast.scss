@@ -55,8 +55,8 @@
     background-color: var(--color-warning);
 }
 
-// Danger
-.danger-toast {
+// Error
+.error-toast {
     @extend %default-toast;
     background-color: var(--color-error);
 }

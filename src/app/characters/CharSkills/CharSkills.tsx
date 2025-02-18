@@ -1679,7 +1679,7 @@ export default function CharSkills({ ...props }) {
 
                         </div>
                     </div>
-                    <input type="hidden" name="id" defaultValue={params.characterID} />
+                    <input type="hidden" name="id" defaultValue={params} />
                     <div className="buttonContainer">
                         <Button type="submit">Update</Button>
                         <Button type="cancel" buttonClick={cancelFormEdit}>Cancel</Button>
