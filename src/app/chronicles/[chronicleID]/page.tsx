@@ -1,10 +1,12 @@
 import { createClient } from "@/utils/supabase/server";
 import { notFound, redirect } from "next/navigation";
 
-export default async function Chroncile({ params, ...props }: { params: { chronicleID: number } }) {
+export default async function Chroncile({ params, ...props }: { params: Promise<{ chronicleID: number }> }) {
     const { } = props;
 
-    const supabase = createClient()
+    const { chronicleID } = await params;
+
+    const supabase = await createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {

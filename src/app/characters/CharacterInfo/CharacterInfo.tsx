@@ -34,7 +34,7 @@ export default function CharacterInfo({ ...props }) {
     const [charClan, setCharClan] = useState(clan);
     const [charGeneration, setCharGeneration] = useState(generation);
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     function editInfo() {
         setIsEditing(isEditing => !isEditing)

@@ -8,7 +8,7 @@ import { NextRequest } from 'next/server'
 
 
 export async function checkAuth() {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
         // console.log(error);
@@ -19,7 +19,7 @@ export async function checkAuth() {
 }
 
 export async function login(formData: FormData) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // type-casting here for convenience
     // in practice, you should validate your inputs
@@ -39,7 +39,7 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // type-casting here for convenience
     // in practice, you should validate your inputs
@@ -61,7 +61,7 @@ export async function signup(formData: FormData) {
 
 
 export async function sendResetPassword(formData: FormData, request: NextRequest) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // // type-casting here for convenience
     // // in practice, you should validate your inputs

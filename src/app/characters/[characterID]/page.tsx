@@ -18,78 +18,80 @@ import CharDelete from '../Character/CharDelete/CharDelete';
 import DiceRoller from '@/app/components/DiceRoller/DiceRoller';
 
 
-export default async function Character({ params, ...props }: { params: { characterID: number } }) {
+export default async function Character({ params, ...props }: { params: Promise<{ characterID: number }> }) {
     // const { id } = props
 
+    const { characterID } = await params;
+
     let characterData;
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // const { data: characters } = await supabase.from("characterInfo").select();
 
     const { data: character, error: charError } = await supabase
         .from('character')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
 
     const { data: charAttributes, error: charAttError } = await supabase
         .from('charAttributes')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charSkills, error: charSkillError } = await supabase
         .from('charSkills')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charDisciplines, error: charDiscError } = await supabase
         .from('charDisciplines')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
         .order('dis_id', { ascending: true });
 
 
     const { data: charTTCB, error: charTTCBError } = await supabase
         .from('charTTCB')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charAdvantages, error: charAdvError } = await supabase
         .from('charAdvantages')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
         .order('adv_id', { ascending: true });
 
     const { data: charFlaws, error: charFlawError } = await supabase
         .from('charFlaws')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
         .order('flaw_id', { ascending: true });
 
     const { data: charBloodPotency, error: charBPError } = await supabase
         .from('charBloodPotency')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charExperience, error: charExpError } = await supabase
         .from('charExperience')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charBioAndNotes, error: charBNError } = await supabase
         .from('charBioAndNotes')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charHealthAndWillpower, error: charHWError } = await supabase
         .from('charHealthAndWillpower')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
     const { data: charResonanceHungerHumanity, error: charRHHError } = await supabase
         .from('charRHH')
         .select()
-        .eq('id', params.characterID)
+        .eq('id', characterID)
 
 
 
@@ -114,7 +116,7 @@ export default async function Character({ params, ...props }: { params: { charac
             {charExperience?.map(({ exp_id, ...data }) => {
                 return (
 
-                    <CharExperience key={exp_id} params={params} data={data} />
+                    <CharExperience key={exp_id} params={characterID} data={data} />
 
                 )
             })}
@@ -124,7 +126,7 @@ export default async function Character({ params, ...props }: { params: { charac
 
 
                     <CharacterInfo
-                        params={params}
+                        params={characterID}
                         key={char_id}
                         name={name}
                         chronicle={chronicle}
@@ -142,7 +144,7 @@ export default async function Character({ params, ...props }: { params: { charac
             {charHealthAndWillpower?.map(({ hw_id, ...data }) => {
                 return (
 
-                    <CharHealthAndWillpower key={hw_id} params={params} data={data} />
+                    <CharHealthAndWillpower key={hw_id} params={characterID} data={data} />
 
                 )
             })}
@@ -151,7 +153,7 @@ export default async function Character({ params, ...props }: { params: { charac
             {charResonanceHungerHumanity?.map(({ rhh_id, ...data }) => {
                 return (
 
-                    <CharResonanceHungerHumanity key={rhh_id} params={params} data={data} />
+                    <CharResonanceHungerHumanity key={rhh_id} params={characterID} data={data} />
 
                 )
             })}
@@ -163,7 +165,7 @@ export default async function Character({ params, ...props }: { params: { charac
                 return (
 
                     <CharAttributes
-                        params={params}
+                        params={characterID}
                         key={att_id}
                         str={str}
                         dex={dex}
@@ -242,7 +244,7 @@ export default async function Character({ params, ...props }: { params: { charac
                 return (
 
                     <CharSkills
-                        params={params}
+                        params={characterID}
                         key={skill_id}
                         athletics={athletics}
                         athSpec={athleticsSpec}
@@ -311,12 +313,12 @@ export default async function Character({ params, ...props }: { params: { charac
                         {charDisciplines?.map(({ dis_id, ...data }) => {
                             return (
 
-                                <CharDisciplines key={dis_id} params={params} data={data} dis_id={dis_id} />
+                                <CharDisciplines key={dis_id} params={characterID} data={data} dis_id={dis_id} />
 
                             )
                         })}
                         <div className="flex flex-col sm:w-3/12 sm:mx-0 max-w-xs w-full mx-auto w-xs">
-                            <AddDiscipline user={data.user.id} params={params.characterID} />
+                            <AddDiscipline user={data.user.id} params={characterID} />
                         </div>
                     </div>
                 </div>
@@ -326,18 +328,18 @@ export default async function Character({ params, ...props }: { params: { charac
                 return (
 
 
-                    <CharTTCB key={ttcb_id} params={params} id={id} ttcb_id={ttcb_id} tenets={tenets} touchstones={touchstones} bane={bane} />
+                    <CharTTCB key={ttcb_id} params={characterID} id={id} ttcb_id={ttcb_id} tenets={tenets} touchstones={touchstones} bane={bane} />
 
                 )
             })}
             <div className='disciplinesContainer flex  gap-4 sm:flex-row flex-col'>
                 <div className="container flex flex-col w-full">
 
-                    <CharAdvantages user={data.user.id} params={params} data={charAdvantages} />
+                    <CharAdvantages user={data.user.id} params={characterID} data={charAdvantages} />
 
                 </div>
                 <div className="container flex flex-col w-full">
-                    <CharFlaws user={data.user.id} params={params} data={charFlaws} />
+                    <CharFlaws user={data.user.id} params={characterID} data={charFlaws} />
 
                 </div>
             </div>
@@ -345,7 +347,7 @@ export default async function Character({ params, ...props }: { params: { charac
             {charBloodPotency?.map(({ bp_id, ...data }) => {
                 return (
 
-                    <CharBloodPotency key={bp_id} params={params} data={data} />
+                    <CharBloodPotency key={bp_id} params={characterID} data={data} />
 
                 )
             })}
@@ -354,13 +356,13 @@ export default async function Character({ params, ...props }: { params: { charac
             {charBioAndNotes?.map(({ bn_id, ...data }) => {
                 return (
 
-                    <CharBioAndNotes key={bn_id} params={params} data={data} />
+                    <CharBioAndNotes key={bn_id} params={characterID} data={data} />
 
                 )
             })}
 
             <div className="container flex flex-col w-full mb-9">
-                <CharDelete params={params} />
+                <CharDelete params={characterID} />
             </div>
 
             {/* <div className="container flex flex-col w-full mb-12">

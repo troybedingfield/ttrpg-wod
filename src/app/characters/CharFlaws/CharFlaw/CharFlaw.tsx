@@ -14,7 +14,7 @@ export default function CharFlaw({ ...props }) {
     const [flawLevels, setFlawLevels] = useState(data.flawLevels)
 
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     const supabase = createClient();
 
@@ -58,7 +58,7 @@ export default function CharFlaw({ ...props }) {
 
     async function handleDeleteFlaw() {
 
-        deleteFlaw(dataId, params.characterID);
+        deleteFlaw(dataId, params);
 
     }
 

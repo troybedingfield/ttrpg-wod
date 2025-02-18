@@ -13,7 +13,7 @@ export default function UserSettings({ ...props }) {
     const [settingsData, setSettingsData] = useState(data[0]);
     const [darkMode, setDarkMode] = useState(data[0].darkMode);
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     function handleToggleChange(event: any) {
         console.log(event.target.checked)

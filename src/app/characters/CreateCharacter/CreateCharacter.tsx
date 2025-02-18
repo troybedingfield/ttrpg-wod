@@ -1,7 +1,7 @@
 'use client'
 import Button from "@/app/components/Button/Button"
 import { createClient } from "@/utils/supabase/client"
-import { useFormState } from "react-dom"
+import { useActionState } from "react"
 import { createChar } from "../actions"
 
 export default function CreateCharacter({ ...props }) {
@@ -9,7 +9,7 @@ export default function CreateCharacter({ ...props }) {
 
     const supabase = createClient()
 
-    const [state, formAction] = useFormState(createChar, null)
+    const [state, formAction] = useActionState(createChar, null)
 
 
     async function handleCreateCharacter() {

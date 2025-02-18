@@ -1,8 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@use "tailwindcss";
 
-@import "@/fonts/icon-font/icons.css";
+@use "../fonts/icon-font/icons.css";
 
 /* You can add global styles to this file, and also import other style files */
 

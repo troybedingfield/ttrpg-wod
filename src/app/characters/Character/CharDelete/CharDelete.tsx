@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { useFormState } from "react-dom";
 import { deleteChar } from "../../actions";
+import { useActionState } from "react";
 
 
 const initialState = {
@@ -23,7 +24,7 @@ export default function CharDelete({ ...props }) {
     }
 
 
-    const [state, formAction] = useFormState(deleteChar, null)
+    const [state, formAction] = useActionState(deleteChar, null)
 
     return (
         <>

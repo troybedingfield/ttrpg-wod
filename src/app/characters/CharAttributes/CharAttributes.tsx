@@ -32,7 +32,7 @@ export default function CharAttributes({ ...props }) {
 
 
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     function editAttributes() {
         setIsEditing(isEditing => !isEditing)

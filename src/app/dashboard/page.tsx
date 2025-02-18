@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 export default async function Dashboard() {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {

@@ -11,7 +11,7 @@ export default function CharFlaws({ ...props }) {
     const [flawData, setFlawData] = useState(data)
 
     async function handleAddFlaw() {
-        addFlaw(user, params.characterID);
+        addFlaw(user, params);
 
     }
 

@@ -8,7 +8,7 @@ import { createClient } from '@/utils/supabase/server'
 
 
 async function checkUser() {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
         return console.log(error);
@@ -23,7 +23,7 @@ async function checkUser() {
 export async function getProfileData() {
 
     // let userProfileData;
-    const supabase = createClient()
+    const supabase = await createClient()
     let data = await checkUser();
     const { data: userProfile, error: userProfileError } = await supabase
         .from("userprofiles")
@@ -37,7 +37,7 @@ export async function getProfileData() {
 
 export async function getUserSettings() {
     let data = await checkUser();
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data: settings, error: settingError } = await supabase
         .from("usersettings")
         .select()

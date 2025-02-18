@@ -15,8 +15,8 @@ export default function CharExperience({ ...props }) {
     const [isEditingSpent, setIsEditingSpent] = useState(false)
 
 
-    const totalForm = useRef<any | undefined>();
-    const spentForm = useRef<any | undefined>();
+    const totalForm = useRef<any | undefined>(null);
+    const spentForm = useRef<any | undefined>(null);
 
     const supabase = createClient();
 

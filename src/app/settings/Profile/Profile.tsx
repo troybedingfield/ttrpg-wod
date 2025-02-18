@@ -19,7 +19,7 @@ export default function Profile({ ...props }) {
     const [username, setUsername] = useState(profile[0].username)
 
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     const { profileData, setProfileData } = useContext<any>(UsernameContext)
 

@@ -9,7 +9,7 @@ import Profile from './Profile/Profile';
 import UserSettings from './Settings/Settings';
 
 export default async function Settings() {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {

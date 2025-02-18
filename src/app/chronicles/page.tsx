@@ -7,7 +7,7 @@ import { QueryData } from "@supabase/supabase-js";
 
 export default async function Chronicles() {
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {

@@ -7,6 +7,8 @@ import { updateHumanity, updateHunger, updateResonance } from "../actions"
 export default function CharResonanceHungerHumanity({ ...props }) {
     const { rhh_id, id, params, data } = props
 
+
+
     const [isEditingResonance, setIsEditingResonance] = useState(false)
     const [isEditingHunger, setIsEditingHunger] = useState(false)
     const [isEditingHumanity, setIsEditingHumanity] = useState(false)
@@ -15,9 +17,9 @@ export default function CharResonanceHungerHumanity({ ...props }) {
     const [charHunger, setCharHunger] = useState(data.hunger)
     const [charHumanity, setCharHumanity] = useState(data.humanity)
 
-    const hungerForm = useRef<any | undefined>();
-    const humanityForm = useRef<any | undefined>();
-    const resonanceForm = useRef<any | undefined>();
+    const hungerForm = useRef<any | undefined>(null);
+    const humanityForm = useRef<any | undefined>(null);
+    const resonanceForm = useRef<any | undefined>(null);
 
 
     function editResonance() {
@@ -117,7 +119,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
 
                     <form ref={resonanceForm} className="flex flex-col gap-2" action="" onSubmit={(e) => handleResonanceFormSbumit(e, resonanceForm)} >
                         <input type="text" name="resonance" defaultValue={charResonance} />
-                        <input type="hidden" name="id" value={params.characterID} />
+                        <input type="hidden" name="id" value={params} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>
@@ -149,7 +151,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                                 )
                             })}
                         </div>
-                        <input type="hidden" name="id" value={params.characterID} />
+                        <input type="hidden" name="id" value={params} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>
@@ -184,7 +186,7 @@ export default function CharResonanceHungerHumanity({ ...props }) {
                                     )
                                 })}
                             </div>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>

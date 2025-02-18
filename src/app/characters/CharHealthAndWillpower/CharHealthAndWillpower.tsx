@@ -17,8 +17,8 @@ export default function CharHealthAndWillpower({ ...props }) {
     const [health, setHealth] = useState(data.health)
     const [willpower, setWillpower] = useState(data.willpower)
 
-    const healthForm = useRef<any | undefined>();
-    const willPowerform = useRef<any | undefined>();
+    const healthForm = useRef<any | undefined>(null);
+    const willPowerform = useRef<any | undefined>(null);
 
 
     function editHealth() {

@@ -13,7 +13,7 @@ export default function DropDownMenu({ ...props }) {
 
     // console.log(dropdownValue);
 
-    const dropdown = useRef<any | undefined>();
+    const dropdown = useRef<any | undefined>(null);
 
     // useOutsideClick(dropdown);
 

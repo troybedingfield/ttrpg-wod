@@ -5,7 +5,7 @@ import { useRef } from "react"
 export default function Toast({ ...props }) {
     const { message, type, state = 'close' } = props
 
-    const toast = useRef<any | undefined>()
+    const toast = useRef<any | undefined>(null)
 
     function dismiss(ref: any) {
         console.log(ref);

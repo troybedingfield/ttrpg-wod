@@ -13,7 +13,7 @@ export default async function Header({ ...props }) {
     } = props
 
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {

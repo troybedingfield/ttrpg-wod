@@ -151,7 +151,7 @@ export default function CharSkills({ ...props }) {
     const [charTechnologyCount, setCharTechnologyCount] = useState(charTechnology.filter(Boolean).length);
 
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
 
     function editSkills() {

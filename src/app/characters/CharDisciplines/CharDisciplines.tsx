@@ -17,7 +17,7 @@ export default function CharDisciplines({ ...props }) {
 
 
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
     function editDisciplines() {
         setIsEditing(isEditing => !isEditing)

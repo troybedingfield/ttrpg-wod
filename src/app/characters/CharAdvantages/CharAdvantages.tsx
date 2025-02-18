@@ -7,11 +7,10 @@ export default function CharAdvantages({ ...props }) {
     const { user, data, params } = props;
 
 
-
     const [advData, setAdvData] = useState(data)
 
     async function handleAddAdvantage() {
-        addAdvantage(user, params.characterID);
+        addAdvantage(user, params);
 
     }
 

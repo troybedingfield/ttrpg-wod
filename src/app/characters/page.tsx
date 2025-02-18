@@ -8,7 +8,7 @@ import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 export default async function Characters() {
-    const supabase = createClient()
+    const supabase = await createClient()
 
 
 

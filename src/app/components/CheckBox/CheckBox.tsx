@@ -4,7 +4,7 @@ import './CheckBox.scss'
 
 export default function CheckBox({ ...props }) {
     const { id, value, onChange, checked, indeterminate, data } = props
-    const checkboxRef = useRef<any | undefined>();
+    const checkboxRef = useRef<any | undefined>(null);
 
     const CHECKBOX_STATES = {
         Checked: 'Checked',

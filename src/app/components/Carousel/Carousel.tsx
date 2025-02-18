@@ -12,7 +12,7 @@ export default function Carousel({ ...props }) {
         interval } = props
 
 
-    const carouselId = useRef<any | undefined>()
+    const carouselId = useRef<any | undefined>(null)
 
     const [currentSlide, setCurrentSlide] = useState(0)
     const [isAutomatic, setAutomatic] = useState(automatic)

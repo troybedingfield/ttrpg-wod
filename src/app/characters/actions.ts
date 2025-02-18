@@ -4,12 +4,13 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 
-const supabase = createClient()
+
 
 
 
 export async function deleteChar(prevState: any, formData: FormData) {
     let id = formData.get('id')
+    const supabase = await createClient()
     const { error } = await supabase
         .from('character')
         .delete()
@@ -20,7 +21,7 @@ export async function deleteChar(prevState: any, formData: FormData) {
 
 
     revalidatePath('/characters', 'layout')
-    redirect('/characters')
+    // redirect('/characters')
 }
 
 
@@ -28,7 +29,7 @@ export async function deleteChar(prevState: any, formData: FormData) {
 
 export async function createChar(prevState: any, formData: FormData) {
     let user = formData.get('user')
-
+    const supabase = await createClient()
     const { data: newCharacter, error: newCharError } = await supabase
         .from('character')
         .insert([
@@ -151,7 +152,7 @@ export async function updateCharacterInfo(formData: any) {
     let predator = formData.predator;
     let clan = formData.clan;
     let generation = formData.generation;
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('character')
         .update({
@@ -178,7 +179,7 @@ export async function updateCharacterInfo(formData: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 
 }
 
@@ -189,7 +190,7 @@ export async function updateHealth(formData: any) {
     let healthNumber = formData.healthNumber
     let health = formData.health
 
-
+    const supabase = await createClient()
     const { data: charHealth, error: charHealthError } = await supabase
         .from('charHealthAndWillpower')
         .update({
@@ -218,7 +219,7 @@ export async function updateWillpower(formData: any) {
     let willpowerNumber = formData.willpowerNumber
     let willpower = formData.willpower
 
-
+    const supabase = await createClient()
 
     const { data: charWillpower, error: charWillpowerError } = await supabase
         .from('charHealthAndWillpower')
@@ -245,7 +246,7 @@ export async function updateResonance(formData: any) {
     let id = formData.id
     let resonance = formData.resonance
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charRHH')
         .update({
@@ -271,7 +272,7 @@ export async function updateHunger(formData: any) {
     let id = formData.id
     let hunger = formData.hunger
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charRHH')
         .update({
@@ -296,7 +297,7 @@ export async function updateHumanity(formData: any) {
     let id = formData.id
     let humanity = formData.humanity
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charRHH')
         .update({
@@ -331,7 +332,7 @@ export async function updateAttributes(formData: any) {
     let wits = formData.wits
     let res = formData.res
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charAttributes')
         .update({
@@ -418,6 +419,7 @@ export async function updateSkills(formData: any) {
     let tec = formData.tec
     let tecSpec = formData.tecSpec
 
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charSkills')
         .update({
@@ -492,7 +494,7 @@ export async function updateSkills(formData: any) {
 
 
 export async function createDiscipline(user: any, id: any) {
-
+    const supabase = await createClient()
     const { data: newDiscipline, error: newDiscError } = await supabase
         .from('charDisciplines')
         .insert([
@@ -507,7 +509,7 @@ export async function createDiscipline(user: any, id: any) {
 
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
@@ -518,7 +520,7 @@ export async function updateDiscipline(formData: any) {
     let discLevels = formData.discLevels
     let discNotes = formData.discNotes
 
-
+    const supabase = await createClient()
 
     const { data: disData, error } = await supabase
         .from('charDisciplines')
@@ -539,6 +541,7 @@ export async function updateDiscipline(formData: any) {
 
 
 export async function deleteDiscipline(disID: any, id: any) {
+    const supabase = await createClient()
     const { error } = await supabase
         .from('charDisciplines')
         .delete()
@@ -550,14 +553,14 @@ export async function deleteDiscipline(disID: any, id: any) {
 
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
 export async function updateTenets(formData: any) {
     let id = formData.id
     let chronTenets = formData.chronTenets
-
+    const supabase = await createClient()
 
     const { data, error } = await supabase
         .from('charTTCB')
@@ -578,7 +581,7 @@ export async function updateTenets(formData: any) {
 export async function updateTouchstones(formData: any) {
     let id = formData.id
     let touchConvictions = formData.touchConvictions
-
+    const supabase = await createClient()
 
     const { data, error } = await supabase
         .from('charTTCB')
@@ -600,7 +603,7 @@ export async function updateTouchstones(formData: any) {
 export async function updateClanBane(formData: any) {
     let id = formData.id
     let clanBane = formData.clanBane
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charTTCB')
         .update({
@@ -619,6 +622,7 @@ export async function updateClanBane(formData: any) {
 
 
 export async function addAdvantage(user: any, id: any) {
+    const supabase = await createClient()
     const { data: newAdv, error: newAdvError } = await supabase
         .from('charAdvantages')
         .insert([
@@ -636,7 +640,7 @@ export async function addAdvantage(user: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
@@ -646,7 +650,7 @@ export async function updateAdvantage(formData: any) {
     let advantageLevels = formData.advantageLevels
 
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charAdvantages')
         .update({
@@ -668,7 +672,7 @@ export async function updateAdvantage(formData: any) {
 
 
 export async function deleteAdvantage(advID: any, id: any) {
-
+    const supabase = await createClient()
     const { error } = await supabase
         .from('charAdvantages')
         .delete()
@@ -682,12 +686,12 @@ export async function deleteAdvantage(advID: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
 export async function addFlaw(user: any, id: any) {
-
+    const supabase = await createClient()
     const { data: newFlaw, error: newAdvError } = await supabase
         .from('charFlaws')
         .insert([
@@ -704,7 +708,7 @@ export async function addFlaw(user: any, id: any) {
 
     }
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
@@ -712,7 +716,7 @@ export async function updateFlaw(formData: any) {
     let flawID = formData.flawID
     let flawName = formData.flawName
     let flawLevels = formData.flawLevels
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charFlaws')
         .update({
@@ -733,7 +737,7 @@ export async function updateFlaw(formData: any) {
 
 
 export async function deleteFlaw(flawID: any, id: any) {
-
+    const supabase = await createClient()
     const { error } = await supabase
         .from('charFlaws')
         .delete()
@@ -747,7 +751,7 @@ export async function deleteFlaw(flawID: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
-    redirect(`/characters/${id}`);
+    // redirect(`/characters/${id}`);
 }
 
 
@@ -755,7 +759,7 @@ export async function updateBloodPotency(formData: any) {
     let id = formData.id;
     let bloodPotency = formData.bloodPotency
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charBloodPotency')
         .update({
@@ -785,7 +789,7 @@ export async function updateBloodForm(formData: any) {
     let baneSeverity = formData.baneSeverity
 
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charBloodPotency')
         .update({
@@ -815,7 +819,7 @@ export async function updateNotes(formData: any) {
     let id = formData.id;
     let notes = formData.notes;
 
-
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charBioAndNotes')
         .update({
@@ -846,6 +850,7 @@ export async function updateBio(formData: any) {
     let distinguishingFeatures = formData.distinguishingFeatures;
     let history = formData.history;
 
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('charBioAndNotes')
         .update({

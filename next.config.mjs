@@ -4,6 +4,9 @@ const nextConfig = {
     reactStrictMode: true,
     // basePath: '',
     // assetPrefix: "",
+    experimental: {
+        reactCompiler: true,
+    },
 };
 
 export default nextConfig;

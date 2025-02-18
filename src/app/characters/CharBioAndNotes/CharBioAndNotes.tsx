@@ -20,8 +20,8 @@ export default function CharBioAndNotes({ ...props }) {
     const [isEditingBio, setIsEditingBio] = useState(false)
 
 
-    const notesForm = useRef<any | undefined>();
-    const bioForm = useRef<any | undefined>();
+    const notesForm = useRef<any | undefined>(null);
+    const bioForm = useRef<any | undefined>(null);
 
 
 

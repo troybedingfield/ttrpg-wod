@@ -18,8 +18,8 @@ export default function CharBloodPotency({ ...props }) {
     const [rouseReroll, setRouseReroll] = useState(data.rouseReroll)
     const [baneSeverity, setBaneSeverity] = useState(data.baneSeverity)
 
-    const bloodPotencyForm = useRef<any | undefined>();
-    const bloodForm = useRef<any | undefined>();
+    const bloodPotencyForm = useRef<any | undefined>(null);
+    const bloodForm = useRef<any | undefined>(null);
 
 
 

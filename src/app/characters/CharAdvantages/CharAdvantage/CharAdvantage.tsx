@@ -12,7 +12,7 @@ export default function CharAdvantage({ ...props }) {
     const [advName, setAdvName] = useState(data.advantageName)
     const [advLevels, setAdvLevels] = useState(data.advantageLevels)
 
-    const form = useRef<any | undefined>();
+    const form = useRef<any | undefined>(null);
 
 
 
@@ -54,7 +54,7 @@ export default function CharAdvantage({ ...props }) {
 
     async function handleDeleteAdvantage() {
 
-        deleteAdvantage(dataId, params.characterID);
+        deleteAdvantage(dataId, params);
 
     }
 
