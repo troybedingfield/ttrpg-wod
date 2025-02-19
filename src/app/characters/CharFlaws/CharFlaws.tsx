@@ -3,15 +3,30 @@
 import { useState } from "react";
 import CharFlaw from "./CharFlaw/CharFlaw";
 import { addFlaw } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharFlaws({ ...props }) {
     const { user, data, params } = props;
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const [flawData, setFlawData] = useState(data)
 
     async function handleAddFlaw() {
-        addFlaw(user, params);
+
+
+        setIsPending(true);
+        const result = await addFlaw(user, params);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 

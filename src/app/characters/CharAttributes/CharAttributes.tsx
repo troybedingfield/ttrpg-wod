@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import './CharAttributes.scss';
 import Button from '@/app/components/Button/Button';
 import { updateAttributes } from '../actions';
+import { useToast } from '@/app/components/Toast/useToast';
 
 export default function CharAttributes({ ...props }) {
     const { params, str, dex, stam, char, man, comp, int, wits, res } = props
@@ -30,7 +31,9 @@ export default function CharAttributes({ ...props }) {
     const [charWitsCount, setWitsCharCount] = useState(charWits.filter(Boolean).length)
     const [charResCount, setResCharCount] = useState(charRes.filter(Boolean).length)
 
+    const [isPending, setIsPending] = useState(false);
 
+    const { showToast } = useToast();
 
     const form = useRef<any | undefined>(null);
 
@@ -145,8 +148,18 @@ export default function CharAttributes({ ...props }) {
         setResCharCount(res.filter(Boolean).length);
 
 
-        updateAttributes(formData);
+
         setIsEditing(isEditing => !isEditing);
+
+        setIsPending(true);
+        const result = await updateAttributes(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }

@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button";
 import { useRef, useState } from "react";
 import './CharBioAndNotes.scss'
 import { updateBio, updateNotes } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharBioAndNotes({ ...props }) {
     const { id, params, data } = props;
@@ -18,6 +19,11 @@ export default function CharBioAndNotes({ ...props }) {
 
     const [isEditingNotes, setIsEditingNotes] = useState(false)
     const [isEditingBio, setIsEditingBio] = useState(false)
+
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const notesForm = useRef<any | undefined>(null);
@@ -43,10 +49,20 @@ export default function CharBioAndNotes({ ...props }) {
         }
 
 
-        updateNotes(formData)
+
         setNotes(notes);
 
         setIsEditingNotes(isEditingNotes => !isEditingNotes)
+
+        setIsPending(true);
+        const result = await updateNotes(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
     async function handleBioFormSubmit(event: any, form: any) {
@@ -72,7 +88,7 @@ export default function CharBioAndNotes({ ...props }) {
         }
 
 
-        updateBio(formData);
+
         setTrueAge(trueAge)
         setApparentAge(apparentAge)
         setDOB(DOB)
@@ -82,6 +98,17 @@ export default function CharBioAndNotes({ ...props }) {
         setHistory(history)
 
         setIsEditingBio(isEditingBio => !isEditingBio)
+
+
+        setIsPending(true);
+        const result = await updateBio(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }
@@ -159,7 +186,7 @@ export default function CharBioAndNotes({ ...props }) {
                                     <div><textarea className="flex w-full h-60" name="" defaultValue={history} id=""></textarea></div>
                                 </div>
                             </div>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>
@@ -198,7 +225,7 @@ export default function CharBioAndNotes({ ...props }) {
 
                                 </div>
                             </div>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Save</Button>
                         </form>
                     </div>

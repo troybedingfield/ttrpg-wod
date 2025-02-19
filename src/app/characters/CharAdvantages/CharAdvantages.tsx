@@ -2,15 +2,30 @@
 import { useState } from "react";
 import CharAdvantage from "./CharAdvantage/CharAdvantage";
 import { addAdvantage } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharAdvantages({ ...props }) {
     const { user, data, params } = props;
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const [advData, setAdvData] = useState(data)
 
     async function handleAddAdvantage() {
-        addAdvantage(user, params);
+
+
+        setIsPending(true);
+        const result = await addAdvantage(user, params);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 

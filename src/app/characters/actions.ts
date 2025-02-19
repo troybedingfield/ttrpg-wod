@@ -223,10 +223,11 @@ export async function updateHealth(formData: any) {
 
     if (charHealthError) {
         console.log(charHealthError);
+        return { message: `${charHealthError.message}`, type: "error" };
     }
 
     if (!charHealthError) {
-
+        return { message: "Health Updated!", type: "success" };
 
     }
 
@@ -253,11 +254,12 @@ export async function updateWillpower(formData: any) {
 
     if (charWillpowerError) {
         console.log(charWillpowerError);
+        return { message: `${charWillpowerError.message}`, type: "error" };
     }
 
     if (!charWillpowerError) {
 
-
+        return { message: "Willpower Updated!", type: "success" };
     }
 }
 
@@ -279,11 +281,12 @@ export async function updateResonance(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error}`, type: "error" };
     }
 
     if (!error) {
 
-
+        return { message: "Resonance Updated!", type: "success" };
     }
 }
 
@@ -308,7 +311,7 @@ export async function updateHunger(formData: any) {
     }
 
     if (!error) {
-
+        return { message: "Hunger Updated!", type: "success" };
 
     }
 }
@@ -334,7 +337,7 @@ export async function updateHumanity(formData: any) {
 
     if (!error) {
 
-
+        return { message: "Humanity Updated!", type: "success" };
 
     }
 
@@ -375,7 +378,7 @@ export async function updateAttributes(formData: any) {
     }
 
     if (!error) {
-
+        return { message: "Character Attributes Updated!", type: "success" };
 
     }
 }
@@ -505,10 +508,11 @@ export async function updateSkills(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
-
+        return { message: "Skills Updated!", type: "success" };
 
     }
 }
@@ -526,10 +530,12 @@ export async function createDiscipline(user: any, id: any) {
 
     if (newDiscError) {
         console.log(newDiscError);
+        return { message: `${newDiscError.message}`, type: "success" };
     }
 
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Discipline Added!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -555,9 +561,10 @@ export async function updateDiscipline(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
-
+    return { message: "Discipline Updated!", type: "success" };
 }
 
 
@@ -569,11 +576,13 @@ export async function deleteDiscipline(disID: any, id: any) {
         .eq('dis_id', disID)
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
 
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Discipline Removed!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -594,8 +603,9 @@ export async function updateTenets(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
-
+    return { message: "Tenets Updated!", type: "success" };
 
 }
 
@@ -615,9 +625,10 @@ export async function updateTouchstones(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
-
+    return { message: "Touchstones & Convitions Updated!", type: "success" };
 }
 
 
@@ -636,9 +647,10 @@ export async function updateClanBane(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
-
+    return { message: "Clan Bane Updated!", type: "success" };
 }
 
 
@@ -654,6 +666,7 @@ export async function addAdvantage(user: any, id: any) {
 
     if (newAdvError) {
         console.log(newAdvError);
+        return { message: `${newAdvError.message}`, type: "error" };
     }
 
     if (!newAdvError) {
@@ -661,6 +674,7 @@ export async function addAdvantage(user: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Advantage Added!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -683,10 +697,11 @@ export async function updateAdvantage(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
-
+        return { message: "Advantage Updated!", type: "success" };
 
     }
 }
@@ -700,6 +715,7 @@ export async function deleteAdvantage(advID: any, id: any) {
         .eq('adv_id', advID)
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
@@ -707,6 +723,7 @@ export async function deleteAdvantage(advID: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Advantage Removed!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -723,12 +740,14 @@ export async function addFlaw(user: any, id: any) {
 
     if (newAdvError) {
         console.log(newAdvError);
+        return { message: `${newAdvError.message}`, type: "error" };
     }
 
     if (!newAdvError) {
 
     }
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Flaw Added!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -749,10 +768,11 @@ export async function updateFlaw(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
-
+        return { message: "Flaw Updated!", type: "success" };
     }
 }
 
@@ -765,6 +785,7 @@ export async function deleteFlaw(flawID: any, id: any) {
         .eq('flaw_id', flawID)
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
@@ -772,6 +793,7 @@ export async function deleteFlaw(flawID: any, id: any) {
     }
 
     revalidatePath(`/characters/${id}`, 'layout');
+    return { message: "Flaw Removed!", type: "success" };
     // redirect(`/characters/${id}`);
 }
 
@@ -792,12 +814,15 @@ export async function updateBloodPotency(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
 
 
     }
+
+    return { message: "Blood Potency Updated!", type: "success" };
 }
 
 export async function updateBloodForm(formData: any) {
@@ -827,12 +852,15 @@ export async function updateBloodForm(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
 
 
     }
+
+    return { message: "Blood Atttributes Updated!", type: "success" };
 }
 
 
@@ -852,12 +880,15 @@ export async function updateNotes(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
 
 
     }
+
+    return { message: "Notes Updated!", type: "success" };
 }
 
 
@@ -889,10 +920,71 @@ export async function updateBio(formData: any) {
 
     if (error) {
         console.log(error);
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
 
 
     }
+
+    return { message: "Bio Updated!", type: "success" };
+}
+
+
+export async function updateExperience(formData: any) {
+
+    let totalExp = formData.totalExp;
+    let id = formData.id;
+
+
+    const supabase = await createClient()
+    const { data, error } = await supabase
+        .from('charExperience')
+        .update({
+            totalExp: totalExp,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+        return { message: `${error.message}`, type: "error" };
+    }
+
+    if (!error) {
+
+        return { message: "Experience Updated!", type: "success" };
+    }
+
+}
+
+
+export async function updateSpent(formData: any) {
+
+    let spentExp = formData.spentExp;
+    let id = formData.id;
+
+
+    const supabase = await createClient()
+    const { data, error } = await supabase
+        .from('charExperience')
+        .update({
+            spentExp: spentExp,
+
+        })
+        .eq('id', id)
+        .select()
+
+    if (error) {
+        console.log(error);
+        return { message: `${error.message}`, type: "error" };
+    }
+
+    if (!error) {
+
+        return { message: "Spent EXP Updated!", type: "success" };
+    }
+
 }

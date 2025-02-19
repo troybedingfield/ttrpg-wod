@@ -3,6 +3,8 @@ import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import './CharExperience.scss'
+import { useToast } from "@/app/components/Toast/useToast";
+import { updateExperience, updateSpent } from "../actions";
 
 export default function CharExperience({ ...props }) {
     const { id, data, params } = props;
@@ -13,6 +15,10 @@ export default function CharExperience({ ...props }) {
 
     const [isEditingTotal, setIsEditingTotal] = useState(false)
     const [isEditingSpent, setIsEditingSpent] = useState(false)
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const totalForm = useRef<any | undefined>(null);
@@ -32,55 +38,85 @@ export default function CharExperience({ ...props }) {
         event.preventDefault()
 
         let totalExp = form.current[0].value;
+        let id = form.current[1].value;
 
+        let formData = { totalExp, id }
 
+        setCharTotalExp(totalExp);
 
-        const { data, error } = await supabase
-            .from('charExperience')
-            .update({
-                totalExp: totalExp,
+        setIsEditingTotal(isEditingTotal => !isEditingTotal)
 
-            })
-            .eq('id', params.characterID)
-            .select()
+        setIsPending(true);
+        const result = await updateExperience(formData);
+        setIsPending(false);
 
-        if (error) {
-            console.log(error);
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
         }
 
-        if (!error) {
+        // const { data, error } = await supabase
+        //     .from('charExperience')
+        //     .update({
+        //         totalExp: totalExp,
 
-            setCharTotalExp(totalExp);
+        //     })
+        //     .eq('id', params)
+        //     .select()
 
-            setIsEditingTotal(isEditingTotal => !isEditingTotal)
-        }
+        // if (error) {
+        //     console.log(error);
+        // }
+
+        // if (!error) {
+
+        //     setCharTotalExp(totalExp);
+
+        //     setIsEditingTotal(isEditingTotal => !isEditingTotal)
+        // }
     }
 
     async function handleSpentFormSbumit(event: any, form: any) {
         event.preventDefault()
         let spentExp = form.current[0].value;
+        let id = form.current[1].value;
 
+        let formData = { spentExp, id }
 
+        setCharSpentExp(spentExp);
 
-        const { data, error } = await supabase
-            .from('charExperience')
-            .update({
-                spentExp: spentExp,
+        setIsEditingSpent(isEditingSpent => !isEditingSpent)
 
-            })
-            .eq('id', params.characterID)
-            .select()
+        setIsPending(true);
+        const result = await updateSpent(formData);
+        setIsPending(false);
 
-        if (error) {
-            console.log(error);
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
         }
 
-        if (!error) {
+        // const { data, error } = await supabase
+        //     .from('charExperience')
+        //     .update({
+        //         spentExp: spentExp,
 
-            setCharSpentExp(spentExp);
+        //     })
+        //     .eq('id', params)
+        //     .select()
 
-            setIsEditingSpent(isEditingSpent => !isEditingSpent)
-        }
+        // if (error) {
+        //     console.log(error);
+        // }
+
+        // if (!error) {
+
+        //     setCharSpentExp(spentExp);
+
+        //     setIsEditingSpent(isEditingSpent => !isEditingSpent)
+        // }
     }
 
     return (
@@ -99,7 +135,9 @@ export default function CharExperience({ ...props }) {
                         <form ref={totalForm} action="" onSubmit={(e) => handleTotalFormSbumit(e, totalForm)}>
                             <div className="flex border border-slate-500 rounded-lg gap-2 p-2 items-center">
                                 <div className="text-nowrap">Total Experience: </div>
-                                <input className="flex w-auto max-w-20" type="number" defaultValue={charTotalExp} /><Button type="submit">Save</Button></div>
+                                <input className="flex w-auto max-w-20" type="number" defaultValue={charTotalExp} />
+                                <input type='hidden' name="id" value={params} />
+                                <Button type="submit">Save</Button></div>
                         </form>
                     </div>
                 }
@@ -113,7 +151,9 @@ export default function CharExperience({ ...props }) {
                     <form ref={spentForm} action="" onSubmit={(e) => handleSpentFormSbumit(e, spentForm)}>
                         <div className="flex border border-slate-500 rounded-lg gap-2 p-2 items-center">
                             <div className="text-nowrap">Spent Experience:</div>
-                            <input className="flex w-auto max-w-20" type="number" defaultValue={charSpentExp} /><Button type="submit">Save</Button></div>
+                            <input className="flex w-auto max-w-20" type="number" defaultValue={charSpentExp} />
+                            <input type='hidden' name="id" value={params} />
+                            <Button type="submit">Save</Button></div>
 
                     </form>
                 </div>

@@ -3,6 +3,7 @@ import Button from '@/app/components/Button/Button';
 import './CharDisciplines.scss';
 import { useRef, useState } from 'react';
 import { deleteDiscipline, updateDiscipline } from '../actions';
+import { useToast } from '@/app/components/Toast/useToast';
 
 export default function CharDisciplines({ ...props }) {
     const { data, params, dis_id } = props
@@ -13,7 +14,9 @@ export default function CharDisciplines({ ...props }) {
     const [disName, setDisName] = useState(data.disciplineName);
     const [disNotes, setDisNotes] = useState(data.disciplineNotes);
 
+    const [isPending, setIsPending] = useState(false);
 
+    const { showToast } = useToast();
 
 
 
@@ -49,12 +52,24 @@ export default function CharDisciplines({ ...props }) {
             discNotes
         }
 
-        updateDiscipline(formData);
+
 
         setDisName(discName);
         setDisLevel(discLevels);
         setDisNotes(discNotes);
         setIsEditing(isEditing => !isEditing);
+
+        setIsPending(true);
+        const result = await updateDiscipline(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
+
+
 
 
     }
@@ -63,7 +78,17 @@ export default function CharDisciplines({ ...props }) {
     async function handleDeleteDisc() {
 
 
-        deleteDiscipline(dis_id, params.characterID);
+
+
+        setIsPending(true);
+        const result = await deleteDiscipline(dis_id, params.characterID);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 

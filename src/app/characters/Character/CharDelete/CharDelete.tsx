@@ -16,7 +16,7 @@ export default function CharDelete({ ...props }) {
     let charID;
 
     if (params) {
-        charID = params.characterID
+        charID = params;
     }
 
     if (id) {

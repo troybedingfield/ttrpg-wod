@@ -2,6 +2,7 @@
 import Button from "@/app/components/Button/Button";
 import { useRef, useState } from "react";
 import { deleteAdvantage, updateAdvantage } from "../../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharAdvantage({ ...props }) {
     const { params, data, dataId } = props;
@@ -11,6 +12,10 @@ export default function CharAdvantage({ ...props }) {
     const [advData, setAdvData] = useState(data)
     const [advName, setAdvName] = useState(data.advantageName)
     const [advLevels, setAdvLevels] = useState(data.advantageLevels)
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
     const form = useRef<any | undefined>(null);
 
@@ -45,16 +50,36 @@ export default function CharAdvantage({ ...props }) {
             advantageLevels
         }
 
-        updateAdvantage(formData);
+
         setAdvName(advantageName);
         setAdvLevels(advantageLevels);
         setIsEditing(isEditing => !isEditing);
+
+        setIsPending(true);
+        const result = await updateAdvantage(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 
     async function handleDeleteAdvantage() {
 
-        deleteAdvantage(dataId, params);
+
+
+        setIsPending(true);
+        const result = await deleteAdvantage(dataId, params);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 

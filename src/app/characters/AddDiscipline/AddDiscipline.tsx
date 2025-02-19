@@ -2,13 +2,29 @@
 import Button from "@/app/components/Button/Button"
 import { createClient } from "@/utils/supabase/client"
 import { createDiscipline } from "../actions"
+import { useState } from "react"
+import { useToast } from "@/app/components/Toast/useToast"
 
 export default function AddDiscipline({ ...props }) {
     const { user, params } = props
 
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
+
 
     async function handleCreateDiscipline() {
-        createDiscipline(user, params);
+
+
+        setIsPending(true);
+        const result = await createDiscipline(user, params);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 

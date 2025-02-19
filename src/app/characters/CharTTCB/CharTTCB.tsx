@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button";
 import { useRef, useState } from "react";
 import './CharTTCB.scss'
 import { updateClanBane, updateTenets, updateTouchstones } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharTTCB({ ...props }) {
     const { id, params, ttcb_id, tenets, touchstones, bane } = props;
@@ -14,6 +15,10 @@ export default function CharTTCB({ ...props }) {
     const [charTenet, setCharTenet] = useState(tenets)
     const [charTouch, setCharTouch] = useState(touchstones)
     const [charBane, setCharBane] = useState(bane)
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const formTenet = useRef<any | undefined>(null);
@@ -57,9 +62,19 @@ export default function CharTTCB({ ...props }) {
             chronTenets
         }
 
-        updateTenets(formData);
+
         setCharTenet(chronTenets);
         setIsTenetEditing(isTenetEditing => !isTenetEditing)
+
+        setIsPending(true);
+        const result = await updateTenets(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
 
@@ -76,9 +91,19 @@ export default function CharTTCB({ ...props }) {
             touchConvictions
         }
 
-        updateTouchstones(formData);
+
         setCharTouch(touchConvictions);
         setIsTouchEditing(isTenetEditing => !isTenetEditing)
+
+        setIsPending(true);
+        const result = await updateTouchstones(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
 
@@ -95,9 +120,19 @@ export default function CharTTCB({ ...props }) {
             clanBane
         }
 
-        updateClanBane(formData);
+
         setCharBane(clanBane);
         setIsBaneEditing(isTenetEditing => !isTenetEditing)
+
+        setIsPending(true);
+        const result = await updateClanBane(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
 
@@ -121,7 +156,7 @@ export default function CharTTCB({ ...props }) {
 
                         <form ref={formTenet} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleTenetsUpdate(e, formTenet)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charTenet}></textarea>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditTenet}>Cancel</Button>
                         </form>
@@ -144,7 +179,7 @@ export default function CharTTCB({ ...props }) {
 
                         <form ref={formTouch} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleTouchstonesUpdate(e, formTouch)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charTouch}></textarea>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditTouch}>Cancel</Button>
                         </form>
@@ -166,7 +201,7 @@ export default function CharTTCB({ ...props }) {
                     {isBaneEditing &&
                         <form ref={formBane} action="" className="container flex flex-col gap-2" onSubmit={(e) => handleBaneUpdate(e, formBane)}>
                             <textarea className="flex w-full rounded-lg border h-80 border-slate-500 p-4" name="" id="" defaultValue={charBane}></textarea>
-                            <input type="hidden" name="id" value={params.characterID} />
+                            <input type="hidden" name="id" value={params} />
                             <Button type="submit">Update</Button>
                             <Button type="cancel" buttonClick={cancelEditBane}>Cancel</Button>
                         </form>

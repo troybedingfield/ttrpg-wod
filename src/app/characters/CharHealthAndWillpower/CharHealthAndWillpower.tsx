@@ -4,6 +4,7 @@ import './CharHealthAndWillpower.scss'
 import CheckBox from "@/app/components/CheckBox/CheckBox";
 import Button from "@/app/components/Button/Button";
 import { updateHealth, updateWillpower } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharHealthAndWillpower({ ...props }) {
     const { id, data, params } = props;
@@ -16,6 +17,10 @@ export default function CharHealthAndWillpower({ ...props }) {
 
     const [health, setHealth] = useState(data.health)
     const [willpower, setWillpower] = useState(data.willpower)
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
     const healthForm = useRef<any | undefined>(null);
     const willPowerform = useRef<any | undefined>(null);
@@ -54,8 +59,18 @@ export default function CharHealthAndWillpower({ ...props }) {
             health
         }
 
-        updateHealth(formData);
+
         setIsEditingHealth(isEditingHealth => !isEditingHealth)
+
+        setIsPending(true);
+        const result = await updateHealth(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }
@@ -86,8 +101,18 @@ export default function CharHealthAndWillpower({ ...props }) {
             willpower
         }
 
-        updateWillpower(formData);
+
         setIsEditingWill(isEditingWill => !isEditingWill)
+
+        setIsPending(true);
+        const result = await updateWillpower(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
     return (
@@ -125,7 +150,7 @@ export default function CharHealthAndWillpower({ ...props }) {
                                     <div className="flex justify-center items-center">
                                         <input className="max-w-16" type="number" defaultValue={health} />
                                     </div>
-                                    <input type="hidden" name="id" value={params.characterID} />
+                                    <input type="hidden" name="id" value={params} />
                                     <Button size="small">Save</Button>
                                 </div>
                             </form>}
@@ -160,7 +185,7 @@ export default function CharHealthAndWillpower({ ...props }) {
                                 <div className="flex justify-center items-center">
                                     <input className="max-w-16" type="number" defaultValue={willpower} />
                                 </div>
-                                <input type="hidden" name="id" value={params.characterID} />
+                                <input type="hidden" name="id" value={params} />
                                 <Button size="small">Save</Button>
                             </div>
                         </form>}

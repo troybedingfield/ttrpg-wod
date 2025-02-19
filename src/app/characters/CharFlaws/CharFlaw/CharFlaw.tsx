@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button";
 import { createClient } from "@/utils/supabase/client";
 import { useRef, useState } from "react";
 import { deleteFlaw, updateFlaw } from "../../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharFlaw({ ...props }) {
     const { params, data, dataId } = props;
@@ -12,6 +13,10 @@ export default function CharFlaw({ ...props }) {
     const [flawData, setFlawData] = useState(data)
     const [flawName, setFlawName] = useState(data.flawName)
     const [flawLevels, setFlawLevels] = useState(data.flawLevels)
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
 
     const form = useRef<any | undefined>(null);
@@ -48,17 +53,38 @@ export default function CharFlaw({ ...props }) {
             flawLevels
         }
 
-        updateFlaw(formData);
+
         setFlawName(flawName);
         setFlawLevels(flawLevels);
         setIsEditing(isEditing => !isEditing);
+
+        setIsPending(true);
+        const result = await updateFlaw(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }
 
     async function handleDeleteFlaw() {
 
-        deleteFlaw(dataId, params);
+
+
+        setIsPending(true);
+        const result = await deleteFlaw(dataId, params);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
+
 
     }
 

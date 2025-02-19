@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import './CharBloodPotency.scss'
 import Button from "@/app/components/Button/Button";
 import { updateBloodForm, updateBloodPotency } from "../actions";
+import { useToast } from "@/app/components/Toast/useToast";
 
 export default function CharBloodPotency({ ...props }) {
     const { id, params, data } = props;
@@ -17,6 +18,11 @@ export default function CharBloodPotency({ ...props }) {
     const [mendAmount, setMendAmount] = useState(data.mendAmount)
     const [rouseReroll, setRouseReroll] = useState(data.rouseReroll)
     const [baneSeverity, setBaneSeverity] = useState(data.baneSeverity)
+
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
     const bloodPotencyForm = useRef<any | undefined>(null);
     const bloodForm = useRef<any | undefined>(null);
@@ -52,9 +58,19 @@ export default function CharBloodPotency({ ...props }) {
         }
 
 
-        updateBloodPotency(formData);
+
         setBloodPotency(bloodPotency);
         setIsEditingBP(isEditingBP => !isEditingBP);
+
+        setIsPending(true);
+        const result = await updateBloodPotency(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }
@@ -79,7 +95,7 @@ export default function CharBloodPotency({ ...props }) {
             baneSeverity
         }
 
-        updateBloodForm(formData);
+
         setBloodSurge(bloodSurge);
         setPowerBonus(powerBonus);
         setFeedingPenalty(feedingPenalty);
@@ -88,6 +104,16 @@ export default function CharBloodPotency({ ...props }) {
         setBaneSeverity(baneSeverity);
 
         setIsEditingBloodForm(isEditingBloodForm => !isEditingBloodForm)
+
+        setIsPending(true);
+        const result = await updateBloodForm(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
 
@@ -117,7 +143,7 @@ export default function CharBloodPotency({ ...props }) {
                                     )
                                 })}
                             </div>
-                            <input type="hidden" name="id" defaultValue={params.characterID} />
+                            <input type="hidden" name="id" defaultValue={params} />
                             <Button type="submit">Save</Button>
                         </form>}
                 </div>
@@ -192,7 +218,7 @@ export default function CharBloodPotency({ ...props }) {
                             </div>
 
                         </div>
-                        <input type="hidden" name="id" defaultValue={params.characterID} />
+                        <input type="hidden" name="id" defaultValue={params} />
                         <Button type="submit">Save</Button>
                     </form>
                 </div>

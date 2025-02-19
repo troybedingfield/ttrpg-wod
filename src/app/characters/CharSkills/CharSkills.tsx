@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import './CharSkills.scss'
 import Button from '@/app/components/Button/Button';
 import { updateSkills } from '../actions';
+import { useToast } from '@/app/components/Toast/useToast';
 
 export default function CharSkills({ ...props }) {
     const {
@@ -150,6 +151,10 @@ export default function CharSkills({ ...props }) {
     const [charScienceCount, setCharScienceCount] = useState(charScience.filter(Boolean).length);
     const [charTechnologyCount, setCharTechnologyCount] = useState(charTechnology.filter(Boolean).length);
 
+
+    const [isPending, setIsPending] = useState(false);
+
+    const { showToast } = useToast();
 
     const form = useRef<any | undefined>(null);
 
@@ -448,7 +453,7 @@ export default function CharSkills({ ...props }) {
         }
 
 
-        updateSkills(formData);
+
 
         setCharAth(ath);
         setCharAthSpec(athSpec);
@@ -535,6 +540,16 @@ export default function CharSkills({ ...props }) {
         setCharTechnologyCount(tec.filter(Boolean).length);
 
         setIsEditing(isEditing => !isEditing);
+
+        setIsPending(true);
+        const result = await updateSkills(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
     }

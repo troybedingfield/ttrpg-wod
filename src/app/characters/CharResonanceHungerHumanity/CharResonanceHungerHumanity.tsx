@@ -3,6 +3,7 @@ import Button from "@/app/components/Button/Button"
 import { useRef, useState } from "react"
 import './CharResonanceHungerHumanity.scss'
 import { updateHumanity, updateHunger, updateResonance } from "../actions"
+import { useToast } from "@/app/components/Toast/useToast"
 
 export default function CharResonanceHungerHumanity({ ...props }) {
     const { rhh_id, id, params, data } = props
@@ -17,10 +18,13 @@ export default function CharResonanceHungerHumanity({ ...props }) {
     const [charHunger, setCharHunger] = useState(data.hunger)
     const [charHumanity, setCharHumanity] = useState(data.humanity)
 
+    const [isPending, setIsPending] = useState(false);
+
     const hungerForm = useRef<any | undefined>(null);
     const humanityForm = useRef<any | undefined>(null);
     const resonanceForm = useRef<any | undefined>(null);
 
+    const { showToast } = useToast();
 
     function editResonance() {
         setIsEditingResonance(isEditingResonance => !isEditingResonance)
@@ -48,8 +52,18 @@ export default function CharResonanceHungerHumanity({ ...props }) {
         }
         setCharHunger(hunger);
 
-        updateHunger(formData);
+
         setIsEditingHunger(isEditingHunger => !isEditingHunger)
+
+        setIsPending(true);
+        const result = await updateHunger(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
 
 
@@ -67,8 +81,20 @@ export default function CharResonanceHungerHumanity({ ...props }) {
 
         setCharResonance(resonance);
 
-        updateResonance(formData);
+
         setIsEditingResonance(isEditingResonance => !isEditingResonance)
+
+
+        setIsPending(true);
+        const result = await updateResonance(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
+
 
     }
     async function handleHumanityFormSbumit(event: any, form: any) {
@@ -95,8 +121,18 @@ export default function CharResonanceHungerHumanity({ ...props }) {
             humanity
         }
 
-        updateHumanity(formData);
+
         setIsEditingHumanity(isEditingHumanity => !isEditingHumanity)
+
+        setIsPending(true);
+        const result = await updateHumanity(formData);
+        setIsPending(false);
+
+        if (result) {
+            showToast(`${result.message}`, `${result.type}`);
+        } else {
+            showToast('Something went wrong', 'error');
+        }
 
     }
     return (
