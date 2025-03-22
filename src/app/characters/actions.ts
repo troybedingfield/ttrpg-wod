@@ -7,36 +7,36 @@ import { createClient } from '@/utils/supabase/server'
 
 
 
-async function checkUser() {
-    const supabase = await createClient()
-    const { data, error } = await supabase.auth.getUser()
-    if (error || !data?.user) {
-        redirect('/login')
-    }
-    if (!error) {
+// async function checkUser() {
+//     const supabase = await createClient()
+//     const { data, error } = await supabase.auth.getUser()
+//     if (error || !data?.user) {
+//         redirect('/login')
+//     }
+//     if (!error) {
 
-        return data;
-    }
-}
-
-
-export async function getCharacterSheet() {
-    let data = await checkUser();
+//         return data;
+//     }
+// }
 
 
-}
+// export async function getCharacterSheet() {
+//     const data = await checkUser();
+
+
+// }
 
 
 
-export async function deleteChar(prevState: any, formData: FormData) {
-    let id = formData.get('id')
+export async function deleteChar(formData: FormData) {
+    const id = formData.get('id')
     const supabase = await createClient()
     const { error } = await supabase
         .from('character')
         .delete()
         .eq('id', id)
     if (error) {
-        console.log(error);
+
     }
 
 
@@ -47,8 +47,8 @@ export async function deleteChar(prevState: any, formData: FormData) {
 
 
 
-export async function createChar(prevState: any, formData: FormData) {
-    let user = formData.get('user')
+export async function createChar(formData: FormData) {
+    const user = formData.get('user')
     const supabase = await createClient()
     const { data: newCharacter, error: newCharError } = await supabase
         .from('character')
@@ -63,7 +63,7 @@ export async function createChar(prevState: any, formData: FormData) {
     }
 
     if (!newCharError) {
-        const { data: newAtt, error: newAttError } = await supabase
+        const { error: newAttError } = await supabase
             .from('charAttributes')
             .insert([
                 { id: newCharacter[0].id, uuid: user, charStr: [false, false, false, false, false] },
@@ -162,18 +162,18 @@ export async function createChar(prevState: any, formData: FormData) {
 
 
 export async function updateCharacterInfo(formData: any) {
-    let id = formData.id;
-    let name = formData.name;
-    let chronicle = formData.chronicle;
-    let sire = formData.sire;
-    let concept = formData.concept;
-    let ambition = formData.ambition;
-    let desire = formData.desire;
-    let predator = formData.predator;
-    let clan = formData.clan;
-    let generation = formData.generation;
+    const id = formData.id;
+    const name = formData.name;
+    const chronicle = formData.chronicle;
+    const sire = formData.sire;
+    const concept = formData.concept;
+    const ambition = formData.ambition;
+    const desire = formData.desire;
+    const predator = formData.predator;
+    const clan = formData.clan;
+    const generation = formData.generation;
     const supabase = await createClient()
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from('character')
         .update({
             charName: name,
@@ -190,7 +190,7 @@ export async function updateCharacterInfo(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
     }
 
     if (!error) {
@@ -207,9 +207,9 @@ export async function updateCharacterInfo(formData: any) {
 
 export async function updateHealth(formData: any) {
 
-    let id = formData.id
-    let healthNumber = formData.healthNumber
-    let health = formData.health
+    const id = formData.id
+    const healthNumber = formData.healthNumber
+    const health = formData.health
 
     const supabase = await createClient()
     const { data: charHealth, error: charHealthError } = await supabase
@@ -237,9 +237,9 @@ export async function updateHealth(formData: any) {
 
 export async function updateWillpower(formData: any) {
 
-    let id = formData.id
-    let willpowerNumber = formData.willpowerNumber
-    let willpower = formData.willpower
+    const id = formData.id
+    const willpowerNumber = formData.willpowerNumber
+    const willpower = formData.willpower
 
     const supabase = await createClient()
 
@@ -266,8 +266,8 @@ export async function updateWillpower(formData: any) {
 
 export async function updateResonance(formData: any) {
 
-    let id = formData.id
-    let resonance = formData.resonance
+    const id = formData.id
+    const resonance = formData.resonance
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -280,8 +280,8 @@ export async function updateResonance(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
-        return { message: `${error}`, type: "error" };
+
+        return { message: `${error.message}`, type: "error" };
     }
 
     if (!error) {
@@ -293,8 +293,8 @@ export async function updateResonance(formData: any) {
 
 export async function updateHunger(formData: any) {
 
-    let id = formData.id
-    let hunger = formData.hunger
+    const id = formData.id
+    const hunger = formData.hunger
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -307,7 +307,7 @@ export async function updateHunger(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
     }
 
     if (!error) {
@@ -318,8 +318,8 @@ export async function updateHunger(formData: any) {
 
 
 export async function updateHumanity(formData: any) {
-    let id = formData.id
-    let humanity = formData.humanity
+    const id = formData.id
+    const humanity = formData.humanity
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -332,7 +332,7 @@ export async function updateHumanity(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
     }
 
     if (!error) {
@@ -345,16 +345,16 @@ export async function updateHumanity(formData: any) {
 
 
 export async function updateAttributes(formData: any) {
-    let id = formData.id
-    let str = formData.str
-    let dex = formData.dex
-    let stam = formData.stam
-    let char = formData.char
-    let man = formData.man
-    let comp = formData.comp
-    let int = formData.int
-    let wits = formData.wits
-    let res = formData.res
+    const id = formData.id
+    const str = formData.str
+    const dex = formData.dex
+    const stam = formData.stam
+    const char = formData.char
+    const man = formData.man
+    const comp = formData.comp
+    const int = formData.int
+    const wits = formData.wits
+    const res = formData.res
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -374,7 +374,7 @@ export async function updateAttributes(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
     }
 
     if (!error) {
@@ -387,61 +387,61 @@ export async function updateAttributes(formData: any) {
 
 export async function updateSkills(formData: any) {
 
-    let id = formData.id
-    let ath = formData.ath
-    let athSpec = formData.athSpec
-    let bra = formData.bra
-    let braSpec = formData.braSpec
-    let cra = formData.cra
-    let craSpec = formData.craSpec
-    let dri = formData.dri
-    let driSpec = formData.driSpec
-    let fir = formData.fir
-    let firSpec = formData.firSpec
-    let lar = formData.lar
-    let larSpec = formData.larSpec
-    let mel = formData.mel
-    let melSpec = formData.melSpec
-    let ste = formData.ste
-    let steSpec = formData.steSpec
-    let sur = formData.sur
-    let surSpec = formData.surSpec
-    let ani = formData.ani
-    let aniSpec = formData.aniSpec
-    let eti = formData.eti
-    let etiSpec = formData.etiSpec
-    let ins = formData.ins
-    let insSpec = formData.insSpec
-    let int = formData.int
-    let intSpec = formData.intSpec
-    let lea = formData.lea
-    let leaSpec = formData.leaSpec
-    let perf = formData.perf
-    let perfSpec = formData.perfSpec
-    let per = formData.per
-    let perSpec = formData.perSpec
-    let str = formData.str
-    let strSpec = formData.strSpec
-    let sub = formData.sub
-    let subSpec = formData.subSpec
-    let aca = formData.aca
-    let acaSpec = formData.acaSpec
-    let awa = formData.awa
-    let awaSpec = formData.awaSpec
-    let fin = formData.fin
-    let finSpec = formData.finSpec
-    let inv = formData.inv
-    let invSpec = formData.invSpec
-    let med = formData.med
-    let medSpec = formData.medSpec
-    let occ = formData.occ
-    let occSpec = formData.occSpec
-    let pol = formData.pol
-    let polSpec = formData.polSpec
-    let sci = formData.sci
-    let sciSpec = formData.sciSpec
-    let tec = formData.tec
-    let tecSpec = formData.tecSpec
+    const id = formData.id
+    const ath = formData.ath
+    const athSpec = formData.athSpec
+    const bra = formData.bra
+    const braSpec = formData.braSpec
+    const cra = formData.cra
+    const craSpec = formData.craSpec
+    const dri = formData.dri
+    const driSpec = formData.driSpec
+    const fir = formData.fir
+    const firSpec = formData.firSpec
+    const lar = formData.lar
+    const larSpec = formData.larSpec
+    const mel = formData.mel
+    const melSpec = formData.melSpec
+    const ste = formData.ste
+    const steSpec = formData.steSpec
+    const sur = formData.sur
+    const surSpec = formData.surSpec
+    const ani = formData.ani
+    const aniSpec = formData.aniSpec
+    const eti = formData.eti
+    const etiSpec = formData.etiSpec
+    const ins = formData.ins
+    const insSpec = formData.insSpec
+    const int = formData.int
+    const intSpec = formData.intSpec
+    const lea = formData.lea
+    const leaSpec = formData.leaSpec
+    const perf = formData.perf
+    const perfSpec = formData.perfSpec
+    const per = formData.per
+    const perSpec = formData.perSpec
+    const str = formData.str
+    const strSpec = formData.strSpec
+    const sub = formData.sub
+    const subSpec = formData.subSpec
+    const aca = formData.aca
+    const acaSpec = formData.acaSpec
+    const awa = formData.awa
+    const awaSpec = formData.awaSpec
+    const fin = formData.fin
+    const finSpec = formData.finSpec
+    const inv = formData.inv
+    const invSpec = formData.invSpec
+    const med = formData.med
+    const medSpec = formData.medSpec
+    const occ = formData.occ
+    const occSpec = formData.occSpec
+    const pol = formData.pol
+    const polSpec = formData.polSpec
+    const sci = formData.sci
+    const sciSpec = formData.sciSpec
+    const tec = formData.tec
+    const tecSpec = formData.tecSpec
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -507,7 +507,7 @@ export async function updateSkills(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -542,10 +542,10 @@ export async function createDiscipline(user: any, id: any) {
 
 export async function updateDiscipline(formData: any) {
 
-    let disID = formData.disID
-    let discName = formData.discName
-    let discLevels = formData.discLevels
-    let discNotes = formData.discNotes
+    const disID = formData.disID
+    const discName = formData.discName
+    const discLevels = formData.discLevels
+    const discNotes = formData.discNotes
 
     const supabase = await createClient()
 
@@ -560,7 +560,7 @@ export async function updateDiscipline(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -575,7 +575,7 @@ export async function deleteDiscipline(disID: any, id: any) {
         .delete()
         .eq('dis_id', disID)
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -588,8 +588,8 @@ export async function deleteDiscipline(disID: any, id: any) {
 
 
 export async function updateTenets(formData: any) {
-    let id = formData.id
-    let chronTenets = formData.chronTenets
+    const id = formData.id
+    const chronTenets = formData.chronTenets
     const supabase = await createClient()
 
     const { data, error } = await supabase
@@ -602,7 +602,7 @@ export async function updateTenets(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
     return { message: "Tenets Updated!", type: "success" };
@@ -610,8 +610,8 @@ export async function updateTenets(formData: any) {
 }
 
 export async function updateTouchstones(formData: any) {
-    let id = formData.id
-    let touchConvictions = formData.touchConvictions
+    const id = formData.id
+    const touchConvictions = formData.touchConvictions
     const supabase = await createClient()
 
     const { data, error } = await supabase
@@ -624,7 +624,7 @@ export async function updateTouchstones(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -633,8 +633,8 @@ export async function updateTouchstones(formData: any) {
 
 
 export async function updateClanBane(formData: any) {
-    let id = formData.id
-    let clanBane = formData.clanBane
+    const id = formData.id
+    const clanBane = formData.clanBane
     const supabase = await createClient()
     const { data, error } = await supabase
         .from('charTTCB')
@@ -646,7 +646,7 @@ export async function updateClanBane(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -680,9 +680,9 @@ export async function addAdvantage(user: any, id: any) {
 
 
 export async function updateAdvantage(formData: any) {
-    let advID = formData.advID
-    let advantageName = formData.advantageName
-    let advantageLevels = formData.advantageLevels
+    const advID = formData.advID
+    const advantageName = formData.advantageName
+    const advantageLevels = formData.advantageLevels
 
 
     const supabase = await createClient()
@@ -696,7 +696,7 @@ export async function updateAdvantage(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -714,13 +714,11 @@ export async function deleteAdvantage(advID: any, id: any) {
         .delete()
         .eq('adv_id', advID)
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
-    if (!error) {
 
-    }
 
     revalidatePath(`/characters/${id}`, 'layout');
     return { message: "Advantage Removed!", type: "success" };
@@ -753,9 +751,9 @@ export async function addFlaw(user: any, id: any) {
 
 
 export async function updateFlaw(formData: any) {
-    let flawID = formData.flawID
-    let flawName = formData.flawName
-    let flawLevels = formData.flawLevels
+    const flawID = formData.flawID
+    const flawName = formData.flawName
+    const flawLevels = formData.flawLevels
     const supabase = await createClient()
     const { data, error } = await supabase
         .from('charFlaws')
@@ -767,13 +765,12 @@ export async function updateFlaw(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
-    if (!error) {
-        return { message: "Flaw Updated!", type: "success" };
-    }
+
+    return { message: "Flaw Updated!", type: "success" };
 }
 
 
@@ -784,7 +781,7 @@ export async function deleteFlaw(flawID: any, id: any) {
         .delete()
         .eq('flaw_id', flawID)
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -799,8 +796,8 @@ export async function deleteFlaw(flawID: any, id: any) {
 
 
 export async function updateBloodPotency(formData: any) {
-    let id = formData.id;
-    let bloodPotency = formData.bloodPotency
+    const id = formData.id;
+    const bloodPotency = formData.bloodPotency
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -813,7 +810,7 @@ export async function updateBloodPotency(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -826,13 +823,13 @@ export async function updateBloodPotency(formData: any) {
 }
 
 export async function updateBloodForm(formData: any) {
-    let id = formData.id;
-    let bloodSurge = formData.bloodSurge
-    let powerBonus = formData.powerBonus
-    let feedingPenalty = formData.feedingPenalty
-    let mendAmount = formData.mendAmount
-    let rouseReroll = formData.rouseReroll
-    let baneSeverity = formData.baneSeverity
+    const id = formData.id;
+    const bloodSurge = formData.bloodSurge
+    const powerBonus = formData.powerBonus
+    const feedingPenalty = formData.feedingPenalty
+    const mendAmount = formData.mendAmount
+    const rouseReroll = formData.rouseReroll
+    const baneSeverity = formData.baneSeverity
 
 
     const supabase = await createClient()
@@ -851,7 +848,7 @@ export async function updateBloodForm(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -865,8 +862,8 @@ export async function updateBloodForm(formData: any) {
 
 
 export async function updateNotes(formData: any) {
-    let id = formData.id;
-    let notes = formData.notes;
+    const id = formData.id;
+    const notes = formData.notes;
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -879,7 +876,7 @@ export async function updateNotes(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -893,14 +890,14 @@ export async function updateNotes(formData: any) {
 
 
 export async function updateBio(formData: any) {
-    let id = formData.id;
-    let trueAge = formData.trueAge;
-    let apparentAge = formData.apparentAge;
-    let DOB = formData.DOB;
-    let DOD = formData.DOD;
-    let appearance = formData.appearance;
-    let distinguishingFeatures = formData.distinguishingFeatures;
-    let history = formData.history;
+    const id = formData.id;
+    const trueAge = formData.trueAge;
+    const apparentAge = formData.apparentAge;
+    const DOB = formData.DOB;
+    const DOD = formData.DOD;
+    const appearance = formData.appearance;
+    const distinguishingFeatures = formData.distinguishingFeatures;
+    const history = formData.history;
 
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -919,7 +916,7 @@ export async function updateBio(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -934,8 +931,8 @@ export async function updateBio(formData: any) {
 
 export async function updateExperience(formData: any) {
 
-    let totalExp = formData.totalExp;
-    let id = formData.id;
+    const totalExp = formData.totalExp;
+    const id = formData.id;
 
 
     const supabase = await createClient()
@@ -949,7 +946,7 @@ export async function updateExperience(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 
@@ -963,8 +960,8 @@ export async function updateExperience(formData: any) {
 
 export async function updateSpent(formData: any) {
 
-    let spentExp = formData.spentExp;
-    let id = formData.id;
+    const spentExp = formData.spentExp;
+    const id = formData.id;
 
 
     const supabase = await createClient()
@@ -978,7 +975,7 @@ export async function updateSpent(formData: any) {
         .select()
 
     if (error) {
-        console.log(error);
+
         return { message: `${error.message}`, type: "error" };
     }
 

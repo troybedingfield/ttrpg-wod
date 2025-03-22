@@ -56,7 +56,7 @@ export default function CharFlaw({ ...props }) {
 
         setFlawName(flawName);
         setFlawLevels(flawLevels);
-        setIsEditing(isEditing => !isEditing);
+
 
         setIsPending(true);
         const result = await updateFlaw(formData);
@@ -64,6 +64,7 @@ export default function CharFlaw({ ...props }) {
 
         if (result) {
             showToast(`${result.message}`, `${result.type}`);
+            setIsEditing(isEditing => !isEditing);
         } else {
             showToast('Something went wrong', 'error');
         }

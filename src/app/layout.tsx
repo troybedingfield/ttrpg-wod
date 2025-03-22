@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.scss";
-import Header from "./components/Header/Header";
-import UsernameProvider from "./provider/username";
+import "~/globals.scss";
+import Header from "~/components/Header/Header";
+import UsernameProvider from "~/_providers/username";
 import { Suspense } from "react";
-import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
-import { ToastProvider } from "./provider/ToastProvider";
+import LoadingSpinner from "~/components/LoadingSpinner/LoadingSpinner";
+import { ToastProvider } from "~/_providers/ToastProvider";
 
 
 
